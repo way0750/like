@@ -1,0 +1,26 @@
+{
+  "name": "like",
+  "version": "0.0.1",
+  "description": "Yelp for people",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savagepopsicle/like.git"
+  },
+  "keywords": [
+    "people",
+    "yelp"
+  ],
+  "author": "SavagePopsicle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/savagepopsicle/like/issues"
+  },
+  "homepage": "https://github.com/savagepopsicle/like#readme"
+}
