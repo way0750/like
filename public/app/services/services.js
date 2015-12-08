@@ -8,4 +8,24 @@ angular.module('like.service', ['like'])
    });
   };
   return {login: login};
-});
+})
+.factory('dashboardService', function ($http) {
+  var getUserData = function () {
+    $http({
+      method : 'GET',
+      url : '/api/dashboard'
+    })
+  }
+})
+
+//////////////////////////////////////////////
+// .factory('browseService', function ($http) {
+//     var browse = function (region) {
+//       $http({
+//         method: 'GET',
+//         url: '/api/browse/:'+ region
+//       });
+//     };
+//
+//     return {browse: browse};
+//   });
