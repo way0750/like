@@ -20,6 +20,8 @@ module.exports = function (config) {
       'public/vend/angular-mocks.js',
       'public/app/app.js',
       'public/app/controllers/login.js',
+      'public/app/controllers/dashboard.js',
+      'public/app/controllers/browse.js',
       'public/app/services/services.js',
       'test/client/clientSpec.js'
     ],
