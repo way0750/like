@@ -18,14 +18,15 @@ module.exports = function (config) {
       'public/vend/angular.js',
       'public/vend/angular-route.min.js',
       'public/vend/angular-mocks.js',
+      'public/vend/angular-cookies.min.js',
       'public/app/app.js',
       'public/app/controllers/login.js',
       'public/app/controllers/dashboard.js',
       'public/app/controllers/browse.js',
+      'public/app/controllers/register.js',
       'public/app/services/services.js',
       'test/client/clientSpec.js'
     ],
-
 
     // list of files to exclude
     exclude: [

@@ -10,7 +10,11 @@
       data: userObj
      });
     };
-    return {login: login};
+    var logout = function () {};
+    return {
+      login: login,
+      logout : logout
+    };
   })
   .factory('dashboardService', function ($http) {
     var getUserData = function (userId) {

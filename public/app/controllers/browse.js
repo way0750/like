@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  angular.module('like.browse', [])
-  .controller('browseCtrl', ['$scope', 'browseService', function ($scope, browseService) {
+  angular.module('like.browse', ['ngCookies'])
+  .controller('browseCtrl', ['$scope', 'browseService', '$location', '$cookies', function ($scope, browseService, $location, $cookies) {
     $scope.users = {};
 
     $scope.getAllUsers = function () {
@@ -15,6 +15,9 @@
       });
     };
 
+    $scope.toDashboard = function () {
+      $location.path('/dashboard');
+    };
     $scope.getAllUsers();
   }]);
 })();

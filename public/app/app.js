@@ -1,21 +1,29 @@
-var myApp = angular.module('like', ['like.services', 'like.browse', 'like.dashboard', 'like.login', 'ngRoute']);
+var myApp = angular.module('like', ['like.services', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'ngRoute']);
+myApp.controller('likeCtrl', function () {
+
+});
 
 myApp.config(function ($routeProvider) {
   $routeProvider
+    //for now we will just redirect use to the login page.
     .when('/', {
-      templateUrl : './templates/login.html',
+      templateUrl : './app/templates/login.html',
+      controller : 'loginCtrl'
+    })
+    .when('/login', {
+      templateUrl : './app/templates/login.html',
       controller : 'loginCtrl'
     })
     .when('/register', {
-      templateUrl : './templates/register.html',
-      controller : 'authCtrl'
+      templateUrl : './app/templates/register.html',
+      controller : 'registerCtrl'
     })
     .when('/browse', {
-      templateUrl : './templates/browse.html',
+      templateUrl : './app/templates/browse.html',
       controller : 'browseCtrl'
     })
     .when('/dashboard', {
-      templateUrl : './templates/dashboard.html',
-      controller: 'dahsboardCtrl'
+      templateUrl : './app/templates/dashboard.html',
+      controller: 'dashboardCtrl'
     });
 });
