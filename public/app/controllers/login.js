@@ -8,15 +8,15 @@
         password: password
       };
       authService.login(userObj)
-      .then(function(data){
+      .then(function (data) {
         console.log('----------login from server:', data);
-        // if successfully logged in 
+        // if successfully logged in
           sessionStorage.setItem('userId', data.userId || "");
-          // redirect 
-        // else 
+          // redirect
+        // else
           // tell the user password or username wrong
       })
-      .catch(function(err){
+      .catch(function (err) {
         console.log('--------login err: ', err);
       });
     };

@@ -12,7 +12,7 @@
       dashboardService.getUserData(UserId)
       .then(function (user) {
         $scope.userData = user.data;
-        setTimeout(function(){
+        setTimeout(function () {
           $scope.getUserData(sessionStorage.getItem('useId') || '');
           console.log('auto data renewal-------from dashboard!!!!!');
         }, 30000);
@@ -22,7 +22,7 @@
       });
     };
 
-    $scope.getUserData(sessionStorage.getItem('useId')  || '');
+    $scope.getUserData(sessionStorage.getItem('useId') || '');
   }]);
 })();
 
