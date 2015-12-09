@@ -2,7 +2,6 @@
   'use strict';
 
   angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'dashboardService', function ($scope, dashboardService) {
-    $scope.userId = '';
     $scope.userData = {};
 
     $scope.logout = function (username, password) {
@@ -13,13 +12,17 @@
       dashboardService.getUserData(UserId)
       .then(function (user) {
         $scope.userData = user.data;
+        setTimeout(function(){
+          $scope.getUserData(sessionStorage.getItem('useId') || '');
+          console.log('auto data renewal-------from dashboard!!!!!');
+        }, 30000);
       })
       .catch(function (err) {
         console.error('DASHBOARD — GET USER DATA ERROR:', err);
       });
     };
 
-    $scope.getUserData($scope.userId);
+    $scope.getUserData(sessionStorage.getItem('useId')  || '');
   }]);
 })();
 
