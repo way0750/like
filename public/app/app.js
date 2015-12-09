@@ -1,4 +1,4 @@
-var myApp = angular.module('like', ['like.service', 'ngRoute']);
+var myApp = angular.module('like', ['like.services', 'ngRoute']);
 
 myApp.config(function ($routeProvider) {
   $routeProvider
