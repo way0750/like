@@ -1,5 +1,5 @@
 (function () {
-  angular.module('login', []).controller('loginCtrl', function ($scope, authService) {
+  angular.module('like.login', []).controller('loginCtrl', function ($scope, authService) {
     $scope.username = '';
     $scope.password = '';
     $scope.login = function (username, password) {
