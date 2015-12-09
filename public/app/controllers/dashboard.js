@@ -1,13 +1,26 @@
 (function () {
   'use strict';
 
-  angular.module('dashboard', []).controller('dashboardCtrl', function ($scope) {
-    $scope.logout = function (username, password) {
-    };
-    $scope.browse = function () {
-    };
-  });
+  angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'dashboardService', function ($scope, dashboardService) {
+    $scope.userId = '';
+    $scope.userData = {};
 
+    $scope.logout = function (username, password) {
+      dashboardService.logout();
+    };
+
+    $scope.getUserData = function (UserId) {
+      dashboardService.getUserData(UserId)
+      .then(function (user) {
+        $scope.userData = data;
+      })
+      .catch(function (err) {
+        console.error('DASHBOARD — GET USER DATA ERROR:', err);
+      });
+    };
+
+    $scope.getUserData($scope.userId);
+  }]);
 })();
 
 
