@@ -12,7 +12,7 @@
     $scope.getUserData = function (UserId) {
       dashboardService.getUserData(UserId)
       .then(function (user) {
-        $scope.userData = data;
+        $scope.userData = user.data;
       })
       .catch(function (err) {
         console.error('DASHBOARD — GET USER DATA ERROR:', err);
