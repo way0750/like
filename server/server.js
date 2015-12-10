@@ -8,6 +8,12 @@ var app = express();
 
 require('passport');
 
+var isAuthorized = function(req, res, next){
+  if (req.isAuthenticated()) {
+     next();
+    }
+    res.sendStatus(401);
+};
 
 /////////////////// Serving Assets | Configuring MiddleWare //////////////////
 
@@ -24,27 +30,21 @@ require('passport');
 
 
   app.post('/api/signin', function(req, res, next) {
-              console.log('req object contains session: ', req.session);
-              console.log('req object contains passport: ', req.session.passport);
                passport.authenticate('local', function( err, user, info ) {
-                console.log('user is: ', user);
                 if(user === false) {
                   res.redirect('/api/signin');
                 } else {
                   req.login(user.dataValues, function(err) {
                     if(err) {
                       console.log('Error: ', err);
-                    } else {
-                      console.log('Passport session object: ', req.session.passport);
-                      console.log('req.user exists: ', req.user);
-                    }
+                    } 
                   });
                   res.sendStatus(200);
                 }
                })(req, res, next);
              });
 
-  app.use('/api/profile/:id', function (request, response) {
+  app.use('/api/profile/:id', function (req, res) {
     if (request.params.id  == 20) {
       response.sendStatus(200);
     } else {
@@ -53,9 +53,8 @@ require('passport');
   });
 
   //Temporary 200 pending further configuration
-  app.use('/api/browse', function (request, response) {
-    console.log('req.session', request.session);
-     response.sendStatus(200);
+  app.use('/api/browse', isAuthorized, function (req, res) {
+    res.sendStatus(200);
   });
 
   //Temporary 200 pending further configuration
@@ -73,20 +72,19 @@ require('passport');
     req.session.destroy();
 
     // Ensuring user is logged out of passport
-    console.log('cookie: ', req.session);
     if(req.session) {
       console.log('didnt work sucker');
     } else {
       console.log('worked sucker');
     }
-    res.redirect('/api/signin');
+    res.sendStatus(204);
   });
 
   app.use('/api/user/create', function(req, res){
     res.sendStatus(200);
   });
 
-  app.use('/api/vote', function (req, res){
+  app.use('/api/vote', isAuthorized, function (req, res){
     res.sendStatus(200);
   });
 
