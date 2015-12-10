@@ -9,10 +9,10 @@
         url: '/api/register',
         data: useObj
       }).then(function (data) {
-        sessionStorage.setItem('userId', data.userId);
+        sessionStorage.setItem('userId', data.data.userId);
+        return data.data.userId;
       }).catch(function (err) {
-        console.log('in register---------got this for making $http call:', err);
-        return err;
+        return err.status;
       });
     }; //close register
 

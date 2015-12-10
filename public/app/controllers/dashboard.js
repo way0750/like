@@ -9,12 +9,12 @@
       $location.path('/login');
     };
 
-    $scope.getUserData = function (UserId) {
-      dashboardService.getUserData(UserId)
+    $scope.getLogedInUserData = function (UserId) {
+      dashboardService.getLogedInUserData(UserId)
       .then(function (user) {
         $scope.userData = user.data;
         setTimeout(function () {
-          $scope.getUserData(sessionStorage.getItem('useId') || '');
+          $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
           console.log('auto data renewal-------from dashboard!!!!!');
         }, 30000);
       })
@@ -26,7 +26,7 @@
     $scope.redirect = function () {
       $location.path('/browse');
     };
-    $scope.getUserData(sessionStorage.getItem('useId') || '');
+    $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
   }]);
 })();
 

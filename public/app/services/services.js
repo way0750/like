@@ -17,7 +17,7 @@
     };
   })
   .factory('dashboardService', function ($http) {
-    var getUserData = function (userId) {
+    var getLogedInUserData = function (userId) {
       var url = '/api/users/' + userId;
       return $http({
         method: 'GET',
@@ -35,9 +35,23 @@
       });
     };
 
+    var getUserData = function (userId) {
+      var url = '/api/profile/' + userId;
+      return $http({
+        method: 'GET',
+        url: url
+      })
+      .then(function (data) {
+        return data;
+      }).catch(function () {
+        return false;
+      });
+    };
+
     return {
+      getUserData: getUserData,
       logOut: logOut,
-      getUserData: getUserData
+      getLogedInUserData: getLogedInUserData
     };
   })
   .factory('browseService', function ($http) {

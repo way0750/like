@@ -1,4 +1,4 @@
-var myApp = angular.module('like', ['like.services', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'ngRoute']);
+var myApp = angular.module('like', ['like.profile','like.services', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'ngRoute']);
 myApp.controller('likeCtrl', function () {
 
 });
@@ -25,5 +25,9 @@ myApp.config(function ($routeProvider) {
     .when('/dashboard', {
       templateUrl : './app/templates/dashboard.html',
       controller: 'dashboardCtrl'
+    })
+    .when('/profile', {
+      templateUrl : './app/templates/profile.html',
+      controller: 'profileCtrl'
     });
 });

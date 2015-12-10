@@ -21,11 +21,13 @@ module.exports = function (config) {
       'public/vend/angular-cookies.min.js',
       'public/app/app.js',
       'public/app/controllers/login.js',
+      'public/app/controllers/profile.js',
       'public/app/controllers/dashboard.js',
       'public/app/controllers/browse.js',
       'public/app/controllers/register.js',
       'public/app/services/services.js',
-      'test/client/clientSpec.js'
+      'test/client/clientSpec.js',
+      'test/client/profileSpec.js'
     ],
 
     // list of files to exclude

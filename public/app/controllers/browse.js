@@ -19,5 +19,10 @@
       $location.path('/dashboard');
     };
     $scope.getAllUsers();
+
+    //once select a user, should redirect to another view and save the selected user's id;
+    $scope.selectUser = function (targetUserId) {
+      sessionStorage.setItem('targetUserId', targetUserId);
+    };
   }]);
 })();
