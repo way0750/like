@@ -1,6 +1,10 @@
 <div>
-  <div class="trait awesomeness">
-    <div class="up vote" ng-click="sendVote('up')">up vote</div>
-    <div class="down vote" ng-click="sendVote('down')">down vote</div>
-  </div>
+  
+  <ul ng-repeat = "(trait, value) in pubUserData">
+    <li>{{trait}}: {{value}}</li>
+    <button class="up vote" ng-click="sendVote('up')">up vote</button>
+    <button class="down vote" ng-click="sendVote('down')">down vote</button>
+  </ul>  
+
+
 </div>
