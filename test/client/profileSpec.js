@@ -22,18 +22,19 @@ describe('casting vote', function () {
   it('should have all of these functions', function () {
     expect(scope).to.have.property('getUserData');
     expect(scope).to.have.property('toDashboard');
-    expect(scope).to.have.property('castVote');
+    expect(scope).to.have.property('sendVote');
   });
 
   it('should send a vote to the server', function () {
     scope.targetUserId = '1234';
     var vote = {
       "id": "1234",
-      "vote": "thumbs up"
+      "vote": "159",
+      "trait": "nothing yet!"
     };
-    $httpBackend.expectPOST('/api/profile/' + scope.targetUserId, vote).respond({data : {}});
+    $httpBackend.expectPOST('/api/vote/' + scope.targetUserId, vote).respond({data : {}});
 
-    scope.castVote('thumbs up').then(function (res) {
+    scope.sendVote('159').then(function (res) {
       expect(res.data).to.eql({});
     });
 

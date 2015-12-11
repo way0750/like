@@ -6,8 +6,9 @@
       $location.path('/dashboard');
       return $http({
         method: 'post',
-        url: '/api/register',
+        url: '/api/user/create',
         data: useObj
+        //useObj: {username: username, password: password}
       }).then(function (data) {
         sessionStorage.setItem('userId', data.data.userId);
         return data.data.userId;

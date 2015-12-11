@@ -28,7 +28,7 @@ describe('Services', function () {
         password: password
       };
       $httpBackend
-        .expectPOST('/api/login', userObj)
+        .expectPOST('/api/user/signin', userObj)
         .respond(200, {});
 
       authSend(userObj);
@@ -44,7 +44,7 @@ describe('Services', function () {
         password: 'wrong'
       };
 
-      $httpBackend.expectPOST('/api/login', userObj)
+      $httpBackend.expectPOST('/api/user/signin', userObj)
       .respond(747, {});
 
       authSend(userObj);
@@ -77,7 +77,7 @@ describe('Services', function () {
       getLogedInUserData = sinon.spy(dashboardService, 'getLogedInUserData');
       var userId = 1;
       $httpBackend
-        .expectGET('/api/users/' + userId)
+        .expectGET('/api/profile/' + userId)
         .respond(200, {});
 
       getLogedInUserData(userId);
@@ -91,7 +91,7 @@ describe('Services', function () {
       logOut = sinon.spy(dashboardService, 'logOut');
 
       $httpBackend
-        .expectPOST('/api/logout')
+        .expectPOST('/api/user/signout')
         .respond(200, {});
 
       logOut();
@@ -101,7 +101,7 @@ describe('Services', function () {
       $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('should receive a 200 status for successfully accessing a existing user\'s data', function () {
+    it('should receive a 200 status for successfully accessing an existing user\'s data', function () {
       getUserData = sinon.spy(dashboardService, 'getUserData');
       var userId = 1;
       $httpBackend
@@ -188,7 +188,7 @@ describe('Controllers', function () {
     });
 
     it('should call getLogedInUserData once', function () {
-      $httpBackend.expectGET('/api/users/').respond('user no. 0');
+      $httpBackend.expectGET('/api/profile/').respond('user no. 0');
       $httpBackend.flush();
       expect(scope.userData).to.eql('user no. 0');
     });
@@ -215,11 +215,20 @@ describe('Controllers', function () {
     });
 
     it('should call getAllUsers once', function () {
-      var mockUsers = '[{}, {}, {}]';
+      // var mockUsers = '[{}, {}, {}]';
+      var mockUsers = {
+        users: [
+        {
+          userId: 1234,
+          firstName: 'firstName',
+          lastName: 'lastName'
+        }
+        ]
+      };
       $httpBackend.expectGET('/api/browse').respond(mockUsers);
       $httpBackend.flush();
 
-      expect(scope.users.data).to.deep.equal([{}, {}, {}]);
+      expect(scope.users.data).to.deep.equal(mockUsers);
 
       $httpBackend.verifyNoOutstandingExpectation();
       $httpBackend.verifyNoOutstandingRequest();
@@ -249,7 +258,7 @@ describe('Controllers', function () {
     });
 
     it('should create a new user', function () {
-      $httpBackend.expectPOST('/api/register').respond(200, {
+      $httpBackend.expectPOST('/api/user/create').respond(200, {
         userId: 1});
       var userObj = {
         username: 'John',
@@ -262,7 +271,7 @@ describe('Controllers', function () {
     });
 
     it('should return an err from server', function () {
-      $httpBackend.expectPOST('/api/register').respond(400);
+      $httpBackend.expectPOST('/api/user/create').respond(400);
       var userObj = {
         username: 'John',
         password: 'password'

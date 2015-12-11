@@ -30,11 +30,13 @@
     $scope.sendVote = function (thumb) {
       return $http({
         method: 'POST',
-        url: '/api/profile/' + $scope.targetUserId,
+        url: '/api/vote/' + $scope.targetUserId,
         data: {
           id: $scope.targetUserId,
-          vote: thumb
+          vote: thumb,
+          trait: 'nothing yet!'
         }
+        // data: {id: number, vote: string, trait: string}
       }).then(function (data) {
         $scope.data = data.data;
         return data.data;

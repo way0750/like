@@ -5,9 +5,10 @@
   .factory('authService', function ($http) {
     var login = function (userObj) {
      return $http({
-      method: 'post',
-      url: '/api/login',
+      method: 'POST',
+      url: '/api/user/signin',
       data: userObj
+      //useObj: {username: username, password: password}
      });
     };
     var logout = function () {};
@@ -18,7 +19,7 @@
   })
   .factory('dashboardService', function ($http) {
     var getLogedInUserData = function (userId) {
-      var url = '/api/users/' + userId;
+      var url = '/api/profile/' + userId;
       return $http({
         method: 'GET',
         url: url
@@ -31,7 +32,8 @@
     var logOut = function () {
       return $http({
         method: 'POST',
-        url: '/api/logout'
+        url: '/api/user/signout'
+        //{}
       });
     };
 
@@ -64,6 +66,11 @@
         return data;
       });
     };
+
+    var sendVote = function () {
+
+    };
+
     return {getAllUsers: getAllUsers};
   });
 })();
