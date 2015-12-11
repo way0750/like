@@ -16,6 +16,10 @@ var Profile = db.define('profile', {
   lastName: {
     type: Sequelize.STRING,
     field: 'last_name'
+  },
+  email: {
+    type: Sequelize.STRING,
+    field: 'email'
   }
 }, {
   freezeTableName: true

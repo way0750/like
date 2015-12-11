@@ -2,6 +2,7 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 var request = require('supertest');
 var server = require('../../server/server.js');
+var Profile = require('../../server/models/profileModel');
 
 var superagent = require('superagent');
 var agent = superagent.agent();
@@ -66,6 +67,65 @@ describe('Authentication', function() {
       request(server)
         .post('/api/vote')
         .expect(401, done);
+    });
+  });
+
+  describe('Create User', function() {
+    this.timeout(5000);
+    afterEach(function (done) {
+      Profile.destroy({where: {username: 'Bob12'}})
+             .catch(function(err) {
+              console.log('Create Spec error: ', err);
+             });
+     Profile.destroy({where: {username: 'Frank12'}})
+            .then(function() {
+              done();
+            })
+            .catch(function(err) {
+             console.log('Create Spec error: ', err);
+            });
+
+    });
+
+    it('should add a user to the database', function (done) {
+      var userA = {
+        username: 'Bob12',
+        password: 'test',
+        firstName: 'Bobbsky',
+        lastName: 'Fremont',
+        email: 'bfremont@usa.gov'
+      };
+
+      request(server)
+        .post('/api/profile/create')
+        .send(userA)
+        .end(function(err, res) {
+        Profile.find({where : {username: 'Bob12'}})
+               .then(function(user) {
+                console.log('user found');
+                 expect(user.dataValues.username).to.equal('Bob12');
+                 expect(user.dataValues.firstName).to.equal('Bobbsky');
+                 expect(user.dataValues.lastName).to.equal('Fremont');
+                 done();
+               });
+        });
+    });
+
+    it('should not allow for non-unique username', function(done) {
+      var userB = {
+        username: 'Frank12',
+        password: 'test2',
+        firstName: 'Frank',
+        lastName: 'Willy',
+        email: 'fwilly@france.gov'
+      };
+
+      Profile.create(userB).then(function() {
+        request(server)
+              .post('/api/profile/create')
+              .send(userB)
+              .expect(451, done);
+      });
     });
   });
 });

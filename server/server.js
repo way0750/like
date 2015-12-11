@@ -4,6 +4,7 @@ var body_parser = require('body-parser');
 var passport = require('./controllers/passport');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
+var Profile = require('./models/profileModel');
 var app = express();
 
 require('passport');
@@ -36,21 +37,14 @@ var isAuthorized = function(req, res, next){
                 } else {
                   req.login(user.dataValues, function(err) {
                     if(err) {
-                      console.log('Error: ', err);
-                    } 
+                      console.log('Error: ---', err);
+                    }
                   });
                   res.sendStatus(200);
                 }
                })(req, res, next);
              });
 
-  app.use('/api/profile/:id', function (req, res) {
-    if (request.params.id  == 20) {
-      response.sendStatus(200);
-    } else {
-      response.sendStatus(404);
-    }
-  });
 
   //Temporary 200 pending further configuration
   app.use('/api/browse', isAuthorized, function (req, res) {
@@ -58,9 +52,9 @@ var isAuthorized = function(req, res, next){
   });
 
   //Temporary 200 pending further configuration
-  app.use('/api/signin', function(req, res){
-    res.sendStatus(200);
-  });
+  // app.use('/api/signin', function(req, res){
+  //   res.sendStatus(200);
+  // });
 
   app.post('/api/signout', function(req, res){
     // Initializing response to 200 pending passport integration
@@ -80,12 +74,38 @@ var isAuthorized = function(req, res, next){
     res.sendStatus(204);
   });
 
-  app.use('/api/user/create', function(req, res){
-    res.sendStatus(200);
+  app.post('/api/profile/create', function(req, res){
+    Profile.find({where:{username: req.body.username}}).then(function(user){
+      if (user !== null){
+        res.sendStatus(451);
+      } else {
+        Profile.create({username  : req.body.username,
+          password  : req.body.password,
+          firstName : req.body.firstName,
+          lastName  : req.body.lastName,
+          email     : req.body.email
+        })
+        .then(function() {
+          console.log('User created');
+          res.sendStatus(200);
+        })
+        .catch(function(err) {
+          console.log('Error in creation: ', err);
+        });
+      }
+    })
   });
 
   app.use('/api/vote', isAuthorized, function (req, res){
     res.sendStatus(200);
+  });
+
+  app.use('/api/profile/:id', function (req, res) {
+    if (req.params.id  == 20) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
   });
 
   app.use('/', function( req, res ){

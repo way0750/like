@@ -12,6 +12,7 @@ passport.use(new LocalStrategy(
               return err;
             }
             if ( !user ) {
+              console.log('no user found');
               return done( null, false, { message : 'Incorrect username' } );
             }
             // if ( !user.validPassword( password )) {
