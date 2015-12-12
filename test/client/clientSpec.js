@@ -1,9 +1,9 @@
 'user strict';
 
 describe('Services', function () {
-  beforeEach(module('like.services'));
+  beforeEach(module('like'));
 
-  describe('Authentication Service', function () {
+  describe('AuthService', function () {
     var authService;
     var $http;
     var $httpBackend;
@@ -12,7 +12,7 @@ describe('Services', function () {
     beforeEach(inject(function (_authService_, _$httpBackend_) {
       authService = _authService_;
       $httpBackend = _$httpBackend_;
-      authSend = sinon.spy(authService, "login");
+      authSend = sinon.spy(authService, "logIn");
     }));
 
     it('should send username and password to the server', function () {
@@ -53,28 +53,42 @@ describe('Services', function () {
       $httpBackend.verifyNoOutstandingExpectation();
       $httpBackend.verifyNoOutstandingRequest();
     });
+
+    it('should receive a 200 status code on when successfully log out', function () {
+      logOut = sinon.spy(authService, 'logOut');
+
+      $httpBackend
+        .expectPOST('/api/user/signout')
+        .respond(200, {});
+
+      logOut();
+      $httpBackend.flush();
+
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
   });
 
-  describe('Dashboard Service', function () {
-    var dashboardService;
+  describe('dataService', function () {
+    var dataService;
     var $http;
     var $httpBackend;
     var getLogedInUserData;
     var logOut;
 
-    beforeEach(inject(function (_dashboardService_, _$httpBackend_) {
-      dashboardService = _dashboardService_;
+    beforeEach(inject(function (_dataService_, _$httpBackend_) {
+      dataService = _dataService_;
       $httpBackend = _$httpBackend_;
     }));
 
     it('should get the user\'s data from the server', function () {
-      getLogedInUserData = sinon.spy(dashboardService, 'getLogedInUserData');
+      getLogedInUserData = sinon.spy(dataService, 'getLogedInUserData');
       getLogedInUserData();
       expect(getLogedInUserData.callCount).to.equal(1);
     });
 
     it('should receive a 200 status code when successfully get user data', function () {
-      getLogedInUserData = sinon.spy(dashboardService, 'getLogedInUserData');
+      getLogedInUserData = sinon.spy(dataService, 'getLogedInUserData');
       var userId = 1;
       $httpBackend
         .expectGET('/api/profile/' + userId)
@@ -87,22 +101,8 @@ describe('Services', function () {
       $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('should receive a 200 status code on when successfully log out', function () {
-      logOut = sinon.spy(dashboardService, 'logOut');
-
-      $httpBackend
-        .expectPOST('/api/user/signout')
-        .respond(200, {});
-
-      logOut();
-      $httpBackend.flush();
-
-      $httpBackend.verifyNoOutstandingExpectation();
-      $httpBackend.verifyNoOutstandingRequest();
-    });
-
     it('should receive a 200 status for successfully accessing an existing user\'s data', function () {
-      getUserData = sinon.spy(dashboardService, 'getUserData');
+      getUserData = sinon.spy(dataService, 'getUserData');
       var userId = 1;
       $httpBackend
         .expectGET('/api/profile/' + userId)
@@ -118,7 +118,7 @@ describe('Services', function () {
     });
 
     it('should receive a 400 status for successfully accessing a existing user\'s data', function () {
-      getUserData = sinon.spy(dashboardService, 'getUserData');
+      getUserData = sinon.spy(dataService, 'getUserData');
       var userId = 1;
       $httpBackend
         .expectGET('/api/profile/' + userId)
@@ -132,8 +132,6 @@ describe('Services', function () {
       $httpBackend.verifyNoOutstandingExpectation();
       $httpBackend.verifyNoOutstandingRequest();
     });
-
-
   });
 });
 
