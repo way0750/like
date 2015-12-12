@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('like.profile', [])
-  .controller('profileCtrl', ['$scope', '$http','dashboardService', '$location', function ($scope, $http, dashboardService, $location) {
+  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', function ($scope, $http, dataService, $location) {
 
     $scope.targetUserId = sessionStorage.getItem('targetUserId');
     $scope.pubUserData = {
@@ -12,7 +12,7 @@
     };
     $scope.getUserData = function (userId) {
 
-      return dashboardService.getUserData(userId)
+      return dataService.getUserData(userId)
       .then(function (data) {
         // $scope.pubUserData = data;
         return data;

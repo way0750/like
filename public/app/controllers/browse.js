@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('like.browse', ['ngCookies'])
-  .controller('browseCtrl', ['$scope', 'browseService', '$location', '$cookies', function ($scope, browseService, $location, $cookies) {
+  .controller('browseCtrl', ['$scope', 'dataService', '$location', '$cookies', function ($scope, dataService, $location, $cookies) {
     $scope.users = {};
     $scope.fakeData = [
       {
@@ -19,7 +19,7 @@
       }
     ];
     $scope.getAllUsers = function () {
-      browseService.getAllUsers()
+      dataService.getAllUsers()
       .then(function (users) {
         $scope.users.data = users.data;
       })

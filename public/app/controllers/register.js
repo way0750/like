@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+
   angular.module('like.register', [])
   .controller('registerCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
     $scope.register = function (useObj) {

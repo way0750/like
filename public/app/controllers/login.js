@@ -1,5 +1,7 @@
 (function () {
-  angular.module('like.login', []).controller('loginCtrl', function ($scope, authService, $location) {
+  'use strict';
+
+  angular.module('like.login', []).controller('loginCtrl', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
     $scope.username = '';
     $scope.password = '';
     $scope.login = function (username, password) {
@@ -8,7 +10,7 @@
         password: password
       };
       //server not ready so commended out these lines:
-      // authService.login(userObj)
+      // authService.logIn(userObj)
       // .then(function (data) {
       //   console.log('----------login from server:', data);
       //   // if successfully logged in
@@ -27,5 +29,5 @@
     $scope.goToRegister = function () {
       $location.path('/register');
     };
-  });//close controller def
+  }]);//close controller def
 })();

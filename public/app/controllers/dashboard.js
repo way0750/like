@@ -1,16 +1,16 @@
 (function () {
   'use strict';
 
-  angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'dashboardService', '$location', function ($scope, dashboardService, $location) {
+  angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', function ($scope, authService, dataService, $location) {
     $scope.userData = {};
 
     $scope.logout = function (username, password) {
-      // dashboardService.logout();
+      // authService.logout();
       $location.path('/login');
     };
 
     $scope.getLogedInUserData = function (UserId) {
-      dashboardService.getLogedInUserData(UserId)
+      dataService.getLogedInUserData(UserId)
       .then(function (user) {
         $scope.userData = user.data;
         setTimeout(function () {
