@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/profileModel');
+var util = require('../Utilities/utilities')
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -15,11 +16,9 @@ passport.use(new LocalStrategy(
               console.log('no user found');
               return done( null, false, { message : 'Incorrect username' } );
             }
-            // if ( !user.validPassword( password )) {
-            //   return done( null, false, { message : 'Incorrect password.'});
-            // }
-            // 
-            // return  done(null, user);
+            if (util.checkPassword( username, password )) {
+              return done( null, false, { message : 'Incorrect password.'});
+            }
             return done( null, user );
          });
   }

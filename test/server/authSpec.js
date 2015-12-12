@@ -20,7 +20,7 @@ describe('Authentication', function() {
         request(server)
           .post('/api/signin')
           .send({username: 'John', password: 'test'})
-          .expect(200, done); //TODO: Add in check of return value
+          .expect(302, done); //TODO: Add in check of return value
     });
 
     it('should return a 302 (redirection) on signin failure', function (done) {
@@ -100,15 +100,20 @@ describe('Authentication', function() {
         .post('/api/profile/create')
         .send(userA)
         .end(function(err, res) {
-        Profile.find({where : {username: 'Bob12'}})
+          console.log('Error in adding user to db: ', err);
+        return Profile.find({where : {username: 'Bob12'}})
                .then(function(user) {
                 console.log('user found');
                  expect(user.dataValues.username).to.equal('Bob12');
                  expect(user.dataValues.firstName).to.equal('Bobbsky');
                  expect(user.dataValues.lastName).to.equal('Fremont');
                  done();
+               })
+               .catch(function(err) {
+                console.log('Error is here:      ', err);
                });
         });
+        // done();
     });
 
     it('should not allow for non-unique username', function(done) {
@@ -124,8 +129,9 @@ describe('Authentication', function() {
         request(server)
               .post('/api/profile/create')
               .send(userB)
-              .expect(451, done);
+              .expect(589, done);
       });
+      done();
     });
   });
 });
