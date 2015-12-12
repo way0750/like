@@ -25,7 +25,8 @@ module.exports = function (config) {
       'public/app/controllers/dashboard.js',
       'public/app/controllers/browse.js',
       'public/app/controllers/register.js',
-      'public/app/services/services.js',
+      'public/app/services/authService.js',
+      'public/app/services/dataService.js',
       'test/client/clientSpec.js',
       'test/client/profileSpec.js'
     ],
