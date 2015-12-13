@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('like')
+  angular.module('like.login')
   .factory('authService', ['$http', function ($http) {
     var logIn = function (userObj) {
      return $http({
@@ -25,14 +25,30 @@
         method: 'POST',
         url: '/api/user/create',
         data: useObj
-        //useObj: {username: username, password: password}
       });
     };
 
-    var update = function () {
+    var update = function (userDataObj) {
+      return $http({
+        method: 'PUT',
+        url: 'api/user/update/' + userDataObj.userId,
+        data: userDataObj
+      }).then(function (data) {
+        return data;
+      }).catch(function (data) {
+        return data;
+      });
     };
 
-    var deleteUser = function () {
+    var deleteUser = function (userId) {
+      return $http({
+        method: 'DELETE',
+        url: 'api/delete/' + userId
+      }).then(function (data) {
+        return data;
+      }).catch(function (data) {
+        return data;
+      });
     };
 
     return {

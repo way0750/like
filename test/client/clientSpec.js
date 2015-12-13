@@ -177,11 +177,8 @@ describe('Controllers', function () {
       $httpBackend = _$httpBackend_;
     }));
 
-    it('should have a logout function', function () {
+    it('should have these functions:', function () {
       expect(scope.logout).to.exist;
-    });
-
-    it('should have a getLogedInUserData function', function () {
       expect(scope.getLogedInUserData).to.exist;
     });
 
@@ -260,8 +257,11 @@ describe('Controllers', function () {
         userId: 1});
       var userObj = {
         username: 'John',
-        password: 'password'
+        password: 'password',
+        confirm: 'password',
+        email: 'email@email.com'
       };
+      console.log('-------', scope.register.then);
       scope.register(userObj).then(function (userId) {
         expect(userId).to.equal(1);
       });
@@ -272,12 +272,69 @@ describe('Controllers', function () {
       $httpBackend.expectPOST('/api/user/create').respond(400);
       var userObj = {
         username: 'John',
-        password: 'password'
+        password: 'password',
+        confirm: 'password',
+        email: 'email@email.com'
       };
       scope.register(userObj).then(function (err) {
         expect(err).to.equal(400);
       });
       $httpBackend.flush();
+    });
+
+  });
+
+  describe('testing new functions in authService service', function () {
+    var authService, $httpBackend;
+
+    beforeEach(module('like'));
+
+    beforeEach(inject(function (_$httpBackend_, _authService_) {
+      authService = _authService_;
+      $httpBackend = _$httpBackend_;
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    }));
+
+    it('should have these functions:', function () {
+      var neededFunctions = ['logIn', 'logOut', 'register', 'update', 'deleteUser'];
+      expect(authService).to.have.all.keys(neededFunctions);
+    });
+
+    it('should return 200 for successfully update, and 400 for failed to update', function () {
+      var fakeUser = {
+        userId: 1,
+        username: 'newname',
+        password: 'newpass'
+      };
+
+      $httpBackend.expectPUT('api/user/update/' + fakeUser.userId, fakeUser).respond(200);
+      authService.update(fakeUser).then(function (data) {
+        expect(data.status).to.eql(200);
+      });
+      $httpBackend.flush();
+
+      $httpBackend.expectPUT('api/user/update/' + fakeUser.userId, fakeUser).respond(400);
+      authService.update(fakeUser).then(function (data) {
+        expect(data.status).to.eql(400);
+      });
+      $httpBackend.flush();
+    });
+
+    it('should delete a user and return a redirect 300 or 400', function () {
+      var fakeUser = 1;
+      $httpBackend.expectDELETE('api/delete/' + fakeUser).respond(300);
+      authService.deleteUser(fakeUser).then(function (data) {
+        expect(data.status).to.eql(300);
+      });
+      $httpBackend.flush();
+
+      $httpBackend.expectDELETE('api/delete/' + fakeUser).respond(400);
+      authService.deleteUser(fakeUser).then(function (data) {
+        expect(data.status).to.eql(400);
+      });
+      $httpBackend.flush();
+
     });
 
   });

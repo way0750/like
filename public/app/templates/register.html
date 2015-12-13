@@ -1,7 +1,10 @@
 <div>
   <h1>you are in register!!!</h1>
-  <input size="20" placeholder="new username">
-  <input size="20" placeholder="new password">
-  <input size="20" placeholder="re-enter password">
-  <button ng-click="register()">click to submit</button>
+  <form novalidate name="bigGuy">
+    <input size="20" placeholder="new username" ng-model="userObj.username" name = "createUser">
+    <input size="20" type = "password" placeholder="new password" ng-model="userObj.password">
+    <input size="20" type = "password" placeholder="re-enter password" ng-model="userObj.confirm">
+    <input size="20" type="email" name ='uEmail'placeholder="your email" ng-model='userObj.email' required>
+  </form>
+  <button ng-click="register(userObj)" ng-disabled = "!(emailCheck(userObj.email))">click to submit</button>
 </div>
