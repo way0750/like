@@ -1,10 +1,9 @@
 <div>
-  
-  <ul ng-repeat = "(trait, value) in pubUserData">
-    <li>{{trait}}: {{value}}</li>
-    <button class="up vote" ng-click="sendVote('up')">up vote</button>
-    <button class="down vote" ng-click="sendVote('down')">down vote</button>
+  <h1>{{pubUserData.users.firstName}} MartharFucking {{pubUserData.users.lastName}}</h1>
+  <ul ng-repeat = "trait in pubUserData.traits">
+    <li>{{trait.trait}}: {{trait.netVote}}</li>
+    <button class="up vote" ng-click="sendVote([pubUserData.userId, trait.trait, 'up'])" ng-disabled = "trait.votingRecord==='up'">up vote</button>
+    <button class="down vote" ng-click="sendVote([pubUserData.userId, trait.trait, 'down'])" ng-disabled = "trait.votingRecord==='down'">down vote</button>
   </ul>  
-
 
 </div>

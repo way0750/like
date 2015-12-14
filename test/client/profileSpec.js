@@ -28,13 +28,13 @@ describe('casting vote', function () {
   it('should send a vote to the server', function () {
     scope.targetUserId = '1234';
     var vote = {
-      "id": "1234",
-      "vote": "159",
-      "trait": "nothing yet!"
+      "userId": "1234",
+      "vote": "up",
+      "trait": "extroversion"
     };
     $httpBackend.expectPOST('/api/vote/' + scope.targetUserId, vote).respond({data : {}});
 
-    scope.sendVote('159').then(function (res) {
+    scope.sendVote([vote.userId, vote.trait, vote.vote]).then(function (res) {
       expect(res.data).to.eql({});
     });
 

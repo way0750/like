@@ -6,10 +6,53 @@
 
     $scope.targetUserId = sessionStorage.getItem('targetUserId');
     $scope.pubUserData = {
-      awesomeness: 1000,
-      handsomeness: 2000,
-      iq: 3000
+        userId: 1,
+        firstName: "Kyle",
+        lastName: "Cho",
+        traits: [
+          {
+            trait: "extraversion",
+            netVote: 10,
+            votingRecord: 'up'
+          },
+          {
+            trait: "introversion",
+            netVote: 736,
+            votingRecord: 'up'
+          },
+          {
+            trait: "sensing",
+            netVote: 324,
+            votingRecord: 'down'
+          },
+          {
+            trait: "intuition",
+            netVote: 34,
+            votingRecord: 'down'
+          },
+          {
+            trait: "thinking",
+            netVote: 234,
+            votingRecord: 'up'
+          },
+          {
+            trait: "feeling",
+            netVote: 676,
+            votingRecord: 'up'
+          },
+          {
+            trait: "judging",
+            netVote: -235,
+            votingRecord: 'up'
+          },
+          {
+            trait: "perceiving",
+            netVote: -987,
+            votingRecord: 'down'
+          }
+        ]
     };
+
     $scope.getUserData = function (userId) {
 
       return dataService.getUserData(userId)
@@ -27,16 +70,16 @@
       $location.path('/dashboard');
     };
 
-    $scope.sendVote = function (thumb) {
+    $scope.sendVote = function (voteArr) {
+      var data = {
+        userId: voteArr[0],
+        trait: voteArr[1],
+        vote: voteArr[2]
+      };
       return $http({
         method: 'POST',
-        url: '/api/vote/' + $scope.targetUserId,
-        data: {
-          id: $scope.targetUserId,
-          vote: thumb,
-          trait: 'nothing yet!'
-        }
-        // data: {id: number, vote: string, trait: string}
+        url: '/api/vote/' + data.userId,
+        data: data
       }).then(function (data) {
         $scope.data = data.data;
         return data.data;
