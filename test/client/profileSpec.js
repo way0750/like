@@ -2,7 +2,7 @@
 // 1: send the vote to server
 // 2: update the view
 
-describe('casting vote', function () {
+describe('sending vote', function () {
   beforeEach(module('like'));
   beforeEach(module('like.profile'));
 
@@ -21,7 +21,7 @@ describe('casting vote', function () {
 
   it('should have all of these functions', function () {
     expect(scope).to.have.property('getUserData');
-    expect(scope).to.have.property('toDashboard');
+    expect(scope).to.have.property('switchView');
     expect(scope).to.have.property('sendVote');
   });
 
