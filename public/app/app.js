@@ -1,4 +1,4 @@
-var myApp = angular.module('like', ['like.register', 'like.browse', 'like.dashboard', 'like.login', 'like.profile', 'ngRoute']);
+var myApp = angular.module('like', ['ngMaterial', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'like.profile', 'ngRoute']);
 myApp.controller('likeCtrl', function () {
 
 });

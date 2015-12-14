@@ -16,6 +16,9 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       'public/vend/angular.js',
+      "public/vend/angular-animate.min.js",
+      "public/vend/angular-aria.min.js",
+      "public/vend/angular-material.min.js",
       'public/vend/angular-route.min.js',
       'public/vend/angular-mocks.js',
       'public/vend/angular-cookies.min.js',

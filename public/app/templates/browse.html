@@ -1,9 +1,9 @@
 <div ng-app="like.browse" ng-controller="browseCtrl">
   <h1>you are in browse</h1>
-  <button ng-click="logout()">click to logout</button>
-  <button ng-click="toDashboard()">go to dashboard</button>
+  <md-button class="md-raised" ng-click="logout()">click to logout</md-button>
+  <md-button class="md-raised" ng-click="toDashboard()">go to dashboard</md-button>
 
   <div ng-repeat="person in fakeData">
-    <button ng-click="selectUser(person.id)">{{person.name}}</button>
+    <md-button class="md-raised" ng-click="selectUser(person.id)">{{person.name}}</md-button>
   </div>
 </div>

@@ -22,7 +22,6 @@
       // .catch(function (err) {
       //   console.log('--------login err: ', err);
       // });
-      $('.console').prepend('hey');
       $location.path('/dashboard');
     };
 

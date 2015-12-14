@@ -2,19 +2,22 @@
 <html ng-app="like" ng-controller="likeCtrl">
 <head>
   <title>Like</title>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.layouts.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.layouts.css">
 </head>
-<body>
-  <h1>HELLO WORLD - it works</h1>
+<body layout="column">
+  <h1>Yelp for People</h1>
 
   <div ng-view></div>
-  <br><hr><hr>
-  <div class = 'console'>
-    <p>you will see important things(if any at all) here</p>
-  </div>
+  
 </body>
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="vend/angular-animate.min.js"></script>
+  <script src="vend/angular-aria.min.js"></script>
+  <script src="vend/angular-material.min.js"></script>
+
+
   <script src="https://code.angularjs.org/1.4.8/angular-route.min.js"></script>
   <script src="https://code.angularjs.org/1.4.8/angular-cookies.min.js"></script>
   <script src="app/controllers/browse.js"></script>
@@ -26,4 +29,5 @@
   <script src="app/app.js"></script>
   <script src="app/services/authService.js"></script>
   <script src="app/services/dataService.js"></script>
+
 </html>

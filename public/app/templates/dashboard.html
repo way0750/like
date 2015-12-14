@@ -1,9 +1,9 @@
 <div>
   <h1>you are in dashboard!!!</h1>
-  <button ng-click="logout()">click to logout</button>
-  <button ng-click="redirect()">click to browse</button>
-  <button ng-click="showDelete=!showDelete">delete this page?</button>
-  <button ng-click="showUpdate=!showUpdate">make update</button>
+  <md-button class="md-raised" ng-click="logout()">click to logout</md-button>
+  <md-button class="md-raised" ng-click="redirect()">click to browse</md-button>
+  <md-button class="md-raised" ng-click="showDelete=!showDelete">delete this page?</md-button>
+  <md-button class="md-raised" ng-click="showUpdate=!showUpdate">make update</md-button>
   <delete-user ng-show = "showDelete"></delete-user>
   <update-user ng-show = "showUpdate"></update-user> 
 </div>
