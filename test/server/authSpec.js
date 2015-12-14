@@ -15,12 +15,12 @@ var theAccount = {
 
 
 describe('Authentication', function() {
-  xdescribe('Log In', function () {
+  describe('Log In', function () {
     it('should return a 200 on succesful signin', function (done) {
         request(server)
           .post('/api/signin')
           .send({username: 'John', password: 'test'})
-          .expect(302, done); //TODO: Add in check of return value
+          .expect(200, done); //TODO: Add in check of return value
     });
 
     it('should return a 302 (redirection) on signin failure', function (done) {
@@ -35,6 +35,8 @@ describe('Authentication', function() {
         .post('/api/signin')
         .send({username: 'John', password: 'test'})
         .end(function(err, res) {
+          // console.log('RESPONSE IS: ', res.headers);
+          expect(res.headers['set-cookie']).to.exist;
           done();
         });
     });
@@ -42,35 +44,46 @@ describe('Authentication', function() {
 
 
   describe('Log Out', function () {
-    xit('should not allow access to /api/browse if not logged in', function (done) {
+    it('should not allow access to /api/browse if not logged in', function (done) {
       request(server)
-        .post('/api/browse')
+        .get('/api/browse')
         .expect(401, done);
     });
 
    it('should allow access to /api/browse if logged in', function (done) {
-      request(server)
+      var agent = request.agent(server);
+      agent
         .post('/api/signin')
         .send({username: 'John', password: 'test'})
-        .end();
-      request(server)
-          .get('/api/browse')
-          .expect(200, done);
+        .end(function(err, res) {
+          console.log('signed in');
+          agent
+            .get('/api/browse')
+            .expect(200, done);
+        });
     });
 
-     xit('should not allow access to /api/vote if not logged in', function (done) {
+     it('should not allow access to /api/vote if not logged in', function (done) {
       request(server)
         .post('/api/vote')
         .expect(401, done);
     });
+
     it('should allow access to /api/vote if logged in', function (done) {
-      request(server)
-        .post('/api/vote')
-        .expect(401, done);
+      var agent = request.agent(server);
+      agent
+      .post('/api/signin')
+      .send({username: 'John', password: 'test'})
+      .end(function(err, res) {
+        console.log('signed in');
+        agent
+          .post('/api/vote')
+          .expect(200, done);
+      });
     });
   });
 
-  xdescribe('Create User', function() {
+  describe('Create User', function() {
     this.timeout(5000);
     afterEach(function (done) {
       Profile.destroy({where: {username: 'Bob12'}})

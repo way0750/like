@@ -7,13 +7,7 @@ var expressSession = require('express-session');
 var Profile = require('./models/profileModel');
 var util = require('./Utilities/utilities');
 var app = express();
-// require('passport');
-// var isAuthorized = function(req, res, next){
-//   if (req.isAuthenticated()) {
-//      next();
-//     }
-//     res.sendStatus(401);
-// };
+
 
 /////////////////// Serving Assets | Configuring MiddleWare //////////////////
 
@@ -30,11 +24,19 @@ app.use(express.static('public'));
 
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);
+  //should return private profile on successful login
 });
 
 //TODO : add more to route, only checking to see if user is authenticated
-app.use('/api/browse', util.isAuthorized, function(req, res) {
-  res.sendStatus(200);
+app.get('/api/browse', util.isAuthorized, function(req, res) {
+  util.getAllProfiles()
+      .then(function(users){
+        res.status(200).send(users);
+      })
+      .catch(function(err){
+        console.log('Error in api/browse', err);
+        res.sendStatus(404);
+      });
 });
 
 app.post('/api/signout', util.signUserOut);
@@ -46,11 +48,21 @@ app.use('/api/vote', util.isAuthorized, function(req, res) {
   res.sendStatus(200);
 });
 
-app.use('/api/profile/:id', util.isAuthorized, function (req, res) {
-  res.sendStatus(200);
+app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
+  var profileID = req.params.id;
+  util.getProfile(null, profileID)
+      .then(function(user){
+        res.status(200).send(user.dataValues);
+      })
+      .catch(function(err){
+        res.sendStatus(404);
+      });
+  // Just return the user object associated with id
+  // This should send public profile
 });
 
 app.use('/', function( req, res ){
+  console.log('at root');
   res.sendStatus(200);
 });
 

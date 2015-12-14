@@ -17,7 +17,7 @@ passport.use(new LocalStrategy(
       })
       .catch(function(err){
         if ( err ) {
-          console.log('Error');
+          console.log('Error in LocalStrategy', err);
           return err;
         }
       });

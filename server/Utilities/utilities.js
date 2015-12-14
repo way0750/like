@@ -13,7 +13,7 @@ module.exports.authenticateUser = function (req, res, next, passport) {
           console.log('Error: ---', err);
         }
       });
-      res.sendStatus(200);
+      res.status(200).send(user.dataValues);
     }
   })(req, res, next);
 };
@@ -28,11 +28,16 @@ module.exports.isAuthorized = function(req, res, next){
 
 
 ////////////////// User Related Utilities //////////////////
-module.exports.getProfile = function (username, userid) {
-  if (userid !== null) {
+module.exports.getProfile = function (username, userid, privy) {
+  if (privy) {
     return Profile.find({ where : { id : userid }});
   } else {
-    return Profile.find({ where : { username : username }});
+    if (userid !== null) {
+      return Profile.find({ where : { id : userid }})
+        //return the user data that is public
+    } else {
+      return Profile.find({ where : { username : username }});
+    }
   }
 };
 
@@ -92,8 +97,26 @@ module.exports.signUserOut = function (req, res, next) {
   // To remove req.user and destroy the passport session
   req.logout();
   req.session.destroy();
-  res.sendStatus(204);
+  res.redirect('http://www.google.com');
 };
+
+module.exports.getAllProfiles = function () {
+  return Profile.findAll({ attributes : ['id', 'username']})
+                .then(function(users){
+                  var profiles = [];
+                  for(var i =0; i < users.length; i++ ) {
+                    profiles.push(users[i].dataValues);
+                  }
+                  return profiles;
+                })
+                .catch(function(err) {
+                  throw new Error('Error getting new users',err);
+                });
+};
+
+// Model.findAll({
+//   attributes: ['id', 'foo', 'bar', 'baz', 'quz', [sequelize.fn('COUNT', sequelize.col('hats')), 'no_hats']]
+// });
 
 
 ///////////////// Password Related Utilities ////////////////
