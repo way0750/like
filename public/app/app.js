@@ -1,6 +1,6 @@
 var myApp = angular.module('like', ['ngMaterial', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'like.profile', 'ngRoute']);
-myApp.controller('likeCtrl', function () {
-
+myApp.controller('likeCtrl', function ($scope, $location) {
+  $scope.path = {curPath: $location.path()};
 });
 
 myApp.config(function ($routeProvider) {

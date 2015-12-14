@@ -1,5 +1,10 @@
+<div>
+  <md-button class = "md-raised" ng-click="switchView('/dashboard')">Dashboard</md-button>
+  <md-button class = "md-raised" ng-click="switchView('/browse')">Browse</md-button>
+</div>
+
 <div flex="80" layout="column" layout-wrap >
-  <h1>{{pubUserData.firstName}} MartharFucking {{pubUserData.lastName}}</h1>
+  <h1>{{pubUserData.firstName}} MotherFucking {{pubUserData.lastName}}</h1>
   <div ng-show="pubUserData.traits.length" style='background-color: yellow'>
     <h2>Personalities</h2><br>
     <div ng-repeat = "trait in pubUserData.traits" flex="30">

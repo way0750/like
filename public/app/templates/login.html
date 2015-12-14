@@ -1,14 +1,17 @@
 <div layout = 'column' layout-align="center center">
-  <h1>Login to see some juicy stuff</h1>
+  <h1>Login To See Some Juicy Stuff</h1>
   <div layout = 'column' >
   <md-input-container>
-    <input ng-model="username" placeholder='username' >
+    <input size="40" ng-model="username" placeholder='username' >
   </md-input-container>
   <md-input-container>
-    <input ng-model="password" placeholder='password' type='password'>
+    <input size="40" ng-model="password" placeholder='password' type='password'>
   </md-input-container>
   </div>
-  <md-button class="md-raised" ng-click="login(username, password)">click to submit</md-button><br>
-  <md-button class="md-raised" ng-click="goToRegister()">create new account</md-button>
+
+  <div layout='column'>
+    <md-button class="md-raised basicButton" ng-click="login(username, password)">click to submit</md-button><br>
+    <md-button class="md-raised basicButton" ng-click="goToRegister()">create new account</md-button>
+  </div>
 
 </div>

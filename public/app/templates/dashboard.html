@@ -1,9 +1,11 @@
-<div>
+<div class="md-toolbar-tools customToolBar">
+  <md-button ng-click="logout()">Logout</md-button>
+  <md-button ng-click="redirect()">Find People</md-button>
+  <md-button ng-click="showDelete=!showDelete">delete this page?</md-button>
+  <md-button ng-click="showUpdate=!showUpdate">Make Update</md-button>
+  <span flex></span>
   <h1>you are in dashboard!!!</h1>
-  <md-button class="md-raised" ng-click="logout()">click to logout</md-button>
-  <md-button class="md-raised" ng-click="redirect()">click to browse</md-button>
-  <md-button class="md-raised" ng-click="showDelete=!showDelete">delete this page?</md-button>
-  <md-button class="md-raised" ng-click="showUpdate=!showUpdate">make update</md-button>
-  <delete-user ng-show = "showDelete"></delete-user>
-  <update-user ng-show = "showUpdate"></update-user> 
 </div>
+
+<delete-user ng-show = "showDelete"></delete-user>
+<update-user ng-show = "showUpdate"></update-user> 

@@ -18,6 +18,9 @@
         });
       }
     };
+    $scope.goToBrowse = function () {
+      $location.path('/browse');
+    };
     // }; //close register
 
     }]); //close controller def

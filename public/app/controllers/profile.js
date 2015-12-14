@@ -66,8 +66,8 @@
       });
     };
 
-    $scope.toDashboard = function () {
-      $location.path('/dashboard');
+    $scope.switchView = function (location) {
+      $location.path(location);
     };
 
     $scope.sendVote = function (voteArr) {

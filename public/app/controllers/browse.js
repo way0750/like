@@ -16,6 +16,18 @@
       {
         id: 3,
         name: 'Yofeng'
+      },
+      {
+        id: 4,
+        name: 'God002'
+      },
+      {
+        id: 5,
+        name: 'Santa002'
+      },
+      {
+        id: 6,
+        name: 'Yofeng002'
       }
     ];
     $scope.getAllUsers = function () {
@@ -28,8 +40,8 @@
       });
     };
 
-    $scope.toDashboard = function () {
-      $location.path('/dashboard');
+    $scope.switchView = function (str) {
+      $location.path(str);
     };
 
     //once select a user, should redirect to another view and save the selected user's id;
