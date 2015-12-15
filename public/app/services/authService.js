@@ -14,7 +14,7 @@
     var logOut = function () {
       console.log('trying to log out');
       return $http({
-        method: 'GET',
+        method: 'POST',
         url: '/api/signout'
       });
     };

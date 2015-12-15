@@ -18,7 +18,7 @@ app.use(body_parser.json());
 app.use(expressSession({ secret: 'ABS', cookie: {}}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static('../public'));
+app.use(express.static('public'));
 
 //////////////////////// API Endpoints ////////////////////////////
 
@@ -40,7 +40,7 @@ app.get('/api/browse', util.isAuthorized, function(req, res) {
       });
 });
 
-app.get('/api/signout', util.signUserOut);
+app.post('/api/signout', util.signUserOut);
 
 app.post('/api/profile/create', util.checkUsername, util.createUser);
 
