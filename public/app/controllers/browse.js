@@ -34,6 +34,7 @@
       dataService.getAllUsers()
       .then(function (users) {
         $scope.users.data = users.data;
+        console.log('got data ro what?', $scope.users);
       })
       .catch(function (err) {
         console.error('BROWSE — GET USERS ERRORS:', err);

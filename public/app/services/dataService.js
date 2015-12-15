@@ -4,10 +4,9 @@
   angular.module('like')
   .factory('dataService', ['$http', function ($http) {
     var getLogedInUserData = function (userId) {
-      var url = '/api/profile/' + userId;
       return $http({
         method: 'GET',
-        url: url
+        url: '/api/profile/'
       })
       .then(function (data) {
         return data;

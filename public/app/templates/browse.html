@@ -4,17 +4,11 @@
   <span flex></span>
   <h1 flex>you are in browse</h1>
 </div>
-<!-- 
-<div ng-app="like.browse" ng-controller="browseCtrl" class="md-toolbar-tools customToolBar">
-</div>
- -->
-
-
 
 <div layout-align="center center" layout="row">
   <div layout='column' layout-wrap  flex="70" style="border: solid red 1px">
-    <div ng-repeat="person in fakeData">
-      <md-button class="md-raised basicButton" ng-click="selectUser(person.id)">{{person.name}}</md-button>
+    <div ng-repeat="person in users.data">
+      <md-button class="md-raised basicButton" ng-click="selectUser(person.id)">{{person.username}}</md-button>
     </div>
   </div>
 </div>

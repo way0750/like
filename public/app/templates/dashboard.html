@@ -1,11 +1,20 @@
 <div class="md-toolbar-tools customToolBar">
-  <md-button ng-click="logout()">Logout</md-button>
+  <md-button ng-click="logOut()">Logout</md-button>
   <md-button ng-click="redirect()">Find People</md-button>
   <md-button ng-click="showDelete=!showDelete">delete this page?</md-button>
   <md-button ng-click="showUpdate=!showUpdate">Make Update</md-button>
   <span flex></span>
   <h1>you are in dashboard!!!</h1>
 </div>
-
 <delete-user ng-show = "showDelete"></delete-user>
 <update-user ng-show = "showUpdate"></update-user> 
+
+
+<div flex="80" layout="column" layout-wrap >
+  <div ng-show="userData.traits.length" style='background-color: yellow'>
+    <h2>Personalities</h2><br>
+    <div ng-repeat = "trait in userData.traits" flex="30">
+      <div>{{trait.trait}}: {{trait.netVote}}</div><br>
+      <md-button class="md-raised" ng-click="sendVote([userData.userId, trait.trait, 'up'])" ng-disabled = "trait.votingRecord==='up'">like</md-button>
+  </div>
+</div>

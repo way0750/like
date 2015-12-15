@@ -1,13 +1,9 @@
 <div layout='column' layout-align="center center">
   <h1>Get Your Account Before It's Gone</h1>
   <form novalidate name="bigGuy" >
-<!--     Your Fancy Name: <input size="20" placeholder="new username" ng-model="userObj.username" name = "createUser">
-    Your Smarty Password: <input size="20" type = "password" placeholder="new password" ng-model="userObj.password">
-    Re-enter That Password: <input size="20" type = "password" placeholder="re-enter password" ng-model="userObj.confirm">
-    Your Very Important E-mail:<input size="20" type="email" name ='uEmail'placeholder="your email" ng-model='userObj.email' required> -->
 
     <md-input-container >
-      <input size="40" ng-model="userObj.username" placeholder='Your Fancy Name:'  required>
+      <input size="40" ng-model="userObj.username" placeholder='Your Fancy Account Name:'  required>
     </md-input-container>
     <md-input-container>
       <input size="40" ng-model="userObj.password" placeholder='Pick A Smarty Password:' type='password' required>
@@ -16,9 +12,14 @@
       <input size="40" ng-model="userObj.confirm" placeholder='Re-Enter That Password:' type='password' required>
     </md-input-container>
     <md-input-container>
+      <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text' required>
+    </md-input-container>
+    <md-input-container>
+      <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' required>
+    </md-input-container>
+    <md-input-container>
       <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' required>
     </md-input-container>
-
 
   </form>
   <div layout='column'>

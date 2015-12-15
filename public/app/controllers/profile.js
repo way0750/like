@@ -54,7 +54,7 @@
     };
 
     $scope.getUserData = function (userId) {
-
+      console.log('why I got called?');
       return dataService.getUserData(userId)
       .then(function (data) {
         // $scope.pubUserData = data;

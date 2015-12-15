@@ -6,7 +6,7 @@ var bcrypt = Promise.promisifyAll(require('bcrypt'));
 module.exports.authenticateUser = function (req, res, next, passport) {
   passport.authenticate('local', function( err, user, info ) {
     if(user === false) {
-      res.redirect('/api/signin');
+      res.sendStatus(404);
     } else {
       req.login(user.dataValues, function(err) {
         if(err) {

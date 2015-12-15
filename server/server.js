@@ -24,6 +24,7 @@ app.use(express.static('public'));
 
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);
+  //should check and see if user even exit
   //should return private profile on successful login
 });
 
