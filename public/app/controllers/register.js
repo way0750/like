@@ -11,9 +11,13 @@
       if (userObj.password === userObj.confirm) {
         return authService.register(userObj)
         .then(function (data) {
-          sessionStorage.setItem('userId', data.data.userId);
           return data.data.userId;
-        }).catch(function (err) {
+        })
+        .then (function (userId) {
+          sessionStorage.setItem('userId', userId);
+          $location.path('/dashboard');
+        })
+        .catch(function (err) {
           return err.status;
         });
       }
@@ -21,7 +25,6 @@
     $scope.goToBrowse = function () {
       $location.path('/browse');
     };
-    // }; //close register
 
     }]); //close controller def
 })();

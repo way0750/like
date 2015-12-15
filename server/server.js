@@ -18,12 +18,13 @@ app.use(body_parser.json());
 app.use(expressSession({ secret: 'ABS', cookie: {}}));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static('public'));
+app.use(express.static('../public'));
 
 //////////////////////// API Endpoints ////////////////////////////
 
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);
+  //should check and see if user even exit
   //should return private profile on successful login
 });
 
@@ -39,7 +40,7 @@ app.get('/api/browse', util.isAuthorized, function(req, res) {
       });
 });
 
-app.post('/api/signout', util.signUserOut);
+app.get('/api/signout', util.signUserOut);
 
 app.post('/api/profile/create', util.checkUsername, util.createUser);
 

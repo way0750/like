@@ -10,19 +10,14 @@
         password: password
       };
       //server not ready so commended out these lines:
-      // authService.logIn(userObj)
-      // .then(function (data) {
-      //   console.log('----------login from server:', data);
-      //   // if successfully logged in
-      //     sessionStorage.setItem('userId', data.userId || "");
-      //     // redirect
-      //   // else
-      //     // tell the user password or username wrong
-      // })
-      // .catch(function (err) {
-      //   console.log('--------login err: ', err);
-      // });
-      $location.path('/dashboard');
+      authService.logIn(userObj)
+      .then(function (data) {
+        sessionStorage.setItem('userId', data.userId || "");
+        $location.path('/dashboard');
+      })
+      .catch(function (err) {
+        console.log('--------login err: ', err);
+      });
     };
 
     $scope.goToRegister = function () {

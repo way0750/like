@@ -4,19 +4,15 @@
   angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', function ($scope, authService, dataService, $location) {
     $scope.userData = {};
 
-    $scope.logout = function (username, password) {
-      // authService.logout();
+    $scope.logOut = function (username, password) {
+      authService.logOut();
       $location.path('/login');
     };
 
     $scope.getLogedInUserData = function (UserId) {
       dataService.getLogedInUserData(UserId)
-      .then(function (user) {
-        $scope.userData = user.data;
-        setTimeout(function () {
-          $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
-          console.log('auto data renewal-------from dashboard!!!!!');
-        }, 30000);
+      .then(function (res) {
+        $scope.userData = res.data;
       })
       .catch(function (err) {
         console.error('DASHBOARD — GET USER DATA ERROR:', err);
