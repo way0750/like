@@ -1,6 +1,7 @@
 var Profile = require('../models/profileModel');
 var Promise = require('bluebird');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
+var Vote = require('../models/voteModel');
 
 ///////////// Authentication Related Utilities //////////////
 module.exports.authenticateUser = function (req, res, next, passport) {
@@ -147,3 +148,45 @@ function hashPassword (username, password) {
       throw new Error('Error in hashing password...', err);
     });
 }
+
+/////////////// Voting //////////////////
+module.exports.createOrUpdateVote = function (req, res) {
+  Vote.findOrCreate({
+    where: {
+      voter: req.session.passport.user,
+      votee: req.body.votee
+    }, 
+    defaults: {
+      treat1: req.body.treats.treat1,
+      treat2: req.body.treats.treat2,
+      treat3: req.body.treats.treat3,
+      treat4: req.body.treats.treat4,
+      treat5: req.body.treats.treat5,
+      treat6: req.body.treats.treat6,
+      treat7: req.body.treats.treat7,
+      treat8: req.body.treats.treat8,
+      voter: req.session.passport.user,
+      votee: req.body.votee
+    }
+  })
+  .spread(function (user, created) {
+    if (!created) {
+      User.update({
+        treat1: req.body.treats.treat1,
+        treat2: req.body.treats.treat2,
+        treat3: req.body.treats.treat3,
+        treat4: req.body.treats.treat4,
+        treat5: req.body.treats.treat5,
+        treat6: req.body.treats.treat6,
+        treat7: req.body.treats.treat7,
+        treat8: req.body.treats.treat8
+      },
+      {
+        where: {
+          voter: user.voter,
+          votee: user.votee
+        }
+      });
+    }
+  });
+};

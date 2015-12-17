@@ -46,7 +46,7 @@ app.post('/api/profile/create', util.checkUsername, util.createUser);
 
 //TODO : add more to route, only checking to see if user is authenticated
 app.use('/api/vote', util.isAuthorized, function(req, res) {
-  res.sendStatus(200);
+  util.createOrUpdateVote(req, res);
 });
 
 app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
