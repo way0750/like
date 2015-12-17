@@ -1,17 +1,45 @@
 <div layout = 'column' layout-align="center center">
-  <h1>Login To See Some Juicy Stuff</h1>
-  <div layout = 'column' >
+  <header class = "loginHeader" layout = 'column' layout-align="center center">
+    <h1 class="login logo">Persona:</h1>
+    <h1 class = "login bold">Who Are You Really<span>?</span></h1>
+  </header>
+  <div layout = 'column' class="loginContainer">
   <md-input-container>
-    <input size="40" ng-model="username" placeholder='username' >
+    <input size="40" ng-model="userObj.username" placeholder='Who Are You?'>
   </md-input-container>
+
+  <md-checkbox ng-model="isChecked" aria-label="Finished?">
+    New Account?
+  </md-checkbox>
+
   <md-input-container>
-    <input size="40" ng-model="password" placeholder='password' type='password'>
+    <input size="40" ng-model="userObj.password" placeholder='Your Fancy Password' type='password'>
   </md-input-container>
   </div>
 
-  <div layout='column'>
-    <md-button class="md-raised basicButton" ng-click="login(username, password)">click to submit</md-button><br>
-    <md-button class="md-raised basicButton" ng-click="goToRegister()">create new account</md-button>
+  <div layout='column' ng-hide="isChecked" style="margin-top: -20px; padding: -20px">
+    <md-button class="md-raised basicButton" ng-click="login(userObj.username, userObj.password)">click to submit</md-button><br>
   </div>
+
+  <div layout='column' layout-align="center center" ng-show="isChecked">
+  <form novalidate name="bigGuy" >
+    <md-input-container>
+      <input size="40" ng-model="userObj.confirm" placeholder='Re-Enter That Password:' type='password' required>
+    </md-input-container>
+    <md-input-container>
+      <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text' required>
+    </md-input-container>
+    <md-input-container>
+      <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' required>
+    </md-input-container>
+    <md-input-container>
+      <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' required>
+    </md-input-container>
+
+  </form>
+  <div layout='column'>
+    <md-button class="md-raised basicButton" ng-click="register(userObj)" ng-disabled = "!(emailCheck(userObj.email))">click to submit</md-button>
+  </div>
+</div>
 
 </div>
