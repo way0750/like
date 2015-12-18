@@ -43,7 +43,7 @@ module.exports.getProfile = function (username, userid, privy) {
 };
 
 module.exports.checkUsername = function (req, res, next) {
-  var username = req.body.username;
+  var username = username;
   Profile.find({ where: { username : username }})
     .then(function(user) {
       if(user === null) {
@@ -58,15 +58,15 @@ module.exports.checkUsername = function (req, res, next) {
 };
 
 module.exports.createUser = function (req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
+  var username = username;
+  var password = password;
 
   var userObj = {
     username  : username,
     password  : password,
-    firstName : req.body.firstName,
-    lastName  : req.body.lastName,
-    email     : req.body.email
+    firstName : firstName,
+    lastName  : lastName,
+    email     : email
   };
 
   hashPassword(username, password)
@@ -150,36 +150,36 @@ function hashPassword (username, password) {
 }
 
 /////////////// Voting //////////////////
-module.exports.createOrUpdateVote = function (req, res) {
+module.exports.createOrUpdateVote = function (treats, voter, votee) {
   Vote.findOrCreate({
     where: {
-      voter: req.session.passport.user,
-      votee: req.body.votee
+      voter: voter,
+      votee: votee
     }, 
     defaults: {
-      treat1: req.body.treats.treat1,
-      treat2: req.body.treats.treat2,
-      treat3: req.body.treats.treat3,
-      treat4: req.body.treats.treat4,
-      treat5: req.body.treats.treat5,
-      treat6: req.body.treats.treat6,
-      treat7: req.body.treats.treat7,
-      treat8: req.body.treats.treat8,
-      voter: req.session.passport.user,
-      votee: req.body.votee
+      treat1: treats.treat1,
+      treat2: treats.treat2,
+      treat3: treats.treat3,
+      treat4: treats.treat4,
+      treat5: treats.treat5,
+      treat6: treats.treat6,
+      treat7: treats.treat7,
+      treat8: treats.treat8,
+      voter: voter,
+      votee: votee
     }
   })
   .spread(function (user, created) {
     if (!created) {
       User.update({
-        treat1: req.body.treats.treat1,
-        treat2: req.body.treats.treat2,
-        treat3: req.body.treats.treat3,
-        treat4: req.body.treats.treat4,
-        treat5: req.body.treats.treat5,
-        treat6: req.body.treats.treat6,
-        treat7: req.body.treats.treat7,
-        treat8: req.body.treats.treat8
+        treat1: treats.treat1,
+        treat2: treats.treat2,
+        treat3: treats.treat3,
+        treat4: treats.treat4,
+        treat5: treats.treat5,
+        treat6: treats.treat6,
+        treat7: treats.treat7,
+        treat8: treats.treat8
       },
       {
         where: {
