@@ -115,6 +115,15 @@ module.exports.getAllProfiles = function () {
                 });
 };
 
+module.exports.updateUser = function (req, res, next) {
+  console.log('request object is ', req);
+
+
+}
+
+module.exports.deleteUser = function (req, res, next) {
+
+}
 // Model.findAll({
 //   attributes: ['id', 'foo', 'bar', 'baz', 'quz', [sequelize.fn('COUNT', sequelize.col('hats')), 'no_hats']]
 // });
