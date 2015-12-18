@@ -2,6 +2,7 @@ var Profile = require('../models/profileModel');
 var Promise = require('bluebird');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
 var Vote = require('../models/voteModel');
+var update = require('./update');
 
 ///////////// Authentication Related Utilities //////////////
 module.exports.authenticateUser = function (req, res, next, passport) {
@@ -116,9 +117,14 @@ module.exports.getAllProfiles = function () {
 };
 
 module.exports.updateUser = function (req, res, next) {
-  console.log('request object is ', req);
+  var updates = [];
+  var userID = req.user.get('id');
 
+  for (prop in req.body) {
+    updates.push(update[prop](userID, req.body[prop]));
+  }
 
+  res.send(200);
 }
 
 module.exports.deleteUser = function (req, res, next) {
@@ -164,7 +170,7 @@ module.exports.createOrUpdateVote = function (traits, voter, votee) {
     where: {
       voter: voter,
       votee: votee
-    }, 
+    },
     defaults: {
       trait1: traits.trait1,
       trait2: traits.trait2,
