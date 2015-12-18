@@ -45,8 +45,16 @@ app.post('/api/signout', util.signUserOut);
 app.post('/api/profile/create', util.checkUsername, util.createUser);
 
 //TODO : add more to route, only checking to see if user is authenticated
-app.use('/api/vote', util.isAuthorized, function(req, res) {
-  util.createOrUpdateVote(req, res);
+app.use('/api/vote', util.isAuthorized, function (req, res) {
+  util.createOrUpdateVote(req, res)
+  .then(function () {
+    res.sendStatus(201);
+    return;
+  }).catch(function (err) {
+    res.sendStatus(400);
+    console.error('Error in /api/vote: ', err);
+    return;
+  });
 });
 
 app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
