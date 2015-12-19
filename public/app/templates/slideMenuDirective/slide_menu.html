@@ -1,0 +1,14 @@
+<md-button ng-click="openLeftMenu()">
+  <span style="color: black; font-size: 135px;">&#x2B22;</span>
+</md-button>
+
+<div layout="column" ng-controller="MyController" class = "slideMenu">
+  <md-sidenav md-component-id="left" class="md-sidenav-left" layout="column">
+    <div style="height: 5em;"></div>
+    <md-button ng-click="logOut()"><img class="dashboardButton" src="../assets/hexagon.svg"></md-button>
+    <md-button ng-click="switchViewToBrowse()"><img class="dashboardButton" src="../assets/trangle.svg"></md-button>
+    <md-button ng-click="setting()"><img class="dashboardButton" src="../assets/settings.svg"></md-button>
+    <delete-user ng-show = "showDelete"></delete-user>
+    <update-user ng-show = "showUpdate"></update-user> 
+  </md-sidenav>
+</div>

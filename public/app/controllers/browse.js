@@ -1,35 +1,15 @@
 (function () {
   'use strict';
 
-  angular.module('like.browse', ['ngCookies'])
-  .controller('browseCtrl', ['$scope', 'dataService', '$location', '$cookies', function ($scope, dataService, $location, $cookies) {
+  angular.module('like.browse', ['like.slideMenu'])
+  .controller('browseCtrl', ['$scope', 'dataService', 'authService', '$location', function ($scope, dataService, authService, $location) {
     $scope.users = {};
-    $scope.fakeData = [
-      {
-        id: 1,
-        name: 'God'
-      },
-      {
-        id: 2,
-        name: 'Santa'
-      },
-      {
-        id: 3,
-        name: 'Yofeng'
-      },
-      {
-        id: 4,
-        name: 'God002'
-      },
-      {
-        id: 5,
-        name: 'Santa002'
-      },
-      {
-        id: 6,
-        name: 'Yofeng002'
-      }
-    ];
+
+    $scope.logOut = function () {
+      authService.logOut();
+      $location.path('/login');
+    };
+
     $scope.getAllUsers = function () {
       dataService.getAllUsers()
       .then(function (users) {
@@ -41,8 +21,8 @@
       });
     };
 
-    $scope.switchView = function (str) {
-      $location.path(str);
+    $scope.switchView = function () {
+      $location.path('/browse');
     };
 
     //once select a user, should redirect to another view and save the selected user's id;

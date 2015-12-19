@@ -36,7 +36,15 @@
       });
     };
 
+    var sendVotes = function (voteObj) {
+      return $http({
+        method: 'POST',
+        url: '/api/vote'
+      });
+    };
+
     return {
+      sendVotes: sendVotes,
       getLogedInUserData: getLogedInUserData,
       getUserData: getUserData,
       getAllUsers: getAllUsers

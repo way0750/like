@@ -1,14 +1,14 @@
-<div class="md-toolbar-tools customToolBar">
-  <md-button ng-click="switchView('/login')">click to logout</md-button>
-  <md-button ng-click="switchView('/dashboard')">go to dashboard</md-button>
-  <span flex></span>
-  <h1 flex>you are in browse</h1>
-</div>
+<slide-menu></slide-menu>
 
-<div layout-align="center center" layout="row">
-  <div layout='column' layout-wrap  flex="70" style="border: solid red 1px">
-    <div ng-repeat="person in users.data">
-      <md-button class="md-raised basicButton" ng-click="selectUser(person.id)">{{person.username}}</md-button>
+<div>
+  <div class = "browseDisplay">
+    <div ng-repeat="person in users.data" class="searchEntry">
+      <div class="browseImageHex" ng-click="selectUser(person.id)">
+        <div class="top"></div>
+        <div class="middle">what is this?</div>
+        <div class="bottom"></div>
+      </div>
+      <md-button class="md-raised" ng-click="selectUser(person.id)">{{person.username}}</md-button>
     </div>
   </div>
 </div>

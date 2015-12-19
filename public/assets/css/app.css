@@ -1,0 +1,211 @@
+:root, body{
+  background-color: #323333
+}
+
+.dividerAtDashboard{
+  height: 1em;
+  width: 100%;
+  background: linear-gradient(to right, #8e180f, #df3722);
+}
+
+.loginContainer{
+  padding-top: 1em;
+  background-color: #a6a6a6;
+}
+
+.loginHeader{
+  background-color: #e95c0e;
+  width: 100%;
+  padding-bottom: 3em;
+  margin-bottom: 1em;
+}
+
+.login {
+  font-family: "Josefin Sans";
+  font-weight: 900;
+  color: white;
+}
+
+.login.bold {
+  margin-bottom: 0.5em;
+  font-size: 7em;
+}
+
+.login.logo{
+  font-size: 4em;
+  color: white;
+  margin-top: 0.5em;
+  margin-bottom: -0.4em;
+}
+
+@keyframes questionmark {
+  100% {
+  color: white;
+  text-shadow: 1px 0px 35px white, -1px 0px 35px white, 0px 1px 35px white, 0px -1px 35px white;
+  }
+}
+
+.login.bold span{
+  color: transparent;
+  text-shadow: 0px 0px 0px transparent;
+  animation-duration: 1s;
+  animation-name: questionmark;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/*------------dashboard css-------------*/
+.dashboard {
+  transition: 400ms linear all;
+  -webkit-transition: 400ms linear all;
+}
+
+.dashboard.ng-enter {
+  opacity: 0;
+}
+
+.dashboard.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.dashboard.ng-leave {
+  opacity: 1;
+  transition: 0ms linear all;
+}
+
+.dashboardButton{
+  width: 28%;
+}
+
+
+.md-sidenav-left{
+  background-color: black;
+  /*background: linear-gradient(90deg, #323333, #4c4d4d);*/
+}
+
+.traitsDisplay{
+  position: absolute;
+  left: 40%;
+  top: 10em;
+}
+
+
+/*---------------css for login.html----------------*/
+.loginContainer > :nth-child(3n+1){
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+
+.loginContainer > :nth-child(3n+2){
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+
+/*---------------css for browse.html---------------*/
+
+.browseDisplay {
+  width: 40em;
+  float: right;
+  margin-right: 10em;
+}
+
+.searchEntry{
+  clear: both;
+}
+
+.searchEntry:nth-child(odd) .browseImageHex{
+  float: left;
+  margin-right: 0px;
+}
+
+.searchEntry:nth-child(even) .browseImageHex{
+  float: right;
+  margin-left: 0px;
+}
+
+.searchEntry:nth-child(odd) button{
+  float: left;
+  margin-left: 0px;
+}
+
+.searchEntry:nth-child(even) button{
+  float: right;
+  margin-right: 0px;
+}
+
+.searchEntry button{
+  height: 144px;
+  width: 50%;
+  margin-top: 5em;
+}
+
+
+/*---------------------css for the voting page-----------------------------*/
+.votingHeader{
+  background-color: #e95c0e;
+  height: 8em;
+}
+
+.voteChoice{
+  background-size: auto 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.voteChoice img {
+  height: 40%;
+  -webkit-filter: grayscale(80%) blur(0.1px);
+}
+
+.votingLeft{
+  background-image: url('../leftBg.jpg');
+  background-size: contain;
+  background-repeat: repeat-y;
+  color: white;
+}
+
+.votingRight{
+  background-image: url('../rightBg.png');
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+.votingArea > div{
+  width: 50%;
+  height: 32em;
+}
+.votingArea {
+  width: 100%;
+}
+
+.sendVote{
+  margin: 10em;
+}
+
+.votingButton{
+  border-radius: 0px;
+  border: 1em solid #e95c0e;
+  background-color: #e95c0e;
+  color: black;
+}
+
+.votingArea h1{
+  font-size: 3em;
+  margin: 0px;
+  padding: 0px;
+}
+
+.votingProp {
+  transition: 5s linear all;
+}
+.votingProp.on-add {
+  opacity: 0;
+}
+.votingProp.on {
+  opacity: 1;
+}
+.votingProp.on-remove {
+
+}

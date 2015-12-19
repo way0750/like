@@ -12,7 +12,6 @@
     };
 
     var logOut = function () {
-      console.log('trying to log out');
       return $http({
         method: 'POST',
         url: '/api/signout'

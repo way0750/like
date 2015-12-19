@@ -6,58 +6,13 @@
 
     $scope.targetUserId = sessionStorage.getItem('targetUserId');
     $scope.pubUserData = {
-        userId: 1,
-        firstName: "Kyle",
-        lastName: "Cho",
-        traits: [
-          {
-            trait: "extraversion",
-            netVote: 10,
-            votingRecord: 'up'
-          },
-          {
-            trait: "introversion",
-            netVote: 736,
-            votingRecord: 'up'
-          },
-          {
-            trait: "sensing",
-            netVote: 324,
-            votingRecord: 'down'
-          },
-          {
-            trait: "intuition",
-            netVote: 34,
-            votingRecord: 'down'
-          },
-          {
-            trait: "thinking",
-            netVote: 234,
-            votingRecord: 'up'
-          },
-          {
-            trait: "feeling",
-            netVote: 676,
-            votingRecord: 'up'
-          },
-          {
-            trait: "judging",
-            netVote: -235,
-            votingRecord: 'up'
-          },
-          {
-            trait: "perceiving",
-            netVote: -987,
-            votingRecord: 'down'
-          }
-        ]
     };
 
     $scope.getUserData = function (userId) {
       console.log('why I got called?');
       return dataService.getUserData(userId)
       .then(function (data) {
-        // $scope.pubUserData = data;
+        $scope.pubUserData = data;
         return data;
       })
       .catch(function (data) {
