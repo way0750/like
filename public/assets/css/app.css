@@ -198,7 +198,7 @@
 }
 
 .votingProp {
-  transition: 1s linear all;
+  transition: 5s linear all;
 }
 .votingProp.on-add {
   opacity: 0;

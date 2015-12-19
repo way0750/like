@@ -25,6 +25,7 @@
           } else {
             $scope.show = false;
           }
+          // $scope.animate.on = false;
         };
         //as soon as the voting page is load it should load the first question
         $scope.showQuestion();
@@ -38,7 +39,6 @@
         $scope.animate = {on: false};
 
         $scope.choose = function (trait) {
-          $scope.animate.on = false;
           $scope.animate.on = true;
           var curQuestion = $scope.curQuestion;
           $scope.voteRecords.traits[curQuestion.leftName] = 0;
