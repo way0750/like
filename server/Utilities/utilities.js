@@ -1,6 +1,7 @@
 var Profile = require('../models/profileModel');
 var Promise = require('bluebird');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
+var Vote = require('../models/voteModel');
 
 ///////////// Authentication Related Utilities //////////////
 module.exports.authenticateUser = function (req, res, next, passport) {
@@ -147,3 +148,45 @@ function hashPassword (username, password) {
       throw new Error('Error in hashing password...', err);
     });
 }
+
+/////////////// Voting //////////////////
+module.exports.createOrUpdateVote = function (traits, voter, votee) {
+  Vote.findOrCreate({
+    where: {
+      voter: voter,
+      votee: votee
+    }, 
+    defaults: {
+      trait1: traits.trait1,
+      trait2: traits.trait2,
+      trait3: traits.trait3,
+      trait4: traits.trait4,
+      trait5: traits.trait5,
+      trait6: traits.trait6,
+      trait7: traits.trait7,
+      trait8: traits.trait8,
+      voter: voter,
+      votee: votee
+    }
+  })
+  .spread(function (user, created) {
+    if (!created) {
+      User.update({
+        trait1: traits.trait1,
+        trait2: traits.trait2,
+        trait3: traits.trait3,
+        trait4: traits.trait4,
+        trait5: traits.trait5,
+        trait6: traits.trait6,
+        trait7: traits.trait7,
+        trait8: traits.trait8
+      },
+      {
+        where: {
+          voter: user.voter,
+          votee: user.votee
+        }
+      });
+    }
+  });
+};
