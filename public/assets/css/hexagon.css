@@ -9,46 +9,46 @@
 
 .browseImageHex .top {
     width: 0;
-    border-bottom: 72px solid #333300;
+    border-bottom: 72px solid #e95c0e;
     border-left: 124px solid transparent;
     border-right: 124px solid transparent;
 }
 .browseImageHex .middle {
     width: 248px;
     height: 144px;
-    background: #333300;
+    background: #e95c0e;
 }
 
 .browseImageHex .bottom {
     width: 0;
-    border-top: 72px solid #333300;
+    border-top: 72px solid #e95c0e;
     border-left: 124px solid transparent;
     border-right: 124px solid transparent;
 }
 
 .hex {
     float: left;
-    margin-right: 6px;
-    margin-left: 3.6px;
+    margin-right: 0px;
+    margin-left: 3px;
     margin-bottom: -33px;
     /*transition-duration: 0.5s;*/
 }
 
 .hex .top {
     width: 0;
-    border-bottom: 36px solid #333300;
+    border-bottom: 36px solid #e95c0e;
     border-left: 62px solid transparent;
     border-right: 62px solid transparent;
 }
 .hex .middle {
     width: 124px;
     height: 72px;
-    background: #333300;
+    background: #e95c0e;
 }
 
 .hex .bottom {
     width: 0;
-    border-top: 36px solid #333300;
+    border-top: 36px solid #e95c0e;
     border-left: 62px solid transparent;
     border-right: 62px solid transparent;
 }

@@ -2,7 +2,7 @@
   <md-button class = "md-raised" ng-click="switchView('/dashboard')">Dashboard</md-button>
   <md-button class = "md-raised" ng-click="switchView('/browse')">Browse</md-button>
 </div>
-
+<!-- 
 <div flex="80" layout="column" layout-wrap >
   <h1>{{pubUserData.firstName}} MotherFucking {{pubUserData.lastName}}</h1>
   <div ng-show="pubUserData.traits.length" style='background-color: yellow'>
@@ -13,3 +13,77 @@
       <md-button class="md-raised" ng-click="sendVote([pubUserData.userId, trait.trait, 'down'])" ng-disabled = "trait.votingRecord==='down'">down vote</md-button>
   </div>
 </div>
+ -->
+
+<md-button ng-click="switchView('/voting')">wanna judge this person?</md-button>
+
+  <div class='traitsDisplay' flex='auto'>
+    <div class="hex-row">
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">what is this?</div>
+        <div class="bottom"></div>
+      </div>
+      
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">something</div>
+        <div class="bottom"></div>
+      </div>
+
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+    </div>
+
+    <div class="hex-row even">
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+    </div>
+
+    <div class="hex-row">
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+    </div>
+
+    <div class="hex-row even">
+      <div class="hex">
+        <div class="top"></div>
+        <div class="middle">see me?</div>
+        <div class="bottom"></div>
+      </div>
+    </div>
+
+

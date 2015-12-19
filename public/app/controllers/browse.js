@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  angular.module('like.browse', ['like.slideMenu', 'ngCookies'])
-  .controller('browseCtrl', ['$scope', 'dataService', 'authService', '$location', '$cookies', function ($scope, dataService, authService, $location, $cookies) {
+  angular.module('like.browse', ['like.slideMenu'])
+  .controller('browseCtrl', ['$scope', 'dataService', 'authService', '$location', function ($scope, dataService, authService, $location) {
     $scope.users = {};
 
     $scope.logOut = function () {

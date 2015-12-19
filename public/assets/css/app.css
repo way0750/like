@@ -1,4 +1,5 @@
-body{
+:root, body{
+  background-color: #323333
 }
 
 .dividerAtDashboard{
@@ -7,9 +8,13 @@ body{
   background: linear-gradient(to right, #8e180f, #df3722);
 }
 
+.loginContainer{
+  padding-top: 1em;
+  background-color: #a6a6a6;
+}
 
 .loginHeader{
-  background-color: #323333;
+  background-color: #e95c0e;
   width: 100%;
   padding-bottom: 3em;
   margin-bottom: 1em;
@@ -17,7 +22,7 @@ body{
 
 .login {
   font-family: "Josefin Sans";
-  font-weight: 300;
+  font-weight: 900;
   color: white;
 }
 
@@ -49,13 +54,32 @@ body{
   animation-direction: alternate;
 }
 
+/*------------dashboard css-------------*/
+.dashboard {
+  transition: 400ms linear all;
+  -webkit-transition: 400ms linear all;
+}
+
+.dashboard.ng-enter {
+  opacity: 0;
+}
+
+.dashboard.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.dashboard.ng-leave {
+  opacity: 1;
+  transition: 0ms linear all;
+}
+
 .dashboardButton{
   width: 28%;
 }
 
 
 .md-sidenav-left{
-  background-color: #323333;
+  background-color: black;
   /*background: linear-gradient(90deg, #323333, #4c4d4d);*/
 }
 
@@ -115,4 +139,73 @@ body{
   height: 144px;
   width: 50%;
   margin-top: 5em;
+}
+
+
+/*---------------------css for the voting page-----------------------------*/
+.votingHeader{
+  background-color: #e95c0e;
+  height: 8em;
+}
+
+.voteChoice{
+  background-size: auto 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.voteChoice img {
+  height: 40%;
+  -webkit-filter: grayscale(80%) blur(0.1px);
+}
+
+.votingLeft{
+  background-image: url('../leftBg.jpg');
+  background-size: contain;
+  background-repeat: repeat-y;
+  color: white;
+}
+
+.votingRight{
+  background-image: url('../rightBg.png');
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+.votingArea > div{
+  width: 50%;
+  height: 32em;
+}
+.votingArea {
+  width: 100%;
+}
+
+.sendVote{
+  margin: 10em;
+}
+
+.votingButton{
+  border-radius: 0px;
+  border: 1em solid #e95c0e;
+  background-color: #e95c0e;
+  color: black;
+}
+
+.votingArea h1{
+  font-size: 3em;
+  margin: 0px;
+  padding: 0px;
+}
+
+.votingProp {
+  transition: 1s linear all;
+}
+.votingProp.on-add {
+  opacity: 0;
+}
+.votingProp.on {
+  opacity: 1;
+}
+.votingProp.on-remove {
+
 }

@@ -1,9 +1,9 @@
-var myApp = angular.module('like', ['ngMaterial', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'like.profile', 'ngRoute']);
+var myApp = angular.module('like', ['ngMaterial', 'like.register', 'like.browse', 'like.dashboard', 'like.login', 'like.profile', 'like.voting', 'ngRoute', 'ngAnimate']);
 myApp.controller('likeCtrl', function ($scope, $location) {
   $scope.path = {curPath: $location.path()};
 });
 
-myApp.config(function ($routeProvider) {
+myApp.config(function ($routeProvider, $mdThemingProvider) {
   $routeProvider
     //for now we will just redirect use to the login page.
     .when('/', {
@@ -28,6 +28,15 @@ myApp.config(function ($routeProvider) {
     })
     .when('/profile', {
       templateUrl : './app/templates/profile.html',
-      controller: 'profileCtrl'
+      controller : 'profileCtrl'
+    })
+    .when('/voting', {
+      templateUrl : './app/templates/voting.html',
+      controller : 'votingCtrl'
     });
+
+    $mdThemingProvider.theme('default')
+    .primaryPalette('orange')
+    .accentPalette('orange');
+
 });

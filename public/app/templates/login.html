@@ -15,10 +15,9 @@
   <md-input-container>
     <input size="40" ng-model="userObj.password" placeholder='Your Fancy Password' type='password'>
   </md-input-container>
-  </div>
 
   <div layout='column' ng-hide="isChecked" style="margin-top: -20px; padding: -20px">
-    <md-button class="md-raised basicButton" ng-click="login(userObj.username, userObj.password)">click to submit</md-button><br>
+    <md-button class="md-raised basicButton md-primary" ng-click="login(userObj.username, userObj.password)">click to submit</md-button><br>
   </div>
 
   <div layout='column' layout-align="center center" ng-show="isChecked">
@@ -38,8 +37,9 @@
 
   </form>
   <div layout='column'>
-    <md-button class="md-raised basicButton" ng-click="register(userObj)" ng-disabled = "!(emailCheck(userObj.email))">click to submit</md-button>
+    <md-button class="md-raised basicButton md-primary" ng-click="register(userObj)" ng-disabled = "!(emailCheck(userObj.email))">click to submit</md-button>
   </div>
+</div>
 </div>
 
 </div>
