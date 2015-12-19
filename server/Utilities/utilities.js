@@ -9,10 +9,13 @@ module.exports.authenticateUser = function (req, res, next, passport) {
   passport.authenticate('local', function( err, user, info ) {
     if(user === false) {
       res.sendStatus(404);
+    } else if (err) {
+      res.send(404)
     } else {
       req.login(user.dataValues, function(err) {
         if(err) {
           console.log('Error: ---', err);
+          res.status(401).send(err);
         }
       });
       res.status(200).send(user.dataValues);
@@ -103,17 +106,18 @@ module.exports.signUserOut = function (req, res, next) {
 };
 
 module.exports.getAllProfiles = function () {
-  return Profile.findAll({ attributes : ['id', 'username']})
-                .then(function(users){
-                  var profiles = [];
-                  for(var i =0; i < users.length; i++ ) {
-                    profiles.push(users[i].dataValues);
-                  }
-                  return profiles;
-                })
-                .catch(function(err) {
-                  throw new Error('Error getting new users',err);
-                });
+  return Profile
+          .findAll({ attributes : ['id', 'username']})
+          .then(function(users){
+            var profiles = [];
+            for(var i =0; i < users.length; i++ ) {
+              profiles.push(users[i].dataValues);
+            }
+            return profiles;
+          })
+          .catch(function(err) {
+            throw new Error('Error getting new users',err);
+          });
 };
 
 module.exports.updateUser = function (req, res, next) {
@@ -124,7 +128,14 @@ module.exports.updateUser = function (req, res, next) {
     updates.push(update[prop](userID, req.body[prop]));
   }
 
-  res.send(200);
+  Promise.all(updates)
+         .then(function(updates){
+           res.send(200);
+         })
+         .catch(function(err) {
+           console.log('Error in updating user', err);
+           res.send(520);
+         })
 }
 
 module.exports.deleteUser = function (req, res, next) {
@@ -136,9 +147,10 @@ module.exports.deleteUser = function (req, res, next) {
 
 
 ///////////////// Password Related Utilities ////////////////
-module.exports.checkPassword = function(username, password) {
-  return this.getProfile(username, null)
+module.exports.checkPassword = function(id, password) {
+  return this.getProfile(null, id)
     .then(function(user){
+      console.log('user', user);
       var username = user.dataValues.username;
       var pwd = user.dataValues.password;
       return bcrypt.compareAsync(password, pwd)
@@ -151,7 +163,7 @@ module.exports.checkPassword = function(username, password) {
   });
 };
 
-function hashPassword (username, password) {
+module.exports.hashPassword = function (username, password) {
   return bcrypt.genSaltAsync(8)
     .then(function(salt) {
       return bcrypt.hashAsync(password, salt);

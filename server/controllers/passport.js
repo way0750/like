@@ -5,14 +5,21 @@ var util = require('../Utilities/utilities')
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
+    var globalUser;
     util.getProfile(username, null)
       .then(function(user) {
         if ( user === null ) {
           return done( null, false, { message : 'Incorrect username' } );
-        } else if (!util.checkPassword( username, password )) {
+        }
+        globalUser = user;
+        console.log('User\'s ID is: ', user.get('id'));
+        return util.checkPassword(user.get('id'), password)
+      })
+      .then(function(exist) {
+        if (exist === false) {
           return done( null, false, { message : 'Incorrect password.'});
         } else {
-          return done( null, user );
+          return done( null, globalUser);
         }
       })
       .catch(function(err){
@@ -21,8 +28,7 @@ passport.use(new LocalStrategy(
           return err;
         }
       });
-  }
-));
+    }));
 
 passport.serializeUser(function(user, callback) {
   callback(null, user.id);
