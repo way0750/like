@@ -2,6 +2,19 @@
   background-color: #323333
 }
 
+/*----------css for the slide menu directive--------*/
+.slideMenuButton{
+  color: black;
+  font-size: 60px;
+}
+
+.slideMenuButton span{
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+/*------------css for login page------------*/
+
 .dividerAtDashboard{
   height: 1em;
   width: 100%;
