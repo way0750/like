@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  angular.module('like.profile', [])
-  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', function ($scope, $http, dataService, $location) {
+  angular.module('like.profile', ['like.slideMenu'])
+  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', '$mdSidenav', function ($scope, $http, dataService, $location, $mdSidenav) {
 
     $scope.targetUserId = sessionStorage.getItem('targetUserId');
     $scope.pubUserData = {

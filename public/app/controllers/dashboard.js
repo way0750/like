@@ -4,10 +4,10 @@
   angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', '$mdSidenav', function ($scope, authService, dataService, $location, $mdSidenav) {
     // $scope.userData = {};
 
-    $scope.logOut = function () {
-      authService.logOut();
-      $location.path('/login');
-    };
+    // $scope.logOut = function () {
+    //   authService.logOut();
+    //   $location.path('/login');
+    // };
 
     $scope.getLogedInUserData = function (UserId) {
       dataService.getLogedInUserData(UserId)
@@ -19,9 +19,9 @@
       });
     };
     
-    $scope.switchViewToBrowse = function () {
-      $location.path('/browse');
-    };
+    // $scope.switchViewToBrowse = function () {
+    //   $location.path('/browse');
+    // };
 
     $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
 

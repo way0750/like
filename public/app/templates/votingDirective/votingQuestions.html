@@ -1,17 +1,17 @@
 <div layout = 'row' class = 'votingArea' ng-show = 'show'>
   <div class="voteChoice votingLeft" layout="column" layout-align="center center">
-    <h1 class="votingProp" ng-class = "animate">{{curQuestion.leftName}}</h1>
-    <h2 class="votingProp" ng-class = "animate">{{curQuestion.leftSubtitle}}</h2>
-    <div class="votingProp" ng-class = "animate">{{curQuestion.leftDescription}}</div>
-    <img class="votingProp" ng-class = "animate" src="assets/traitPics/{{curQuestion.leftPic}}">
+    <h1 class="votingProp" ng-class = "classObj">{{curQuestion.leftName}}</h1>
+    <h2 class="votingProp" ng-class = "classObj">{{curQuestion.leftSubtitle}}</h2>
+    <div class="votingProp" ng-class = "classObj">{{curQuestion.leftDescription}}</div>
+    <img class="votingProp" ng-class = "classObj" src="assets/traitPics/{{curQuestion.leftPic}}">
     <md-button class = "votingButton" ng-click="choose(curQuestion.leftName)">Sounds Like This</md-button>
   </div>
 
   <div class="voteChoice votingRight" layout="column" layout-align="center center">
-    <h1 class="votingProp" ng-class = "animate">{{curQuestion.rightName}}</h1>
-    <h2 class="votingProp" ng-class = "animate">{{curQuestion.rightSubtitle}}</h2>
-    <div class="votingProp" ng-class = "animate">{{curQuestion.rightDescription}}</div>
-    <img class="votingProp" ng-class = "animate" src="assets/traitPics/{{curQuestion.rightPic}}">
+    <h1 class="votingProp" ng-class = "classObj">{{curQuestion.rightName}}</h1>
+    <h2 class="votingProp" ng-class = "classObj">{{curQuestion.rightSubtitle}}</h2>
+    <div class="votingProp" ng-class = "classObj">{{curQuestion.rightDescription}}</div>
+    <img class="votingProp" ng-class = "classObj" src="assets/traitPics/{{curQuestion.rightPic}}">
     <md-button class = "votingButton" ng-click="choose(curQuestion.rightName)">Sound More Like This</md-button>
   </div>
 </div>

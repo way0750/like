@@ -60,15 +60,15 @@
   -webkit-transition: 400ms linear all;
 }
 
-.dashboard.ng-enter {
+*.ng-enter {
   opacity: 0;
 }
 
-.dashboard.ng-enter.ng-enter-active {
+*.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-.dashboard.ng-leave {
+*.ng-leave {
   opacity: 1;
   transition: 0ms linear all;
 }
@@ -197,15 +197,15 @@
   padding: 0px;
 }
 
-.votingProp {
-  transition: 5s linear all;
+.votingProp{
+  transition: 5000ms linear all;
 }
-.votingProp.on-add {
+ .votingProp.on2-add  {
   opacity: 0;
 }
-.votingProp.on {
+.votingProp.on2  {
   opacity: 1;
 }
-.votingProp.on-remove {
-
-}
+/*.votingProp.on1-remove {
+  font-size: 5em;
+}*/
