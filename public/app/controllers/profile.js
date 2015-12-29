@@ -1,15 +1,16 @@
 (function () {
   'use strict';
 
-  angular.module('like.profile', [])
-  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', function ($scope, $http, dataService, $location) {
+  angular.module('like.profile', ['like.slideMenu', 'like.stat'])
+  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', '$mdSidenav', function ($scope, $http, dataService, $location, $mdSidenav) {
 
     $scope.targetUserId = sessionStorage.getItem('targetUserId');
     $scope.pubUserData = {
     };
 
+    $scope.data = 'profile';
+
     $scope.getUserData = function (userId) {
-      console.log('why I got called?');
       return dataService.getUserData(userId)
       .then(function (data) {
         $scope.pubUserData = data;

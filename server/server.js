@@ -44,7 +44,7 @@ app.post('/api/signout', util.signUserOut);
 
 app.post('/api/profile/', util.checkUsername, util.createUser);
 app.put('/api/profile/', util.isAuthorized, util.updateUser);
-app.delete('/api/profile/', util.isAuthorized, util.deleteUser)
+app.delete('/api/profile/', util.isAuthorized, util.deleteUser);
 
 //TODO : add more to route, only checking to see if user is authenticated
 app.post('/api/vote', util.isAuthorized, function (req, res) {

@@ -46,6 +46,15 @@
     background: #e95c0e;
 }
 
+.hex .middle{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    background-position: -1em 0.4em;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .hex .bottom {
     width: 0;
     border-top: 36px solid #e95c0e;
@@ -58,5 +67,11 @@
 }
 .hex-row.even {
     margin-left: 63px;
+}
+
+.hex .middle h4{
+    margin: 0px;
+    margin-top: -1.5em;
+    max-width: 124px;
 }
 

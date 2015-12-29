@@ -5,10 +5,10 @@
   .controller('browseCtrl', ['$scope', 'dataService', 'authService', '$location', function ($scope, dataService, authService, $location) {
     $scope.users = {};
 
-    $scope.logOut = function () {
-      authService.logOut();
-      $location.path('/login');
-    };
+    // $scope.logOut = function () {
+    //   authService.logOut();
+    //   $location.path('/login');
+    // };
 
     $scope.getAllUsers = function () {
       dataService.getAllUsers()
@@ -21,9 +21,9 @@
       });
     };
 
-    $scope.switchView = function () {
-      $location.path('/browse');
-    };
+    // $scope.switchView = function () {
+    //   $location.path('/browse');
+    // };
 
     //once select a user, should redirect to another view and save the selected user's id;
     $scope.selectUser = function (targetUserId) {

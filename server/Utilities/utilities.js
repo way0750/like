@@ -135,20 +135,20 @@ module.exports.updateUser = function (req, res, next) {
          .catch(function(err) {
            console.log('Error in updating user', err);
            res.send(401);
-         })
-}
+         });
+};
 
-module.exports.deleteUser = function (req, res, next) {}
+module.exports.deleteUser = function (req, res, next) {
   var userid = req.user.dataValues.id;
   Profile.destroy({ where : { id : userid }})
          .then(function(user) {
-           console.log(user)
+           console.log(user);
            res.sendStatus(200);
          })
          .catch(function(err) {
            throw new Error('Error is ', err);
          });
-}
+};
 
 ///////////////// Password Related Utilities ////////////////
 module.exports.checkPassword = function(id, password) {
