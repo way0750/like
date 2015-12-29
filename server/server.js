@@ -60,7 +60,7 @@ app.delete('/api/profile/', util.isAuthorized, util.deleteUser);
 
 app.post('/api/profile/:id', util.isAuthorized, util.isVoted, util.createOrUpdateVote);
 
-app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
+app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res) {
   var profileID = req.params.id;
   util.getProfile(null, profileID)
       .then(function(user){

@@ -9,7 +9,7 @@ module.exports.authenticateUser = function (req, res, next, passport) {
     if(user === false) {
       res.sendStatus(404);
     } else if (err) {
-      res.send(404)
+      res.send(404);
     } else {
       req.login(user.dataValues, function(err) {
         if(err) {
@@ -220,7 +220,7 @@ module.exports.isVoted = function (req, res, next) {
   db.VoterAndVotee.findOne({where: {VoterId: req.session.passport.user, VoteeId: req.params.id}})
   .then(function (user) {
     if (user) {
-      res.status(401).end('voter has already voted on this profile');
+      res.status(401).end(user.dataValues);
     } else {
       next();
     }
