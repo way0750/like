@@ -7,14 +7,14 @@
         $scope.openLeftMenu = function() {
           $mdSidenav('left').toggle();
         };
-        $scope.logOut = function () {
-          authService.logOut();
-          $location.path('/login');
-        };
 
-        $scope.switchViewToBrowse = function () {
-          $location.path('/browse');
+        $scope.switchViewTo = function (route) {
+          if (route === '/login' ){
+            authService.logOut();
+          }
+          $location.path(route);
         };
+        
       }
     };
   });  

@@ -1,79 +1,18 @@
-<!-- <div>
-  <md-button class = "md-raised" ng-click="switchView('/dashboard')">Dashboard</md-button>
-  <md-button class = "md-raised" ng-click="switchView('/browse')">Browse</md-button>
-</div> -->
-<slide-menu></slide-menu>
-<md-button ng-click="switchView('/voting')">wanna judge this person?</md-button>
-<stat-display></stat-display>
-<!-- 
-  <div class='traitsDisplay' flex='auto'>
-    <div class="hex-row">
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">what is this?</div>
-        <div class="bottom"></div>
-      </div>
-      
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">something</div>
-        <div class="bottom"></div>
-      </div>
+<header layout = 'row' layout-align="space-between center" class = 'votingHeader'>
+  <slide-menu></slide-menu>  
+  <div>
+    <div class="votingLogo">Persona</div>
+  </div>
+  
+  <div>
+  </div>
 
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-    </div>
+</header>
 
-    <div class="hex-row even">
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-    </div>
-
-    <div class="hex-row">
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-    </div>
-
-    <div class="hex-row even">
-      <div class="hex">
-        <div class="top"></div>
-        <div class="middle">see me?</div>
-        <div class="bottom"></div>
-      </div>
-    </div>
-
-
- -->
+<div layout="row" layout-align="center center" class='statNControl'>
+  <div layout = 'column'>
+    <h1>this person's stat:</h1>
+    <md-button class = "bauhausButton" ng-click="switchView('/voting')">Offer Your 2 Cents</md-button>
+  </div>
+  <stat-display></stat-display>
+</div>

@@ -1,10 +1,10 @@
-<div layout = 'row' class = 'votingArea' ng-hide = 'show'>
+<div layout = 'row' class = 'votingArea' ng-show = 'show'>
   <div class="voteChoice votingLeft" layout="column" layout-align="center center">
     <h1 class="votingProp" ng-class = "classObj">{{curQuestion.leftDisplayName}}</h1>
     <h2 class="votingProp" ng-class = "classObj">{{curQuestion.leftSubtitle}}</h2>
     <div class="votingProp" ng-class = "classObj">{{curQuestion.leftDescription}}</div>
     <img class="votingProp" ng-class = "classObj" src="assets/traitPics/{{curQuestion.leftPic}}">
-    <md-button class = "votingButton" ng-click="choose(curQuestion.leftDBName)">Sounds Like This</md-button>
+    <md-button class = "bauhausButton" ng-click="choose(curQuestion.leftDBName)">Sounds Like This</md-button>
   </div>
 
   <div class="voteChoice votingRight" layout="column" layout-align="center center">
@@ -12,15 +12,15 @@
     <h2 class="votingProp" ng-class = "classObj">{{curQuestion.rightSubtitle}}</h2>
     <div class="votingProp" ng-class = "classObj">{{curQuestion.rightDescription}}</div>
     <img class="votingProp" ng-class = "classObj" src="assets/traitPics/{{curQuestion.rightPic}}">
-    <md-button class = "votingButton" ng-click="choose(curQuestion.rightDBName)">Sound More Like This</md-button>
+    <md-button class = "bauhausButton" ng-click="choose(curQuestion.rightDBName)">Sound More Like This</md-button>
   </div>
 </div>
 
-<div layout="row" class='sendVote' ng-show='show'>
+<div layout="row" layout-align="center center" class='statNControl' ng-hide='show'>
   <div layout = 'column'>
     <h1>This Is What You Think:</h1>
-    <md-button class = "votingButton" ng-click="redo()">redo</md-button>
-    <md-button class = "votingButton" ng-click="sendVotes(voteRecords)">give them piece of my mind</md-button>
+    <md-button class = "bauhausButton" ng-click="redo()">redo</md-button>
+    <md-button class = "bauhausButton" ng-click="sendVotes(voteRecords)">give them piece of my mind</md-button>
   </div>
   <stat-display class = 'seeme'></stat-display>
 </div>

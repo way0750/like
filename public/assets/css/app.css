@@ -15,22 +15,31 @@
 
 /*------------css for login page------------*/
 
-.dividerAtDashboard{
-  height: 1em;
-  width: 100%;
-  background: linear-gradient(to right, #8e180f, #df3722);
-}
-
 .loginContainer{
-  padding-top: 1em;
-  background-color: #a6a6a6;
+  position: absolute;
+  top: 0px;
+  width: 100%;
 }
-
 .loginHeader{
   background-color: #e95c0e;
   width: 100%;
-  padding-bottom: 3em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
+}
+
+.loginForm{
+  padding-top: 2em;
+  background-color: #a6a6a6;
+  padding-bottom: 0.2em;
+}
+
+.loginForm > :nth-child(3n+1){
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.loginForm > :nth-child(3n+2){
+  padding-top: 0px;
+  margin-top: 0px;
 }
 
 .login {
@@ -97,24 +106,10 @@
 }
 
 .traitsDisplay{
-  position: absolute;
+  /*position: absolute;
   left: 40%;
-  top: 10em;
+  top: 10em;*/
 }
-
-
-/*---------------css for login.html----------------*/
-.loginContainer > :nth-child(3n+1){
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-}
-
-
-.loginContainer > :nth-child(3n+2){
-  padding-top: 0px;
-  margin-top: 0px;
-}
-
 
 /*---------------css for browse.html---------------*/
 
@@ -193,17 +188,6 @@
   width: 100%;
 }
 
-.sendVote{
-  margin: 10em;
-}
-
-.votingButton{
-  border-radius: 0px;
-  border: 1em solid #e95c0e;
-  background-color: #e95c0e;
-  color: black;
-}
-
 .votingArea h1{
   font-size: 3em;
   margin: 0px;
@@ -219,22 +203,28 @@
 .votingProp.on2  {
   opacity: 1;
 }
-/*.votingProp.on1-remove {
-  font-size: 5em;
-}*/
 
 /*-----------stat directive ------------*/
-.seeme{
-  /*display: inline-block;*/
-  /*position: relative;*/
-}
+
 .traitsDisplay{
-  /*border*/: 1px green solid;
-  /*float: right;*/
-  margin-left: 8em;
-  margin-right: 0em;
+  /*border: 1px yellow solid;*/
+  margin-left: 3em;
 }
-.sendVote{
-  /*border*/: 1px red solid;
-  margin-left: 15em;
+.statNControl{
+  margin-top: 1em;
+  margin-bottom: 0em;
+}
+
+.statNControl h1{
+  min-width: 8em;
+  text-align: center;
+}
+
+
+
+.bauhausButton{
+  border-radius: 0px;
+  border: 1em solid #e95c0e;
+  background-color: #e95c0e;
+  color: black;
 }
