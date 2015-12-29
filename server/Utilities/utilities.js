@@ -210,6 +210,9 @@ module.exports.createOrUpdateVote = function (req, res, next) {
   })
   .then(function () {
     res.status(200).end('Vote created');
+  })
+  .catch(function (err) {
+    console.error('ERROR in createOrUpdateVote: ', err);
   });
 };
 
