@@ -26,64 +26,52 @@ var Profile = db.define('Profile', {
 });
 
 var Vote = db.define('Vote', {
-  trait1: {
+  extroversion: {
     type: Sequelize.INTEGER,
-    field: 'Extroversion',
     defaultValue: 0
   },
-  trait2: {
+  introversion: {
     type: Sequelize.INTEGER,
-    field: 'Introversion',
     defaultValue: 0
   },
-  trait3: {
+  thinking: {
     type: Sequelize.INTEGER,
-    field: 'Thinking',
     defaultValue: 0
   },
-  trait4: {
+  feeling: {
     type: Sequelize.INTEGER,
-    field: 'Feeling',
     defaultValue: 0
   },
-  trait5: {
+  planning: {
     type: Sequelize.INTEGER,
-    field: 'Planning',
     defaultValue: 0
   },
-  trait6: {
+  spontaneous: {
     type: Sequelize.INTEGER,
-    field: 'Spontaneous',
     defaultValue: 0
   },
-  trait7: {
+  leader: {
     type: Sequelize.INTEGER,
-    field: 'Leader',
     defaultValue: 0
   },
-  trait8: {
+  doEr: {
     type: Sequelize.INTEGER,
-    field: 'Do-er',
     defaultValue: 0
   },
-  trait9: {
+  approachability: {
     type: Sequelize.INTEGER,
-    field: 'Approachability',
     defaultValue: 0
   },
-  trait10: {
+  loneWolf: {
     type: Sequelize.INTEGER,
-    field: 'LoneWolf',
     defaultValue: 0
   },
-  trait11: {
+  verbalCommunicator: {
     type: Sequelize.INTEGER,
-    field: 'Verbal communicator',
     defaultValue: 0
   },
-  trait12: {
+  actionCommunicator: {
     type: Sequelize.INTEGER,
-    field: 'Action communicator',
     defaultValue: 0
   }
 }, {

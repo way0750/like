@@ -15,6 +15,8 @@
       });
     };
 
+    // might need to switch to use the generic getUserData if it is
+    //redundent to use two different version.
     $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
 
     $scope.showDelete = false;

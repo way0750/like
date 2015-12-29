@@ -181,7 +181,6 @@ module.exports.hashPassword = function (username, password) {
 
 /////////////// Voting //////////////////
 module.exports.createOrUpdateVote = function (req, res, next) {
-  console.log('!!!!!!!!', req.params.id);
   db.Vote.findOrCreate({
     where: {
       Votee: req.params.id
@@ -190,18 +189,18 @@ module.exports.createOrUpdateVote = function (req, res, next) {
   .then(function (vote) {
     return db.Vote.update(
       { 
-        trait1: vote[0].dataValues.trait1 + parseInt(req.body.extroversion),
-        trait2: vote[0].dataValues.trait2 + parseInt(req.body.introversion),
-        trait3: vote[0].dataValues.trait3 + parseInt(req.body.thinking),
-        trait4: vote[0].dataValues.trait4 + parseInt(req.body.feeling),
-        trait5: vote[0].dataValues.trait5 + parseInt(req.body.planning),
-        trait6: vote[0].dataValues.trait6 + parseInt(req.body.spontaneous),
-        trait7: vote[0].dataValues.trait7 + parseInt(req.body.leader),
-        trait8: vote[0].dataValues.trait8 + parseInt(req.body.doEr),
-        trait9: vote[0].dataValues.trait9 + parseInt(req.body.approachability),
-        trait10: vote[0].dataValues.trait10 + parseInt(req.body.loneWolf),
-        trait11: vote[0].dataValues.trait11 + parseInt(req.body.verbalCommunicator),
-        trait12: vote[0].dataValues.trait12 + parseInt(req.body.actionCommunicator)
+        extroversion: vote[0].dataValues.extroversion + parseInt(req.body.extroversion),
+        introversion: vote[0].dataValues.introversion + parseInt(req.body.introversion),
+        thinking: vote[0].dataValues.thinking + parseInt(req.body.thinking),
+        feeling: vote[0].dataValues.feeling + parseInt(req.body.feeling),
+        planning: vote[0].dataValues.planning + parseInt(req.body.planning),
+        spontaneous: vote[0].dataValues.spontaneous + parseInt(req.body.spontaneous),
+        leader: vote[0].dataValues.leader + parseInt(req.body.leader),
+        doEr: vote[0].dataValues.doEr + parseInt(req.body.doEr),
+        approachability: vote[0].dataValues.approachability + parseInt(req.body.approachability),
+        loneWolf: vote[0].dataValues.loneWolf + parseInt(req.body.loneWolf),
+        verbalCommunicator: vote[0].dataValues.verbalCommunicator + parseInt(req.body.verbalCommunicator),
+        actionCommunicator: vote[0].dataValues.actionCommunicator + parseInt(req.body.actionCommunicator)
       },
       {where: {Votee: req.params.id}}
     );
@@ -228,5 +227,12 @@ module.exports.isVoted = function (req, res, next) {
   })
   .catch(function (err) {
     console.error("ERROR in isVoted: ", err);
+  });
+};
+
+module.exports.getVoteData = function (voteeId) {
+  return db.Vote.findOne({where: {Votee: voteeId}})
+  .then(function (data) {
+    return data.dataValues;
   });
 };

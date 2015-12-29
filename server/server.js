@@ -60,14 +60,32 @@ app.delete('/api/profile/', util.isAuthorized, util.deleteUser);
 
 app.post('/api/profile/:id', util.isAuthorized, util.isVoted, util.createOrUpdateVote);
 
-app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res) {
+app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
   var profileID = req.params.id;
+  var profileData = {vote: {}};
   util.getProfile(null, profileID)
       .then(function(user){
-        res.status(200).send(user.dataValues);
+        profileData.lastName = user.dataValues.lastName;
+        profileData.firstName = user.dataValues.firstName;
+        return util.getVoteData(profileID);
+      })
+      .then(function (voteData) {
+        profileData.vote.extroversion = voteData.extroversion;
+        profileData.vote.introversion = voteData.introversion;
+        profileData.vote.thinking = voteData.thinking;
+        profileData.vote.feeling = voteData.feeling;
+        profileData.vote.planning = voteData.planning;
+        profileData.vote.spontaneous = voteData.spontaneous;
+        profileData.vote.leader = voteData.leader;
+        profileData.vote.doEr = voteData.doEr;
+        profileData.vote.approachability = voteData.approachability;
+        profileData.vote.loneWolf = voteData.loneWolf;
+        profileData.vote.verbalCommunicator = voteData.verbalCommunicator;
+        profileData.vote.actionCommunicator = voteData.actionCommunicator;
+        return res.status(200).send(profileData);
       })
       .catch(function(err){
-        res.sendStatus(404);
+        return res.sendStatus(404);
       });
   // Just return the user object associated with id
   // This should send public profile

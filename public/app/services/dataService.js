@@ -18,11 +18,8 @@
       return $http({
         method: 'GET',
         url: url
-      })
-      .then(function (data) {
+      }).then(function (data) {
         return data;
-      }).catch(function () {
-        return false;
       });
     };
 

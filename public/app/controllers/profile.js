@@ -13,10 +13,12 @@
     $scope.getUserData = function (userId) {
       return dataService.getUserData(userId)
       .then(function (data) {
+        console.log('!!!!!!!!!data', data);
         $scope.pubUserData = data;
         return data;
       })
       .catch(function (data) {
+        console.log('!!!!!!!!!err', data);
         // $scope.pubUserData = false;
         return false;
       });
