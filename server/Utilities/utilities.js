@@ -1,7 +1,6 @@
-var Profile = require('../models/profileModel');
 var Promise = require('bluebird');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
-var Vote = require('../models/voteModel');
+var db = require('../models/schema');
 var update = require('./update');
 
 ///////////// Authentication Related Utilities //////////////
@@ -35,20 +34,20 @@ module.exports.isAuthorized = function(req, res, next){
 ////////////////// User Related Utilities //////////////////
 module.exports.getProfile = function (username, userid, privy) {
   if (privy) {
-    return Profile.find({ where : { id : userid }});
+    return db.Profile.find({ where : { id : userid }});
   } else {
     if (userid !== null) {
-      return Profile.find({ where : { id : userid }})
+      return db.Profile.find({ where : { id : userid }});
         //return the user data that is public
     } else {
-      return Profile.find({ where : { username : username }});
+      return db.Profile.find({ where : { username : username }});
     }
   }
 };
 
 module.exports.checkUsername = function (req, res, next) {
   var username = req.body.username;
-  Profile.find({ where: { username : username }})
+  db.Profile.find({ where: { username : username }})
     .then(function(user) {
       if(user === null) {
         next();
@@ -73,13 +72,13 @@ module.exports.createUser = function (req, res) {
     email     : req.body.email
   };
 
-  hashPassword(username, password)
+  module.exports.hashPassword(username, password)
     .then(function(hash){
       userObj.password = hash;
       return userObj;
     })
     .then(function(user) {
-      return Profile.create(user)
+      return db.Profile.create(user)
         .then(function(user) {
           return user;
         });
@@ -106,7 +105,7 @@ module.exports.signUserOut = function (req, res, next) {
 };
 
 module.exports.getAllProfiles = function () {
-  return Profile
+  return db.Profile
           .findAll({ attributes : ['id', 'username']})
           .then(function(users){
             var profiles = [];
@@ -140,12 +139,13 @@ module.exports.updateUser = function (req, res, next) {
 
 module.exports.deleteUser = function (req, res, next) {
   var userid = req.user.dataValues.id;
-  Profile.destroy({ where : { id : userid }})
+  db.Profile.destroy({ where : { id : userid }})
          .then(function(user) {
            console.log(user);
            res.sendStatus(200);
          })
          .catch(function(err) {
+           res.status(404).end(err);
            throw new Error('Error is ', err);
          });
 };
@@ -154,7 +154,6 @@ module.exports.deleteUser = function (req, res, next) {
 module.exports.checkPassword = function(id, password) {
   return this.getProfile(null, id)
     .then(function(user){
-      console.log('user', user);
       var username = user.dataValues.username;
       var pwd = user.dataValues.password;
       return bcrypt.compareAsync(password, pwd)
@@ -178,46 +177,52 @@ module.exports.hashPassword = function (username, password) {
     .catch(function(err){
       throw new Error('Error in hashing password...', err);
     });
-}
+};
 
 /////////////// Voting //////////////////
-module.exports.createOrUpdateVote = function (traits, voter, votee) {
-  Vote.findOrCreate({
+module.exports.createOrUpdateVote = function (req, res, next) {
+  db.Vote.findOrCreate({
     where: {
-      voter: voter,
-      votee: votee
-    },
-    defaults: {
-      trait1: traits.trait1,
-      trait2: traits.trait2,
-      trait3: traits.trait3,
-      trait4: traits.trait4,
-      trait5: traits.trait5,
-      trait6: traits.trait6,
-      trait7: traits.trait7,
-      trait8: traits.trait8,
-      voter: voter,
-      votee: votee
+      Votee: req.params.id
     }
   })
-  .spread(function (user, created) {
-    if (!created) {
-      User.update({
-        trait1: traits.trait1,
-        trait2: traits.trait2,
-        trait3: traits.trait3,
-        trait4: traits.trait4,
-        trait5: traits.trait5,
-        trait6: traits.trait6,
-        trait7: traits.trait7,
-        trait8: traits.trait8
+  .then(function (vote) {
+    return db.Vote.update(
+      { 
+        trait1: vote[0].dataValues.trait1 + parseInt(req.body.extroversion),
+        trait2: vote[0].dataValues.trait2 + parseInt(req.body.introversion),
+        trait3: vote[0].dataValues.trait3 + parseInt(req.body.thinking),
+        trait4: vote[0].dataValues.trait4 + parseInt(req.body.feeling),
+        trait5: vote[0].dataValues.trait5 + parseInt(req.body.planning),
+        trait6: vote[0].dataValues.trait6 + parseInt(req.body.spontaneous),
+        trait7: vote[0].dataValues.trait7 + parseInt(req.body.leader),
+        trait8: vote[0].dataValues.trait8 + parseInt(req.body.doEr),
+        trait9: vote[0].dataValues.trait9 + parseInt(req.body.approachability),
+        trait10: vote[0].dataValues.trait10 + parseInt(req.body.loneWolf),
+        trait11: vote[0].dataValues.trait11 + parseInt(req.body.verbalCommunicator),
+        trait12: vote[0].dataValues.trait12 + parseInt(req.body.actionCommunicator)
       },
-      {
-        where: {
-          voter: user.voter,
-          votee: user.votee
-        }
-      });
+      {where: {Votee: req.params.id}}
+    );
+  })
+  .then(function () {
+    return db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id});
+  })
+  .then(function () {
+    res.status(200).end('Vote created');
+  });
+};
+
+module.exports.isVoted = function (req, res, next) {
+  db.VoterAndVotee.findOne({where: {VoterId: req.session.passport.user, VoteeId: req.params.id}})
+  .then(function (user) {
+    if (user) {
+      res.status(401).end('voter has already voted on this profile');
+    } else {
+      next();
     }
+  })
+  .catch(function (err) {
+    console.error("ERROR in isVoted: ", err);
   });
 };

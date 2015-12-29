@@ -4,7 +4,6 @@ var body_parser = require('body-parser');
 var passport = require('./controllers/passport');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
-var Profile = require('./models/profileModel');
 var util = require('./Utilities/utilities');
 var app = express();
 
@@ -47,17 +46,19 @@ app.put('/api/profile/', util.isAuthorized, util.updateUser);
 app.delete('/api/profile/', util.isAuthorized, util.deleteUser);
 
 //TODO : add more to route, only checking to see if user is authenticated
-app.post('/api/vote', util.isAuthorized, function (req, res) {
-  util.createOrUpdateVote(req.body.treats, req.session.passport.user, req.body.votee)
-  .then(function () {
-    res.sendStatus(201);
-    return;
-  }).catch(function (err) {
-    res.sendStatus(400);
-    console.error('Error in /api/vote: ', err);
-    return;
-  });
-});
+// app.post('/api/vote', util.isAuthorized, function (req, res) {
+//   util.createOrUpdateVote(req.body.treats, req.session.passport.user, req.body.votee)
+//   .then(function () {
+//     res.sendStatus(201);
+//     return;
+//   }).catch(function (err) {
+//     res.sendStatus(400);
+//     console.error('Error in /api/vote: ', err);
+//     return;
+//   });
+// });
+
+app.post('/api/profile/:id', util.isAuthorized, util.isVoted, util.createOrUpdateVote);
 
 app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
   var profileID = req.params.id;
