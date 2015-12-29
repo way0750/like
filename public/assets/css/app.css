@@ -222,3 +222,19 @@
 /*.votingProp.on1-remove {
   font-size: 5em;
 }*/
+
+/*-----------stat directive ------------*/
+.seeme{
+  /*display: inline-block;*/
+  /*position: relative;*/
+}
+.traitsDisplay{
+  /*border*/: 1px green solid;
+  /*float: right;*/
+  margin-left: 8em;
+  margin-right: 0em;
+}
+.sendVote{
+  /*border*/: 1px red solid;
+  margin-left: 15em;
+}

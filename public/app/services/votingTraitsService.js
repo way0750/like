@@ -2,126 +2,146 @@
   angular.module('like.voting').factory('QuestionFactory', function(){
 
     var trait1 = {
-      leftName: 'Extroversion',
+      leftDisplayName: 'Extroversion',
+      leftDBName: 'extroversion',
       leftSubtitle: 'Out Going Like An API',
-      leftPic: 'socialLeft.svg',
-      rightName: 'Introversion',
+      leftPic: 'socialLeft.png',
+      rightDisplayName: 'Introversion',
+      rightDBName: 'introversion',
       rightSubtitle: 'Meow-Low, Doing My Thing',
-      rightPic: 'socialRight.svg'
+      rightPic: 'socialRight.png'
     };
 
     var trait2 = {
-      leftName: 'Thinking',
+      leftDisplayName: 'Thinking',
+      leftDBName: 'thinking',
       leftSubtitle: 'Let Me Read Error Log, First',
-      leftPic: 'thinking.svg',
-      rightName: 'Feeling',
+      leftPic: 'thinking.png',
+      rightDisplayName: 'Feeling',
+      rightDBName: 'feeling',
       rightSubtitle: 'Yeah The Bug Is Probably Here',
-      rightPic: 'feeling.svg'
+      rightPic: 'feeling.png'
     };
 
     var trait3 = {
-      leftName: 'Planning',
+      leftDisplayName: 'Planning',
+      leftDBName: 'planning',
       leftSubtitle: "Let's Plan Out The Entire App First",
       leftPic: 'planning.png',
-      rightName: 'Spontaneous',
+      rightDisplayName: 'Spontaneous',
+      rightDBName: 'spontaneous',
       rightSubtitle: "Let's Change Things As We Go",
       rightPic: 'Spontaneous.png'
     };
 
-    var trait4 = {
-      leftName: 'Sensing',
-      leftSubtitle: 'Backbone Is Stupid! Just Read The Source Code!',
-      leftPic: 'sensing.png',
-      rightName: 'Intuition',
-      rightSubtitle: 'Backbone Is Stupid! It Is So Complicated!',
-      rightPic: 'Intuition.png'
-    };
+    // var trait4 = {
+    //   leftDisplayName: 'Sensing',
+    // leftDBName: '',
+    //   leftSubtitle: 'Backbone Is Stupid! Just Read The Source Code!',
+    //   leftPic: 'sensing.png',
+    //   rightDisplayName: 'Intuition',
+    // rightDBName: '',
+    //   rightSubtitle: 'Backbone Is Stupid! It Is So Complicated!',
+    //   rightPic: 'Intuition.png'
+    // };
+
+/////////////////////////////////////////////////////////////////////////////
 
     var trait5 = {
-      leftName: 'Leadership',
+      leftDisplayName: 'Leader',
+      leftDBName: 'leader',
       leftSubtitle: 'Everybody Chill! I Got The Vision!',
-      leftPic: 'leaderLeft.svg',
-      rightName: '',
+      leftPic: 'leaderLeft.png',
+      rightDisplayName: 'Do-er',
+      rightDBName: 'doEr',
       rightSubtitle: 'I Actually Bring Vision To Life!',
-      rightPic: 'leaderRight.svg'
-    };
+      rightPic: 'leaderRight.png'
+    };  
 
-    var trait6 = {
-      leftName: 'Emotionality',
-      leftSubtitle: "My Emotion Shouldn't not Be Your Problem",
-      leftPic: 'EmotionalityLeft.svg',
-      rightName: '',
-      rightSubtitle: 'Experience Your Emotions At Full Range',
-      rightPic: 'EmotionalityRight.svg'
-    };
+    // var trait6 = {
+    //   leftDisplayName: 'Emotionality',
+    // leftDBName: '',
+    //   leftSubtitle: "My Emotion Shouldn't not Be Your Problem",
+    //   leftPic: 'EmotionalityLeft.svg',
+    //   rightDisplayName: '',
+    // rightDBName: '',
+    //   rightSubtitle: 'Experience Your Emotions At Full Range',
+    //   rightPic: 'EmotionalityRight.svg'
+    // };
 
     // var trait7 = {
-    //   leftName: 'Punctuality',
+    //   leftDisplayName: 'Punctuality',
+    // leftDBName: '',
     //   leftSubtitle: 'Pin Point On Time, Pronto!',
     //   leftPic: '',
-    //   rightName: '',
+    //   rightDisplayName: '',
+    // rightDBName: '',
     //   rightSubtitle: 'Life Goes At My Pace!',
     //   rightPic: ''
     // };
 
-    var trait8 = {
-      leftName: 'Cohesiveness',
-      leftSubtitle: 'Together We Can Archive More',
-      leftPic: 'CohesivenessLeft.svg',
-      rightName: '',
-      rightSubtitle: 'Do You Actually Like Team Programming?',
-      rightPic: 'CohesivenessRight.svg'
-    };
+    // var trait8 = {
+    //   leftDisplayName: 'Cohesiveness',
+    // leftDBName: '',
+    //   leftSubtitle: 'Together We Can Archive More',
+    //   leftPic: 'CohesivenessLeft.svg',
+    //   rightDisplayName: '',
+    // rightDBName: '',
+    //   rightSubtitle: 'Do You Actually Like Team Programming?',
+    //   rightPic: 'CohesivenessRight.svg'
+    // };
 
     // var trait9 = {
-    //   leftName: 'Candidness',
+    //   leftDisplayName: 'Candidness',
+    // leftDBName: '',
     //   leftSubtitle: 'Sharing Is How We Learn',
     //   leftPic: '',
-    //   rightName: '',
+    //   rightDisplayName: '',
+    // rightDBName: '',
     //   rightSubtitle: 'Group Harmony is More Important Than Individual Expression',
     //   rightPic: ''
     // };
 
     var trait10 = {
-      leftName: 'Approachability',
+      leftDisplayName: 'Approachability',
+      leftDBName: 'approachabilityz',
       leftSubtitle: 'Give Me All Your Problems, I Am Ready To Help',
-      leftPic: 'ApproachabilityLeft.svg',
-      rightName: '',
+      leftPic: 'ApproachabilityLeft.png',
+      rightDisplayName: 'Lone Wolf',
+      rightDBName: 'loneWolf',
       rightSubtitle: 'To Save You Time: Sorry, I Am Kinda Busy All The Time',
-      rightPic: 'ApproachabilityRight.svg'
+      rightPic: 'ApproachabilityRight.png'
     };
 
     var trait11 = {
-      leftName: 'Communication',
+      leftDisplayName: 'Verbal communicator',
+      leftDBName: 'VerbalCommunicator',
       leftSubtitle: 'In My Pass Life, I Was Orator',
       leftPic: 'CommunicationLeft.png',
-      rightName: '',
+      rightDisplayName: 'Action Communicator',
+      rightDBName: 'ActionCommunicator',
       rightSubtitle: 'In My Pass Life, I Was a Performance Artist',
       rightPic: 'CommunicationRight.png'
     };
 
-    var trait12 = {
-      leftName: 'Critique-ability',
-      leftSubtitle: 'Give Me Your Worst Criticism, I Can Take It.',
-      leftPic: 'CritiqueabilityLeft.png',
-      rightName: '',
-      rightSubtitle: 'We Are Only Human, We Should Be Nice To Each Other.',
-      rightPic: 'CritiqueabilityRight.svg'
-    };
+    // var trait12 = {
+    //   leftDisplayName: 'Critique-ability',
+    // leftDBName: '',
+    //   leftSubtitle: 'Give Me Your Worst Criticism, I Can Take It.',
+    //   leftPic: 'CritiqueabilityLeft.png',
+    //   rightDisplayName: '',
+    // rightDBName: '',
+    //   rightSubtitle: 'We Are Only Human, We Should Be Nice To Each Other.',
+    //   rightPic: 'CritiqueabilityRight.svg'
+    // };
 
     var allTraits = [
       trait1,
       trait2,
       trait3,
-      trait4,
       trait5,
-      trait6,
-      // trait7,
-      trait8,
-      // trait9,
       trait10,
       trait11,
-      trait12
     ];
 
     return {

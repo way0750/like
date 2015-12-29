@@ -46,6 +46,16 @@
     background: #e95c0e;
 }
 
+.hex .middle{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    background-image: url('../traitPics/download.png');
+    background-position: -1.5em 0.2em;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .hex .bottom {
     width: 0;
     border-top: 36px solid #e95c0e;
@@ -60,3 +70,7 @@
     margin-left: 63px;
 }
 
+
+.hex .middle h2, .hex .middle .stat{
+    margin: 0px;
+}

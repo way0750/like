@@ -1,13 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('like.dashboard', []).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', '$mdSidenav', function ($scope, authService, dataService, $location, $mdSidenav) {
-    // $scope.userData = {};
-
-    // $scope.logOut = function () {
-    //   authService.logOut();
-    //   $location.path('/login');
-    // };
+  angular.module('like.dashboard', ['like.stat']).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', '$mdSidenav', function ($scope, authService, dataService, $location, $mdSidenav) {
+ 
+    $scope.data = 'dashboard';
 
     $scope.getLogedInUserData = function (UserId) {
       dataService.getLogedInUserData(UserId)
@@ -18,10 +14,6 @@
         console.error('DASHBOARD — GET USER DATA ERROR:', err);
       });
     };
-    
-    // $scope.switchViewToBrowse = function () {
-    //   $location.path('/browse');
-    // };
 
     $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
 
