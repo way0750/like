@@ -39,7 +39,8 @@
     var sendVotes = function (voteObj) {
       return $http({
         method: 'POST',
-        url: '/api/vote'
+        url: '/api/profile/' + voteObj.voteId,
+        data: voteObj.traits
       });
     };
 

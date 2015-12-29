@@ -6,7 +6,7 @@
       controller: function ($scope, dataService, QuestionFactory, $animate, $location) {
 
         $scope.voteRecords = {
-          voteId: 1,
+          voteId: sessionStorage.getItem('targetUserId'),
           traits:{ 
             // Extroversion: 1
           }
@@ -41,6 +41,7 @@
           $scope.voteRecords.traits[curQuestion.rightDBName] = 0;
           $scope.voteRecords.traits[trait] = 1;
           $scope.showQuestion();
+          console.log($scope.voteRecords);
         };
 
         $scope.sendVotes = function (voteObj) {

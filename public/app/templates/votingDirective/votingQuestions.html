@@ -2,7 +2,6 @@
   <div class="voteChoice votingLeft" layout="column" layout-align="center center">
     <h1 class="votingProp" ng-class = "classObj">{{curQuestion.leftDisplayName}}</h1>
     <h2 class="votingProp" ng-class = "classObj">{{curQuestion.leftSubtitle}}</h2>
-    <div class="votingProp" ng-class = "classObj">{{curQuestion.leftDescription}}</div>
     <img class="votingProp" ng-class = "classObj" src="assets/traitPics/{{curQuestion.leftPic}}">
     <md-button class = "bauhausButton" ng-click="choose(curQuestion.leftDBName)">Sounds Like This</md-button>
   </div>
@@ -10,7 +9,6 @@
   <div class="voteChoice votingRight" layout="column" layout-align="center center">
     <h1 class="votingProp" ng-class = "classObj">{{curQuestion.rightDisplayName}}</h1>
     <h2 class="votingProp" ng-class = "classObj">{{curQuestion.rightSubtitle}}</h2>
-    <div class="votingProp" ng-class = "classObj">{{curQuestion.rightDescription}}</div>
     <img class="votingProp" ng-class = "classObj" src="assets/traitPics/{{curQuestion.rightPic}}">
     <md-button class = "bauhausButton" ng-click="choose(curQuestion.rightDBName)">Sound More Like This</md-button>
   </div>

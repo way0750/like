@@ -181,6 +181,7 @@ module.exports.hashPassword = function (username, password) {
 
 /////////////// Voting //////////////////
 module.exports.createOrUpdateVote = function (req, res, next) {
+  console.log('!!!!!!!!', req.params.id);
   db.Vote.findOrCreate({
     where: {
       Votee: req.params.id
@@ -220,7 +221,7 @@ module.exports.isVoted = function (req, res, next) {
   db.VoterAndVotee.findOne({where: {VoterId: req.session.passport.user, VoteeId: req.params.id}})
   .then(function (user) {
     if (user) {
-      res.status(401).end(user.dataValues);
+      res.status(401);
     } else {
       next();
     }
