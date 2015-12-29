@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/profileModel');
-var util = require('../Utilities/utilities')
+var db = require('../models/schema');
+var util = require('../Utilities/utilities');
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -13,7 +13,7 @@ passport.use(new LocalStrategy(
         }
         globalUser = user;
         console.log('User\'s ID is: ', user.get('id'));
-        return util.checkPassword(user.get('id'), password)
+        return util.checkPassword(user.get('id'), password);
       })
       .then(function(exist) {
         if (exist === false) {
@@ -35,7 +35,7 @@ passport.serializeUser(function(user, callback) {
 });
 
 passport.deserializeUser(function(id, cb) {
-  User.findById(id)
+  db.Profile.findById(id)
     .then(function(user, err) {
       cb(null, user);
     })

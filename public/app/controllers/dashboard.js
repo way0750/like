@@ -5,17 +5,22 @@
  
     $scope.data = 'dashboard';
 
-    $scope.getLogedInUserData = function (UserId) {
-      dataService.getLogedInUserData(UserId)
+    $scope.getUserData = function (UserId) {
+      UserId = UserId || 'self';
+      dataService.getUserData(UserId)
       .then(function (res) {
         $scope.userData = res.data;
+        console.log(res);
       })
       .catch(function (err) {
         console.error('DASHBOARD — GET USER DATA ERROR:', err);
       });
     };
 
-    $scope.getLogedInUserData(sessionStorage.getItem('useId') || '');
+    // might need to switch to use the generic getUserData if it is
+    //redundent to use two different version.
+
+    $scope.getUserData();
 
     $scope.showDelete = false;
     $scope.showUpdate = false;

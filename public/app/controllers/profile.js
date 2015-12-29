@@ -17,7 +17,6 @@
         return data;
       })
       .catch(function (data) {
-        // $scope.pubUserData = false;
         return false;
       });
     };

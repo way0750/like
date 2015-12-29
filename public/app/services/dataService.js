@@ -15,14 +15,12 @@
 
     var getUserData = function (userId) {
       var url = '/api/profile/' + userId;
+      console.log('---------', url);
       return $http({
         method: 'GET',
         url: url
-      })
-      .then(function (data) {
+      }).then(function (data) {
         return data;
-      }).catch(function () {
-        return false;
       });
     };
 
@@ -39,7 +37,8 @@
     var sendVotes = function (voteObj) {
       return $http({
         method: 'POST',
-        url: '/api/vote'
+        url: '/api/profile/' + voteObj.voteId,
+        data: voteObj.traits
       });
     };
 

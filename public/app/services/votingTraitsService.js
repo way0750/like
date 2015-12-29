@@ -104,7 +104,7 @@
 
     var trait10 = {
       leftDisplayName: 'Approachability',
-      leftDBName: 'approachabilityz',
+      leftDBName: 'approachability',
       leftSubtitle: 'Give Me All Your Problems, I Am Ready To Help',
       leftPic: 'ApproachabilityLeft.png',
       rightDisplayName: 'Lone Wolf',

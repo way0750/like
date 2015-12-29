@@ -4,7 +4,6 @@ var body_parser = require('body-parser');
 var passport = require('./controllers/passport');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
-var Profile = require('./models/profileModel');
 var util = require('./Utilities/utilities');
 var app = express();
 
@@ -46,27 +45,24 @@ app.post('/api/profile/', util.checkUsername, util.createUser);
 app.put('/api/profile/', util.isAuthorized, util.updateUser);
 app.delete('/api/profile/', util.isAuthorized, util.deleteUser);
 
-//TODO : add more to route, only checking to see if user is authenticated
-app.post('/api/vote', util.isAuthorized, function (req, res) {
-  util.createOrUpdateVote(req.body.treats, req.session.passport.user, req.body.votee)
-  .then(function () {
-    res.sendStatus(201);
-    return;
-  }).catch(function (err) {
-    res.sendStatus(400);
-    console.error('Error in /api/vote: ', err);
-    return;
-  });
-});
+app.post('/api/profile/:id', util.isAuthorized, util.isVoted, util.createOrUpdateVote);
 
-app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
-  var profileID = req.params.id;
+app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res) {
+  profileID = req.params.id;
+  var profileData = {vote: {}};
   util.getProfile(null, profileID)
       .then(function(user){
-        res.status(200).send(user.dataValues);
+        profileData.lastName = user.dataValues.lastName;
+        profileData.firstName = user.dataValues.firstName;
+        return util.getVoteData(profileID);
+      })
+      .then(function (vote) {
+        profileData.isVoted = res.isVoted;
+        profileData.vote = vote;
+        return res.status(200).send(profileData);
       })
       .catch(function(err){
-        res.sendStatus(404);
+        return res.sendStatus(404);
       });
   // Just return the user object associated with id
   // This should send public profile
