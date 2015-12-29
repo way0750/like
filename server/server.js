@@ -45,23 +45,10 @@ app.post('/api/profile/', util.checkUsername, util.createUser);
 app.put('/api/profile/', util.isAuthorized, util.updateUser);
 app.delete('/api/profile/', util.isAuthorized, util.deleteUser);
 
-//TODO : add more to route, only checking to see if user is authenticated
-// app.post('/api/vote', util.isAuthorized, function (req, res) {
-//   util.createOrUpdateVote(req.body.treats, req.session.passport.user, req.body.votee)
-//   .then(function () {
-//     res.sendStatus(201);
-//     return;
-//   }).catch(function (err) {
-//     res.sendStatus(400);
-//     console.error('Error in /api/vote: ', err);
-//     return;
-//   });
-// });
-
 app.post('/api/profile/:id', util.isAuthorized, util.isVoted, util.createOrUpdateVote);
 
-app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
-  var profileID = req.params.id;
+app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res) {
+  profileID = req.params.id;
   var profileData = {vote: {}};
   util.getProfile(null, profileID)
       .then(function(user){
@@ -69,19 +56,9 @@ app.get('/api/profile/:id', util.isAuthorized, function (req, res) {
         profileData.firstName = user.dataValues.firstName;
         return util.getVoteData(profileID);
       })
-      .then(function (voteData) {
-        profileData.vote.extroversion = voteData.extroversion;
-        profileData.vote.introversion = voteData.introversion;
-        profileData.vote.thinking = voteData.thinking;
-        profileData.vote.feeling = voteData.feeling;
-        profileData.vote.planning = voteData.planning;
-        profileData.vote.spontaneous = voteData.spontaneous;
-        profileData.vote.leader = voteData.leader;
-        profileData.vote.doEr = voteData.doEr;
-        profileData.vote.approachability = voteData.approachability;
-        profileData.vote.loneWolf = voteData.loneWolf;
-        profileData.vote.verbalCommunicator = voteData.verbalCommunicator;
-        profileData.vote.actionCommunicator = voteData.actionCommunicator;
+      .then(function (vote) {
+        profileData.isVoted = res.isVoted;
+        profileData.vote = vote;
         return res.status(200).send(profileData);
       })
       .catch(function(err){

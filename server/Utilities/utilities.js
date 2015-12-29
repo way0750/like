@@ -181,49 +181,57 @@ module.exports.hashPassword = function (username, password) {
 
 /////////////// Voting //////////////////
 module.exports.createOrUpdateVote = function (req, res, next) {
-  db.Vote.findOrCreate({
-    where: {
-      Votee: req.params.id
-    }
-  })
-  .then(function (vote) {
-    return db.Vote.update(
-      { 
-        extroversion: vote[0].dataValues.extroversion + parseInt(req.body.extroversion),
-        introversion: vote[0].dataValues.introversion + parseInt(req.body.introversion),
-        thinking: vote[0].dataValues.thinking + parseInt(req.body.thinking),
-        feeling: vote[0].dataValues.feeling + parseInt(req.body.feeling),
-        planning: vote[0].dataValues.planning + parseInt(req.body.planning),
-        spontaneous: vote[0].dataValues.spontaneous + parseInt(req.body.spontaneous),
-        leader: vote[0].dataValues.leader + parseInt(req.body.leader),
-        doEr: vote[0].dataValues.doEr + parseInt(req.body.doEr),
-        approachability: vote[0].dataValues.approachability + parseInt(req.body.approachability),
-        loneWolf: vote[0].dataValues.loneWolf + parseInt(req.body.loneWolf),
-        verbalCommunicator: vote[0].dataValues.verbalCommunicator + parseInt(req.body.verbalCommunicator),
-        actionCommunicator: vote[0].dataValues.actionCommunicator + parseInt(req.body.actionCommunicator)
-      },
-      {where: {Votee: req.params.id}}
-    );
-  })
-  .then(function () {
-    return db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id});
-  })
-  .then(function () {
-    res.status(200).end('Vote created');
-  })
-  .catch(function (err) {
-    console.error('ERROR in createOrUpdateVote: ', err);
-  });
+  if (res.isVoted) {
+    res.status(401).send('Already voted on this profile');
+  } else {
+    db.Vote.findOrCreate({
+      where: {
+        Votee: req.params.id
+      }
+    })
+    .then(function (vote) {
+      return db.Vote.update(
+        { 
+          extroversion: vote[0].dataValues.extroversion + parseInt(req.body.extroversion),
+          introversion: vote[0].dataValues.introversion + parseInt(req.body.introversion),
+          thinking: vote[0].dataValues.thinking + parseInt(req.body.thinking),
+          feeling: vote[0].dataValues.feeling + parseInt(req.body.feeling),
+          planning: vote[0].dataValues.planning + parseInt(req.body.planning),
+          spontaneous: vote[0].dataValues.spontaneous + parseInt(req.body.spontaneous),
+          leader: vote[0].dataValues.leader + parseInt(req.body.leader),
+          doEr: vote[0].dataValues.doEr + parseInt(req.body.doEr),
+          approachability: vote[0].dataValues.approachability + parseInt(req.body.approachability),
+          loneWolf: vote[0].dataValues.loneWolf + parseInt(req.body.loneWolf),
+          verbalCommunicator: vote[0].dataValues.verbalCommunicator + parseInt(req.body.verbalCommunicator),
+          actionCommunicator: vote[0].dataValues.actionCommunicator + parseInt(req.body.actionCommunicator)
+        },
+        {where: {Votee: req.params.id}}
+      );
+    })
+    .then(function () {
+      return db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id});
+    })
+    .then(function () {
+      res.status(200).end('Vote created');
+    })
+    .catch(function (err) {
+      console.error('ERROR in createOrUpdateVote: ', err);
+    });
+  }
 };
 
 module.exports.isVoted = function (req, res, next) {
+  if (req.params.id === 'self') {
+    req.params.id = req.session.passport.user;
+  }
   db.VoterAndVotee.findOne({where: {VoterId: req.session.passport.user, VoteeId: req.params.id}})
   .then(function (user) {
     if (user) {
-      res.status(401);
+      res.isVoted = true;
     } else {
-      next();
+      res.isVoted = false;
     }
+    next();
   })
   .catch(function (err) {
     console.error("ERROR in isVoted: ", err);
@@ -231,8 +239,24 @@ module.exports.isVoted = function (req, res, next) {
 };
 
 module.exports.getVoteData = function (voteeId) {
+  var vote = {};
   return db.Vote.findOne({where: {Votee: voteeId}})
   .then(function (data) {
     return data.dataValues;
+  })
+  .then(function (voteData) {
+    vote.extroversion = voteData.extroversion;
+    vote.introversion = voteData.introversion;
+    vote.thinking = voteData.thinking;
+    vote.feeling = voteData.feeling;
+    vote.planning = voteData.planning;
+    vote.spontaneous = voteData.spontaneous;
+    vote.leader = voteData.leader;
+    vote.doEr = voteData.doEr;
+    vote.approachability = voteData.approachability;
+    vote.loneWolf = voteData.loneWolf;
+    vote.verbalCommunicator = voteData.verbalCommunicator;
+    vote.actionCommunicator = voteData.actionCommunicator;
+    return vote;
   });
 };

@@ -3,7 +3,6 @@
 
   angular.module('like.login', ['like.slideMenu']).controller('loginCtrl', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
 
-    console.log($scope.userState);
     $scope.login = function (username, password) {
       var userObj = {
         username: username,
@@ -11,7 +10,6 @@
       };
       authService.logIn(userObj)
       .then(function (data) {
-        sessionStorage.setItem('userId', data.userId || "");
         $location.path('/dashboard');
       })
       .catch(function (err) {
@@ -29,7 +27,6 @@
           return data.data.userId;
         })
         .then (function (userId) {
-          sessionStorage.setItem('userId', userId);
           $location.path('/dashboard');
         })
         .catch(function (err) {

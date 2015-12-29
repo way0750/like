@@ -15,6 +15,7 @@
 
     var getUserData = function (userId) {
       var url = '/api/profile/' + userId;
+      console.log('---------', url);
       return $http({
         method: 'GET',
         url: url
