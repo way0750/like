@@ -82,15 +82,15 @@
   -webkit-transition: 400ms linear all;
 }
 
-*.ng-enter {
+*.ng-enter, .statDisplay.ng-enter {
   opacity: 0;
 }
 
-*.ng-enter.ng-enter-active {
+*.ng-enter.ng-enter-active, .statDisplay.ng-enter.ng-enter-active {
   opacity: 1;
 }
 
-*.ng-leave {
+*.ng-leave, .statDisplay.ng-leave {
   opacity: 1;
   transition: 0ms linear all;
 }
@@ -210,6 +210,7 @@
   /*border: 1px yellow solid;*/
   margin-left: 3em;
 }
+
 .statNControl{
   margin-top: 1em;
   margin-bottom: 0em;
@@ -220,11 +221,27 @@
   text-align: center;
 }
 
-
-
 .bauhausButton{
   border-radius: 0px;
   border: 1em solid #e95c0e;
   background-color: #e95c0e;
   color: black;
 }
+
+
+
+
+/*.statNControl.ng-hide-add, .statNControl.ng-hide-add.ng-hide-add-active, .statNControl.ng-hide-remove, .statNControl.ng-hide-remove.ng-hide-remove-active {
+  transition: 0.3s linear all;
+}*/
+
+*.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  transition: 0.3s linear all;
+}
+
+*.ng-hide-remove{
+  opacity: 0;
+  transition: 0.3s linear all;
+}
+

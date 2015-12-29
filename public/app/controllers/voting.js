@@ -6,14 +6,5 @@
 
     $scope.curQuestion = {};
 
-    $scope.logOut = function () {
-      authService.logOut();
-      $location.path('/login');
-    };
-
-    $scope.goToProfile = function () {
-      $location.path('/profile');
-    };
-
   }]);
 })();

@@ -50,8 +50,7 @@
     text-align: center;
     display: table-cell;
     vertical-align: middle;
-    background-image: url('../traitPics/download.png');
-    background-position: -1.5em 0.2em;
+    background-position: -1em 0.4em;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -70,7 +69,9 @@
     margin-left: 63px;
 }
 
-
-.hex .middle h2, .hex .middle .stat{
+.hex .middle h4{
     margin: 0px;
+    margin-top: -1.5em;
+    max-width: 124px;
 }
+

@@ -3,12 +3,12 @@
     return {
       restrict: 'E',
       templateUrl: 'app/templates/votingDirective/votingQuestions.html',
-      controller: function ($scope, dataService, QuestionFactory, $animate) {
+      controller: function ($scope, dataService, QuestionFactory, $animate, $location) {
 
         $scope.voteRecords = {
           voteId: 1,
           traits:{ 
-            Extroversion: 1
+            // Extroversion: 1
           }
         };
 
@@ -37,16 +37,15 @@
 
         $scope.choose = function (trait) {
           var curQuestion = $scope.curQuestion;
-          $scope.voteRecords.traits[curQuestion.leftName] = 0;
-          $scope.voteRecords.traits[curQuestion.rightName] = 0;
+          $scope.voteRecords.traits[curQuestion.leftDBName] = 0;
+          $scope.voteRecords.traits[curQuestion.rightDBName] = 0;
           $scope.voteRecords.traits[trait] = 1;
           $scope.showQuestion();
-
         };
 
         $scope.sendVotes = function (voteObj) {
           dataService.sendVotes(voteObj);
-          $scope.goToProfile();
+          $location.path('/profile');
         };
 
       }//end of controller

@@ -115,11 +115,11 @@
 
     var trait11 = {
       leftDisplayName: 'Verbal communicator',
-      leftDBName: 'VerbalCommunicator',
+      leftDBName: 'verbalCommunicator',
       leftSubtitle: 'In My Pass Life, I Was Orator',
       leftPic: 'CommunicationLeft.png',
       rightDisplayName: 'Action Communicator',
-      rightDBName: 'ActionCommunicator',
+      rightDBName: 'actionCommunicator',
       rightSubtitle: 'In My Pass Life, I Was a Performance Artist',
       rightPic: 'CommunicationRight.png'
     };
