@@ -21,7 +21,7 @@ app.use(express.static('public'));
 
 //////////////////////// API Endpoints ////////////////////////////
 
-app.param('id', function (req, res, next, id) {
+app.param('previewID', function (req, res, next, id) {
   var quickPreviewObj;
   util.getProfile(null, id)
   .then( function (user) {
@@ -44,7 +44,7 @@ app.param('id', function (req, res, next, id) {
 
 });
 
-app.get('/api/quickPreview/:id', function (req, res, next) {
+app.get('/api/quickPreview/:previewID', function (req, res, next) {
   res.send(res.quick);
 });
 

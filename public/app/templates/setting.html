@@ -14,7 +14,10 @@
       <h1>Update Your Info</h1>
       <form novalidate name="bigGuy" layout="column" layout-align="center center">
         <md-input-container>
-          <input size="40" ng-model="userObj.password" placeholder='New Password:' type='password'>
+          <input size="40" ng-model="userObj.password.old" placeholder='Old Password:' type='password'>
+        </md-input-container>
+        <md-input-container>
+          <input size="40" ng-model="userObj.password.new" placeholder='New Password:' type='password'>
         </md-input-container>
         <md-input-container>
           <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text'>

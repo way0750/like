@@ -122,7 +122,10 @@ module.exports.getAllProfiles = function () {
 
 module.exports.updateUser = function (req, res, next) {
   var updates = [];
-  var userID = req.user.get('id');
+  //maybe should user another way to get id????
+  // var userID = req.user.get('id');
+  var userID = req.session.passport.user;
+
 
   for (var prop in req.body) {
     updates.push(update[prop](userID, req.body[prop]));

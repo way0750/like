@@ -4,31 +4,22 @@
   angular.module('like.setting', ['like.slideMenu'])
   .controller('settingCtrl', ['$scope', 'dataService', 'authService', '$location', function ($scope, dataService, authService, $location) {
 
-
-    // data formate:
-    // var userObj = {
-    //   username  : username,
-    //   password  : password,
-    //   firstName : req.body.firstName,
-    //   lastName  : req.body.lastName,
-    //   email     : req.body.email
-    // };
-
-    // body.username
-
     $scope.sendUpdate = function (newInfo) {
       for (var prop in newInfo) {
         if (newInfo[prop] === undefined) {
           delete newInfo[prop];
         }
       }
-      var validEmail = $scope.emailCheck(newInfo.email);
-      if (validEmail) {
-        //call function here!
+      if (newInfo.hasOwnProperty('email') && !$scope.emailCheck(newInfo.email)) {
+        console.log('email no good:', newInfo);
+        delete newInfo.email;
       } else {
-        console.log('check your email');
+        console.log('tyring to update with these:', newInfo);
+        authService.update(newInfo)
+        .then( function (data) {
+          console.log('got this back for updating:', data);
+        });
       }
-      console.log(newInfo);
     };
 
     $scope.emailCheck = function (str) {
