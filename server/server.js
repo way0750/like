@@ -20,6 +20,35 @@ app.use(passport.session());
 app.use(express.static('public'));
 
 //////////////////////// API Endpoints ////////////////////////////
+
+app.param('id', function (req, res, next, id) {
+  var quickPreviewObj;
+  util.getProfile(null, id)
+  .then( function (user) {
+    quickPreviewObj = {
+      firstName: user.dataValues.firstName,
+      lastName: user.dataValues.lastName
+    };
+
+    util.getVoteData(id)
+    .then(function (data) {
+      quickPreviewObj.vote = data;
+      quickPreviewObj.justQuicky = true;
+      res.quick = quickPreviewObj;
+      next();
+    });
+  })
+  .catch(function () {
+    res.send(404);
+  });
+
+});
+
+app.get('/api/quickPreview/:id', function (req, res, next) {
+  res.send(res.quick);
+});
+
+
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);
   //should check and see if user even exit

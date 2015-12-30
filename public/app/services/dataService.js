@@ -13,8 +13,9 @@
       });
     };
 
-    var getUserData = function (userId) {
-      var url = '/api/profile/' + userId;
+    var getUserData = function (userId, quickie) {
+      var baseUrl = quickie ? '/api/quickPreview/' : '/api/profile/';
+      var url = baseUrl + userId;
       return $http({
         method: 'GET',
         url: url

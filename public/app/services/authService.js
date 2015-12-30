@@ -50,7 +50,16 @@
       });
     };
 
+    var deleteAccount = function () {
+      return $http({
+        method: 'DELETE',
+        url: '/api/profile/'
+      });
+    };
+
+
     return {
+      deleteAccount: deleteAccount,
       logIn: logIn,
       logOut: logOut,
       register: register,

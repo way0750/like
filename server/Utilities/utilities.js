@@ -124,7 +124,7 @@ module.exports.updateUser = function (req, res, next) {
   var updates = [];
   var userID = req.user.get('id');
 
-  for (prop in req.body) {
+  for (var prop in req.body) {
     updates.push(update[prop](userID, req.body[prop]));
   }
 

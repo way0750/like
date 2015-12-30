@@ -228,9 +228,6 @@
   color: black;
 }
 
-
-
-
 /*.statNControl.ng-hide-add, .statNControl.ng-hide-add.ng-hide-add-active, .statNControl.ng-hide-remove, .statNControl.ng-hide-remove.ng-hide-remove-active {
   transition: 0.3s linear all;
 }*/
@@ -245,3 +242,8 @@
   transition: 0.3s linear all;
 }
 
+/*----------------setting.html---------------*/
+.settingForm{
+  margin-top: 3em;
+  background-color: grey;
+}
