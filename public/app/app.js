@@ -36,7 +36,7 @@ myApp.config(function ($routeProvider, $mdThemingProvider) {
     });
 
     $mdThemingProvider.theme('default')
-    .primaryPalette('grey')
+    .primaryPalette('orange')
     .accentPalette('grey');
 
 });

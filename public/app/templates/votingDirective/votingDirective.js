@@ -5,12 +5,7 @@
       templateUrl: 'app/templates/votingDirective/votingQuestions.html',
       controller: function ($scope, dataService, QuestionFactory, $animate, $location) {
 
-        $scope.voteRecords = {
-          voteId: sessionStorage.getItem('targetUserId'),
-          traits:{ 
-            // Extroversion: 1
-          }
-        };
+        $scope.vote = {};
 
         $scope.allTraits = QuestionFactory.allTraits;
 
@@ -30,22 +25,24 @@
         $scope.showQuestion();
 
         $scope.redo = function () {
-          $scope.voteRecords.traits = {};
           $scope.curQuestionIndex = 0;
           $scope.showQuestion();
         };
 
         $scope.choose = function (trait) {
           var curQuestion = $scope.curQuestion;
-          $scope.voteRecords.traits[curQuestion.leftDBName] = 0;
-          $scope.voteRecords.traits[curQuestion.rightDBName] = 0;
-          $scope.voteRecords.traits[trait] = 1;
+          $scope.vote[curQuestion.leftDBName] = 0;
+          $scope.vote[curQuestion.rightDBName] = 0;
+          $scope.vote[trait] = 1;
           $scope.showQuestion();
-          console.log($scope.voteRecords);
         };
 
         $scope.sendVotes = function (voteObj) {
-          dataService.sendVotes(voteObj);
+          var data = {
+            voteId: sessionStorage.getItem('targetUserId'),
+            traits: voteObj
+          };
+          dataService.sendVotes(data);
           $location.path('/profile');
         };
 

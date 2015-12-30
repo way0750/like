@@ -4,6 +4,7 @@ var db = require('../models/schema');
 var update = require('./update');
 
 ///////////// Authentication Related Utilities //////////////
+
 module.exports.authenticateUser = function (req, res, next, passport) {
   passport.authenticate('local', function( err, user, info ) {
     if(user === false) {
@@ -101,7 +102,7 @@ module.exports.signUserOut = function (req, res, next) {
   // To remove req.user and destroy the passport session
   req.logout();
   req.session.destroy();
-  res.redirect('http://www.google.com');
+  res.send(300);
 };
 
 module.exports.getAllProfiles = function () {
@@ -211,11 +212,10 @@ module.exports.createOrUpdateVote = function (req, res, next) {
     .then(function () {
       return db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id});
     })
-    .then(function () {
+    .then(function (data) {
       res.status(200).end('Vote created');
     })
     .catch(function (err) {
-      console.error('ERROR in createOrUpdateVote: ', err);
     });
   }
 };
@@ -224,8 +224,10 @@ module.exports.isVoted = function (req, res, next) {
   if (req.params.id === 'self') {
     req.params.id = req.session.passport.user;
   }
-  db.VoterAndVotee.findOne({where: {VoterId: req.session.passport.user, VoteeId: req.params.id}})
+  console.log('------------------------- the VoterId vs voteeId:', req.session.passport.user, req.params.id);
+  db.VoterAndVotee.findOne({where: {"VoterId": req.session.passport.user, "VoteeId": req.params.id}})
   .then(function (user) {
+    console.log('--------------- found already voted:', user);
     if (user) {
       res.isVoted = true;
     } else {

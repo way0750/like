@@ -11,8 +11,9 @@
 
 <div layout="row" layout-align="center center" class='statNControl'>
   <div layout = 'column'>
-    <h1>this person's stat:</h1>
-    <md-button class = "bauhausButton" ng-click="switchView('/voting')">Offer Your 2 Cents</md-button>
+    <h1>{{firstName}} {{lastName}}</h1>
+    <h1>Stat:</h1>
+    <md-button class = "bauhausButton" ng-click="switchView('/voting')" ng-disabled = 'allowToVote'> Offer Your 2 Cents</md-button>
   </div>
   <stat-display></stat-display>
 </div>

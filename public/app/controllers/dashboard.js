@@ -9,7 +9,9 @@
       UserId = UserId || 'self';
       dataService.getUserData(UserId)
       .then(function (res) {
-        $scope.userData = res.data;
+        $scope.firstName = res.data.firstName;
+        $scope.lastName = res.data.lastName;
+        $scope.vote = res.data.vote;
         console.log(res);
       })
       .catch(function (err) {

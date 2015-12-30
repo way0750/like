@@ -5,19 +5,17 @@
   .controller('profileCtrl', ['$scope', '$http','dataService', '$location', '$mdSidenav', function ($scope, $http, dataService, $location, $mdSidenav) {
 
     $scope.targetUserId = sessionStorage.getItem('targetUserId');
-    $scope.pubUserData = {
-    };
-
-    $scope.data = 'profile';
 
     $scope.getUserData = function (userId) {
-      return dataService.getUserData(userId)
-      .then(function (data) {
-        $scope.pubUserData = data;
-        return data;
+      dataService.getUserData(userId)
+      .then(function (res) {
+        $scope.firstName = res.data.firstName;
+        $scope.lastName = res.data.lastName;
+        $scope.vote = res.data.vote;
+        $scope.allowToVote = res.data.isVoted;
       })
-      .catch(function (data) {
-        return false;
+      .catch(function (res) {
+        console.log('you already voted for this person!!!');
       });
     };
 
@@ -43,6 +41,7 @@
         return false;
       });
     };
+
     if ($scope.targetUserId !== null) {
       $scope.getUserData(sessionStorage.getItem('targetUserId'));
     }

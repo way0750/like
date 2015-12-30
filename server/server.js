@@ -20,7 +20,6 @@ app.use(passport.session());
 app.use(express.static('public'));
 
 //////////////////////// API Endpoints ////////////////////////////
-
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);
   //should check and see if user even exit
