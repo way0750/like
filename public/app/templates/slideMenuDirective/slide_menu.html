@@ -1,15 +1,26 @@
-<md-button aria-label = "slidingmenue" ng-click="openLeftMenu()">
-  <span class = 'slideMenuButton'>&#x2B22;<span>Menu</span></span>
-</md-button>
+<header layout = 'row' layout-align="space-between center" class = 'votingHeader'>
+  <div flex = 35>
+    <md-button aria-label = "slidingmenue" ng-click="openLeftMenu()">
+      <span class = 'slideMenuButton'>&#x2B22;<span>Menu</span></span>
+    </md-button>
 
-<div layout="column" ng-controller="MyController" class = "slideMenu">
-  <md-sidenav md-component-id="left" class="md-sidenav-left" layout="column">
-    <div style="height: 5em;"></div>
-    <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/login')"><img class="dashboardButton" src="../assets/hexagon.svg"></md-button>
-    <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/dashboard')"><img class="dashboardButton" src="../assets/dashboard.svg"></md-button>
-    <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/browse')"><img class="dashboardButton" src="../assets/trangle.svg"></md-button>
-    <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/setting')"><img class="dashboardButton" src="../assets/settings.svg"></md-button>
-    <delete-user ng-show = "showDelete"></delete-user>
-    <update-user ng-show = "showUpdate"></update-user> 
-  </md-sidenav>
-</div>
+    <div layout="column" ng-controller="MyController" class = "slideMenu">
+      <md-sidenav md-component-id="left" class="md-sidenav-left" layout="column">
+        <div style="height: 5em;"></div>
+        <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/login')"><img class="dashboardButton" src="../assets/hexagon.svg"></md-button>
+        <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/dashboard')"><img class="dashboardButton" src="../assets/dashboard.svg"></md-button>
+        <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/browse')"><img class="dashboardButton" src="../assets/trangle.svg"></md-button>
+        <md-button aria-label = "slidingmenue" ng-click="switchViewTo('/setting')"><img class="dashboardButton" src="../assets/settings.svg"></md-button>
+        <delete-user ng-show = "showDelete"></delete-user>
+        <update-user ng-show = "showUpdate"></update-user> 
+      </md-sidenav>
+    </div>
+  </div>
+
+  <img src="../../assets/logo.svg" class = 'logoPic'>
+  <div class="logoText">Persona</div>
+  
+  <div flex = 40></div>
+
+</header>
+

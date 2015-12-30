@@ -18,6 +18,7 @@
         authService.update(newInfo)
         .then( function (data) {
           console.log('got this back for updating:', data);
+          $location.path('/dashboard');
         });
       }
     };
@@ -40,6 +41,7 @@
         })
         .catch(function (data) {
           console.log('break up message:--', data);
+          $location.path('/login');
         });
       } else {
         console.log('where did you learn math?', $scope.num1 + $scope.num2 ,$scope.lastWord);

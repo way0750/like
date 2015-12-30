@@ -5,9 +5,9 @@
  
     $scope.data = 'dashboard';
 
-    $scope.getUserData = function (UserId) {
-      UserId = UserId || 'self';
-      dataService.getUserData(UserId)
+    $scope.getUserData = function () {
+      // UserId = UserId || 'self';
+      dataService.getUserData('self')
       .then(function (res) {
         $scope.firstName = res.data.firstName;
         $scope.lastName = res.data.lastName;
@@ -19,13 +19,7 @@
       });
     };
 
-    // might need to switch to use the generic getUserData if it is
-    //redundent to use two different version.
-
     $scope.getUserData();
-
-    $scope.showDelete = false;
-    $scope.showUpdate = false;
 
     $scope.openLeftMenu = function() {
       $mdSidenav('left').toggle();

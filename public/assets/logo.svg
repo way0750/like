@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="311.383px" height="341.133px" viewBox="0 0 311.383 341.133" style="enable-background:new 0 0 311.383 341.133;"
+	 xml:space="preserve">
+<g id="Layer_147">
+	<g>
+		<g>
+			<circle style="fill:#ED4F3E;" cx="155.692" cy="168" r="72"/>
+			
+				<polygon style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+				155.691,8 11.691,88 11.691,248 155.691,328 299.691,248 299.691,88 			"/>
+			
+				<polygon style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+				155.691,328 11.691,88 299.691,248 11.691,248 299.691,88 			"/>
+			
+				<polygon style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+				155.691,8 155.691,328 11.691,248 			"/>
+			
+				<line style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="299.691" y1="248" x2="155.691" y2="8"/>
+			
+				<line style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="11.691" y1="88" x2="299.691" y2="88"/>
+			<circle style="fill:#FFFFFF;" cx="155.691" cy="168" r="36.476"/>
+			<g>
+				
+					<circle style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" cx="155.691" cy="156.994" r="10.662"/>
+				<path style="fill:none;stroke:#30241C;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="
+					M136.451,195.742c0-15.512,8.614-28.086,19.24-28.086s19.24,12.574,19.24,28.086"/>
+			</g>
+			<circle style="fill:#ED4F3E;" cx="11.691" cy="88" r="11.691"/>
+			<circle style="fill:#D8D8D8;" cx="299.691" cy="88" r="11.691"/>
+			<circle style="fill:#ED4F3E;" cx="155.691" cy="329.441" r="11.691"/>
+			<circle style="fill:#59A1C6;" cx="155.555" cy="7.5" r="7.5"/>
+			<circle style="fill:#59A1C6;" cx="299.691" cy="248" r="7.5"/>
+			<circle style="fill:#59A1C6;" cx="11.691" cy="248" r="7.5"/>
+		</g>
+	</g>
+</g>
+<g id="Layer_1">
+</g>
+</svg>

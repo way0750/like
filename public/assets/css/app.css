@@ -48,16 +48,25 @@
   color: white;
 }
 
-.login.bold {
+.login .bold, .login.question {
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-size: 7em;
 }
 
-.login.logo{
+.login .text{
   font-size: 4em;
   color: white;
-  margin-top: 0.5em;
   margin-bottom: -0.4em;
+  vertical-align: middle;
+}
+.login .pic {
+  width: 5em;
+  vertical-align: middle;
+}
+
+.loginHeader{
+  padding-top: 2em;
 }
 
 @keyframes questionmark {
@@ -246,4 +255,17 @@
 .settingForm{
   margin-top: 3em;
   background-color: grey;
+}
+
+
+/*-----------slide menu-----------*/
+.logoPic{
+  width: 5em;
+}
+
+.logoText {
+  font-family: "Josefin Sans";
+  font-weight: 900;
+  font-size: 4em;
+  color: white;
 }
