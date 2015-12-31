@@ -25,19 +25,20 @@ app.use(express.static('public'));
 //////////////////////// API Endpoints ////////////////////////////
 
 app.param('previewID', function (req, res, next, id) {
-  var quickPreviewObj;
+  var quickPreviewObj = {};
+  quickPreviewObj.justQuicky = true;
   util.getProfile(null, id)
   .then( function (user) {
-    quickPreviewObj = {
-      firstName: user.dataValues.firstName,
-      lastName: user.dataValues.lastName
-    };
-
+    quickPreviewObj.firstName = user.dataValues.firstName;
+    quickPreviewObj.lastName = user.dataValues.lastName;
+    res.quick = quickPreviewObj;
     util.getVoteData(id)
     .then(function (data) {
       quickPreviewObj.vote = data;
-      quickPreviewObj.justQuicky = true;
-      res.quick = quickPreviewObj;
+      next();
+    })
+    .catch( function (err) {
+      //err most likely to be no voting record for this person found.
       next();
     });
   })
