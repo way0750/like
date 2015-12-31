@@ -1,5 +1,4 @@
-console.log('the process object has:', process, '\n\n');
-console.log('the process.env object has:', process.env, '\n\n\n');
+console.log('the process.env.PORT:', process.env.PORT, '\n\n');
 console.log('the process.env.DATABASE_URL is:', process.env.DATABASE_URL, '\n\n\n');
 
 var morgan = require('morgan');
@@ -106,5 +105,5 @@ app.use('/', function( req, res ){
 });
 
 //Server SetUp
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
 module.exports = app;
