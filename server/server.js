@@ -90,7 +90,7 @@ app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res)
         return res.status(200).send(profileData);
       })
       .catch(function(err){
-        return res.sendStatus(404);
+        return res.status(404).send(profileData);
       });
   // Just return the user object associated with id
   // This should send public profile

@@ -42,8 +42,11 @@
             voteId: sessionStorage.getItem('targetUserId'),
             traits: voteObj
           };
-          dataService.sendVotes(data);
-          $location.path('/profile');
+          dataService.sendVotes(data)
+          .then( function (data) {
+            console.log('got this after sending vote:', data);
+            $location.path('/profile');
+          });
         };
 
       }//end of controller

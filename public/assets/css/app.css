@@ -1,5 +1,7 @@
 :root, body{
-  background-color: #323333
+  background-color: #323333;
+  text-transform: capitalize;
+
 }
 
 /*----------css for the slide menu directive--------*/
@@ -108,17 +110,20 @@
   width: 28%;
 }
 
+.userName.display{
+  background-color: #e95c0e;
+  color: white;
+  height: 2em;
+  line-height: 2em;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
 
 .md-sidenav-left{
   background-color: black;
   /*background: linear-gradient(90deg, #323333, #4c4d4d);*/
 }
 
-.traitsDisplay{
-  /*position: absolute;
-  left: 40%;
-  top: 10em;*/
-}
 
 /*---------------css for browse.html---------------*/
 
@@ -235,6 +240,15 @@
   border: 1em solid #e95c0e;
   background-color: #e95c0e;
   color: black;
+}
+
+.bauhausButton:disabled{
+  background-color: grey;
+  color: white;
+}
+
+.bauhausButton:disabled::after{
+  content: '!!';
 }
 
 /*.statNControl.ng-hide-add, .statNControl.ng-hide-add.ng-hide-add-active, .statNControl.ng-hide-remove, .statNControl.ng-hide-remove.ng-hide-remove-active {

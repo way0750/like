@@ -6,16 +6,11 @@
     $scope.data = 'dashboard';
 
     $scope.getUserData = function () {
-      // UserId = UserId || 'self';
       dataService.getUserData('self')
       .then(function (res) {
         $scope.firstName = res.data.firstName;
         $scope.lastName = res.data.lastName;
         $scope.vote = res.data.vote;
-        console.log(res);
-      })
-      .catch(function (err) {
-        console.error('DASHBOARD — GET USER DATA ERROR:', err);
       });
     };
 

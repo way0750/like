@@ -213,10 +213,11 @@ module.exports.createOrUpdateVote = function (req, res, next) {
       );
     })
     .then(function () {
-      return db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id});
-    })
-    .then(function (data) {
-      res.status(200).end('Vote created');
+      db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id})
+      .then( function (newVote) {
+        // console.log('seriously-----------\n\n\n just received the vote dame it!:', newVote);
+        res.status(200).end('Vote created');
+      });
     })
     .catch(function (err) {
     });
@@ -227,10 +228,8 @@ module.exports.isVoted = function (req, res, next) {
   if (req.params.id === 'self') {
     req.params.id = req.session.passport.user;
   }
-  console.log('------------------------- the VoterId vs voteeId:', req.session.passport.user, req.params.id);
   db.VoterAndVotee.findOne({where: {"VoterId": req.session.passport.user, "VoteeId": req.params.id}})
   .then(function (user) {
-    console.log('--------------- found already voted:', user);
     if (user) {
       res.isVoted = true;
     } else {

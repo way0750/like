@@ -13,7 +13,7 @@
         $scope.lastName = res.data.lastName;
         $scope.vote = res.data.vote;
         $scope.allowToVote = res.data.isVoted;
-        console.log('got this as vote data', $scope.vote);
+        console.log('isVoted:', res.data.isVoted, 'got this as vote data', $scope.vote);
       })
       .catch(function (res) {
         console.log('you already voted for this person!!!');
@@ -22,25 +22,6 @@
 
     $scope.switchView = function (location) {
       $location.path(location);
-    };
-
-    $scope.sendVote = function (voteArr) {
-      var data = {
-        userId: voteArr[0],
-        trait: voteArr[1],
-        vote: voteArr[2]
-      };
-      return $http({
-        method: 'POST',
-        url: '/api/vote/' + data.userId,
-        data: data
-      }).then(function (data) {
-        $scope.data = data.data;
-        return data.data;
-      }).catch(function (data) {
-        $scope.data = false;
-        return false;
-      });
     };
 
     $scope.prospectUser = $routeParams.hasOwnProperty('id');

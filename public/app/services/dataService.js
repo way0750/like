@@ -21,6 +21,9 @@
         url: url
       }).then(function (data) {
         return data;
+      })
+      .catch(function (data) {
+        return data;
       });
     };
 

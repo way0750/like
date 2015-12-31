@@ -71,7 +71,11 @@
 
 .hex .middle h4{
     margin: 0px;
-    margin-top: -1.5em;
+    margin-top: -1.8em;
     max-width: 124px;
 }
 
+.hex .middle .stat{
+    font-weight: 900;
+    font-size: 2em;
+}
