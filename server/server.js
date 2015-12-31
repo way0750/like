@@ -1,3 +1,7 @@
+console.log('the process object has:', process, '\n\n');
+console.log('the process.env object has:', process.env, '\n\n\n');
+console.log('the process.env.DATABASE_URL is:', process.env.DATABASE_URL, '\n\n\n');
+
 var morgan = require('morgan');
 var express = require('express');
 var body_parser = require('body-parser');
