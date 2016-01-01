@@ -102,6 +102,15 @@
   animation-direction: alternate;
 }
 
+.genderChoice {
+  margin-top: -0.5em;
+  margin-bottom: 2em;
+}
+
+.genderChoice input {
+  width: 4em;
+}
+
 /*------------dashboard css-------------*/
 .dashboard {
   transition: 400ms linear all;
