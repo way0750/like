@@ -1,8 +1,11 @@
 (function () {
   'use strict';
 
-  angular.module('like.login', ['like.slideMenu']).controller('loginCtrl', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
+  angular.module('like.login', ['like.slideMenu']).controller('loginCtrl', ['$scope', 'authService', '$location', 'storage', function ($scope, authService, $location, storage) {
 
+    $scope.memory = storage.data;
+    $scope.memory.hasLoggedIn = 'fromLogin';
+    // console.log(storage.data);
     $scope.login = function (username, password) {
       var userObj = {
         username: username,
@@ -10,10 +13,18 @@
       };
       authService.logIn(userObj)
       .then(function (data) {
-        $location.path('/dashboard');
+        console.log('so why going to profile???', sessionStorage.getItem('targetUserId'));
+        var reservedAction = sessionStorage.getItem('targetUserId');
+
+        if (reservedAction) {
+          $location.path('/profile');
+        } else {
+          $location.path('/dashboard');
+        }
       })
       .catch(function (err) {
         console.log('--------login err: ', err);
+        $scope.wrongCred = true;
       });
     };
 

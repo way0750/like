@@ -4,6 +4,8 @@
     <h1 class = "login question">Who Are You Really<span>?</span></h1>
   </header>
   <div layout = 'column' class="loginForm">
+    <div class='errMsg' ng-show="wrongCred"> Wrong username or password</div>
+
     <md-input-container>
      <input size="40" ng-model="userObj.username" placeholder='Who Are You?'>
     </md-input-container>

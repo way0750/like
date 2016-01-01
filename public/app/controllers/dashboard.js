@@ -1,9 +1,11 @@
 (function () {
   'use strict';
 
-  angular.module('like.dashboard', ['like.stat']).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', '$mdSidenav', function ($scope, authService, dataService, $location, $mdSidenav) {
- 
-    $scope.data = 'dashboard';
+  angular.module('like.dashboard', ['like.stat']).controller('dashboardCtrl', ['$scope', 'authService', 'dataService', '$location', '$mdSidenav', 'storage', function ($scope, authService, dataService, $location, $mdSidenav, storage) {
+    
+    $scope.memory = storage.data;
+    $scope.memory.fromDashboard = 'fromDashboard';
+    //console.log(storage.data);
 
     $scope.getUserData = function () {
       dataService.getUserData('self')

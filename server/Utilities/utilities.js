@@ -31,6 +31,16 @@ module.exports.isAuthorized = function(req, res, next){
   }
 };
 
+module.exports.currentlyLoggedIn = function(req, res, next){
+  console.log('req.isAuthenticated():', req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    var userID = req.session.passport.user;
+    //need userID to make a shorten sharable link
+    res.status(200).send(userID);
+  } else {
+    res.send(401);
+  }
+};
 
 ////////////////// User Related Utilities //////////////////
 module.exports.getProfile = function (username, userid, privy) {
@@ -215,7 +225,6 @@ module.exports.createOrUpdateVote = function (req, res, next) {
     .then(function () {
       db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id})
       .then( function (newVote) {
-        // console.log('seriously-----------\n\n\n just received the vote dame it!:', newVote);
         res.status(200).end('Vote created');
       });
     })
@@ -225,6 +234,7 @@ module.exports.createOrUpdateVote = function (req, res, next) {
 };
 
 module.exports.isVoted = function (req, res, next) {
+  console.log('checking isVoted:', "VoterId", req.session.passport.user, "VoteeId", req.params.id);
   if (req.params.id === 'self') {
     req.params.id = req.session.passport.user;
   }

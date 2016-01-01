@@ -1,5 +1,9 @@
-console.log('the process.env.PORT:', process.env.PORT, '\n\n');
-console.log('the process.env.DATABASE_URL is:', process.env.DATABASE_URL, '\n\n\n');
+console.oldLog = console.log;
+console.log = function () {
+  console.oldLog('\n\nconsole.logging this..=======================');
+  console.oldLog.apply(console, arguments);
+  console.oldLog('\n\n^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^\n\n');
+};
 
 var morgan = require('morgan');
 var express = require('express');
@@ -45,13 +49,13 @@ app.param('previewID', function (req, res, next, id) {
   .catch(function () {
     res.send(404);
   });
-
 });
 
 app.get('/api/quickPreview/:previewID', function (req, res, next) {
   res.send(res.quick);
 });
 
+app.get('/api/loginStatus', util.currentlyLoggedIn);
 
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);

@@ -29,19 +29,34 @@
 }
 
 .loginForm{
+  position: relative;
   padding-top: 2em;
   background-color: #a6a6a6;
   padding-bottom: 0.2em;
 }
 
-.loginForm > :nth-child(3n+1){
-  padding-bottom: 0px;
+.loginForm * {
   margin-bottom: 0px;
 }
 
-.loginForm > :nth-child(3n+2){
+.loginForm > :nth-child(0n+2) {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+
+}
+
+.loginForm > :nth-child(0n+3) {
   padding-top: 0px;
   margin-top: 0px;
+}
+
+.loginForm .errMsg{
+  text-align: center;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  top: 0px;
 }
 
 .login {
@@ -78,7 +93,7 @@
   }
 }
 
-.login.bold span{
+.login.question span{
   color: transparent;
   text-shadow: 0px 0px 0px transparent;
   animation-duration: 1s;
@@ -189,7 +204,7 @@
 }
 
 .votingRight{
-  background-image: url('../rightBg.png');
+  background-image: url('../rightBg.jpg');
   background-size: cover;
   background-repeat: repeat-y;
 }

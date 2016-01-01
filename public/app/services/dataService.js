@@ -16,6 +16,7 @@
     var getUserData = function (userId, quickie) {
       var baseUrl = quickie ? '/api/quickPreview/' : '/api/profile/';
       var url = baseUrl + userId;
+      console.log('the baseUrl:', url);
       return $http({
         method: 'GET',
         url: url

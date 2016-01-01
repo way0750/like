@@ -42,6 +42,7 @@
             voteId: sessionStorage.getItem('targetUserId'),
             traits: voteObj
           };
+          console.log('sendVotes with', data);
           dataService.sendVotes(data)
           .then( function (data) {
             console.log('got this after sending vote:', data);
