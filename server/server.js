@@ -1,3 +1,10 @@
+console.oldLog = console.log;
+console.log = function () {
+  console.oldLog('\n\nconsole.logging this..=======================');
+  console.oldLog.apply(console, arguments);
+  console.oldLog('\n\n^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^\n\n');
+};
+
 var morgan = require('morgan');
 var express = require('express');
 var body_parser = require('body-parser');
@@ -20,6 +27,36 @@ app.use(passport.session());
 app.use(express.static('public'));
 
 //////////////////////// API Endpoints ////////////////////////////
+
+app.param('previewID', function (req, res, next, id) {
+  var quickPreviewObj = {};
+  quickPreviewObj.justQuicky = true;
+  util.getProfile(null, id)
+  .then( function (user) {
+    quickPreviewObj.firstName = user.dataValues.firstName;
+    quickPreviewObj.lastName = user.dataValues.lastName;
+    quickPreviewObj.gender = user.dataValues.gender;
+    res.quick = quickPreviewObj;
+    util.getVoteData(id)
+    .then(function (data) {
+      quickPreviewObj.vote = data;
+      next();
+    })
+    .catch( function (err) {
+      //err most likely to be no voting record for this person found.
+      next();
+    });
+  })
+  .catch(function () {
+    res.send(404);
+  });
+});
+
+app.get('/api/quickPreview/:previewID', function (req, res, next) {
+  res.send(res.quick);
+});
+
+app.get('/api/loginStatus', util.currentlyLoggedIn);
 
 app.post('/api/signin', function(req, res, next) {
   util.authenticateUser(req, res, next, passport);
@@ -54,6 +91,7 @@ app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res)
       .then(function(user){
         profileData.lastName = user.dataValues.lastName;
         profileData.firstName = user.dataValues.firstName;
+        profileData.gender = user.dataValues.gender;
         return util.getVoteData(profileID);
       })
       .then(function (vote) {
@@ -62,7 +100,7 @@ app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res)
         return res.status(200).send(profileData);
       })
       .catch(function(err){
-        return res.sendStatus(404);
+        return res.status(404).send(profileData);
       });
   // Just return the user object associated with id
   // This should send public profile
@@ -74,5 +112,5 @@ app.use('/', function( req, res ){
 });
 
 //Server SetUp
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
 module.exports = app;

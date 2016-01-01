@@ -1,49 +1,45 @@
 (function () {
   'use strict';
 
-  angular.module('like.profile', ['like.slideMenu', 'like.stat'])
-  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', '$mdSidenav', function ($scope, $http, dataService, $location, $mdSidenav) {
+  angular.module('like.profile', ['like.slideMenu', 'like.stat', 'ngRoute'])
+  .controller('profileCtrl', [ 'authService', '$scope', '$http','dataService', '$location', '$mdSidenav', '$routeParams', 'storage', function (authService, $scope, $http, dataService, $location, $mdSidenav, $routeParams, storage) {
 
-    $scope.targetUserId = sessionStorage.getItem('targetUserId');
-    $scope.pubUserData = {
-    };
+    $scope.memory = storage.data;
+    $scope.memory.fromProfile = 'fromProfile';
+    // console.log(storage.data);
 
-    $scope.data = 'profile';
-
-    $scope.getUserData = function (userId) {
-      return dataService.getUserData(userId)
-      .then(function (data) {
-        $scope.pubUserData = data;
-        return data;
+    
+    $scope.getUserData = function (userId, quicky) {
+      dataService.getUserData(userId, quicky)
+      .then(function (res) {
+        $scope.firstName = res.data.firstName;
+        $scope.lastName = res.data.lastName;
+        $scope.gender = res.data.gender;
+        $scope.vote = res.data.vote;
+        $scope.allowToVote = res.data.isVoted;
+        $scope.alreadyAuthenticated = quicky ? res.data.alreadyAuthenticated : true;
       })
-      .catch(function (data) {
-        return false;
+      .catch(function (res) {
+        console.log('you already voted for this person!!!');
       });
     };
-
+    
     $scope.switchView = function (location) {
       $location.path(location);
     };
+    
+    $scope.usingQuickLink = $routeParams.hasOwnProperty('id');
+    
+    if ($scope.usingQuickLink) {
+     sessionStorage.setItem('targetUserId', $routeParams.id); 
+    }
 
-    $scope.sendVote = function (voteArr) {
-      var data = {
-        userId: voteArr[0],
-        trait: voteArr[1],
-        vote: voteArr[2]
-      };
-      return $http({
-        method: 'POST',
-        url: '/api/vote/' + data.userId,
-        data: data
-      }).then(function (data) {
-        $scope.data = data.data;
-        return data.data;
-      }).catch(function (data) {
-        $scope.data = false;
-        return false;
-      });
-    };
-    if ($scope.targetUserId !== null) {
+    $scope.targetUserId = sessionStorage.getItem('targetUserId');
+    $scope.userIsLoggedIn = sessionStorage.getItem('loggedInuser');
+
+    if ($scope.usingQuickLink && !$scope.userIsLoggedIn) {
+      $scope.getUserData($routeParams.id, true);
+    } else if ($scope.targetUserId !== null) {
       $scope.getUserData(sessionStorage.getItem('targetUserId'));
     }
   }]); //close controller

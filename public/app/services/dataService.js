@@ -13,13 +13,17 @@
       });
     };
 
-    var getUserData = function (userId) {
-      var url = '/api/profile/' + userId;
-      console.log('---------', url);
+    var getUserData = function (userId, quickie) {
+      var baseUrl = quickie ? '/api/quickPreview/' : '/api/profile/';
+      var url = baseUrl + userId;
+      console.log('the baseUrl:', url);
       return $http({
         method: 'GET',
         url: url
       }).then(function (data) {
+        return data;
+      })
+      .catch(function (data) {
         return data;
       });
     };

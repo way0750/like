@@ -1,9 +1,12 @@
 <div layout = 'column' layout-align="center center" class="loginContainer">
   <header class = "loginHeader" layout = 'column' layout-align="center center">
-    <h1 class="login logo">Persona:</h1>
-    <h1 class = "login bold">Who Are You Really<span>?</span></h1>
+    <div class="login"> <img src="../../assets/logo.svg" class = 'pic'> <span class='text'>Persona:</span></div>
+    <h1 class = "login question">Who Are You Really<span>?</span></h1>
   </header>
   <div layout = 'column' class="loginForm">
+    <div class='errMsg' ng-show="wrongCred"> Wrong username or password</div>
+    <div class='errMsg' ng-show="invalidAccount">Account Already Exist!</div>
+
     <md-input-container>
      <input size="40" ng-model="userObj.username" placeholder='Who Are You?'>
     </md-input-container>
@@ -31,6 +34,9 @@
       </md-input-container>
       <md-input-container>
         <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' required>
+      </md-input-container>
+      <md-input-container>
+        <input size="40" ng-model="userObj.gender" placeholder='Gender' type='text' required>
       </md-input-container>
       <md-input-container>
         <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' required>

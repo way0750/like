@@ -17,6 +17,10 @@ var Profile = db.define('Profile', {
     type: Sequelize.STRING,
     field: 'last_name'
   },
+  gender: {
+    type: Sequelize.STRING,
+    field: 'gender'
+  },
   email: {
     type: Sequelize.STRING,
     field: 'email'

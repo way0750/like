@@ -3,15 +3,23 @@
 
   angular.module('like.login')
   .factory('authService', ['$http', function ($http) {
+
     var logIn = function (userObj) {
      return $http({
       method: 'POST',
       url: '/api/signin',
       data: userObj
+     }).then (function (data) {
+      sessionStorage.setItem('loggedInuser', data.data.id);
+      return data;
      });
     };
 
     var logOut = function () {
+      console.log('trying to get out?');
+      sessionStorage.setItem('loggedInuser', '');
+      sessionStorage.setItem('targetUserId', '');
+      // console.log('so every thing should null:', typeof sessionStorage.getItem('loggedInuser'));
       return $http({
         method: 'POST',
         url: '/api/signout'
@@ -50,12 +58,22 @@
       });
     };
 
+    var deleteAccount = function () {
+      return $http({
+        method: 'DELETE',
+        url: '/api/profile/'
+      });
+    };
+
+
     return {
+      deleteAccount: deleteAccount,
       logIn: logIn,
       logOut: logOut,
       register: register,
       update: update,
       deleteUser: deleteUser
+      // setLoginStatus: setLoginStatus
     };
   }]);
 })();

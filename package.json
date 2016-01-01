@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "./node_modules/karma/bin/karma start --single-run",
-    "lint": "jscs ./"
+    "lint": "jscs ./",
+    "start": "node ./server/server.js"
   },
   "pre-commit": "lint",
   "repository": {

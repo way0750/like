@@ -4,6 +4,7 @@ var db = require('../models/schema');
 var update = require('./update');
 
 ///////////// Authentication Related Utilities //////////////
+
 module.exports.authenticateUser = function (req, res, next, passport) {
   passport.authenticate('local', function( err, user, info ) {
     if(user === false) {
@@ -30,6 +31,16 @@ module.exports.isAuthorized = function(req, res, next){
   }
 };
 
+module.exports.currentlyLoggedIn = function(req, res, next){
+  console.log('req.isAuthenticated():', req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    var userID = req.session.passport.user;
+    //need userID to make a shorten sharable link
+    res.status(200).send(userID);
+  } else {
+    res.send(401);
+  }
+};
 
 ////////////////// User Related Utilities //////////////////
 module.exports.getProfile = function (username, userid, privy) {
@@ -101,7 +112,7 @@ module.exports.signUserOut = function (req, res, next) {
   // To remove req.user and destroy the passport session
   req.logout();
   req.session.destroy();
-  res.redirect('http://www.google.com');
+  res.send(300);
 };
 
 module.exports.getAllProfiles = function () {
@@ -121,9 +132,12 @@ module.exports.getAllProfiles = function () {
 
 module.exports.updateUser = function (req, res, next) {
   var updates = [];
-  var userID = req.user.get('id');
+  //maybe should user another way to get id????
+  // var userID = req.user.get('id');
+  var userID = req.session.passport.user;
 
-  for (prop in req.body) {
+
+  for (var prop in req.body) {
     updates.push(update[prop](userID, req.body[prop]));
   }
 
@@ -209,22 +223,22 @@ module.exports.createOrUpdateVote = function (req, res, next) {
       );
     })
     .then(function () {
-      return db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id});
-    })
-    .then(function () {
-      res.status(200).end('Vote created');
+      db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id})
+      .then( function (newVote) {
+        res.status(200).end('Vote created');
+      });
     })
     .catch(function (err) {
-      console.error('ERROR in createOrUpdateVote: ', err);
     });
   }
 };
 
 module.exports.isVoted = function (req, res, next) {
+  console.log('checking isVoted:', "VoterId", req.session.passport.user, "VoteeId", req.params.id);
   if (req.params.id === 'self') {
     req.params.id = req.session.passport.user;
   }
-  db.VoterAndVotee.findOne({where: {VoterId: req.session.passport.user, VoteeId: req.params.id}})
+  db.VoterAndVotee.findOne({where: {"VoterId": req.session.passport.user, "VoteeId": req.params.id}})
   .then(function (user) {
     if (user) {
       res.isVoted = true;
