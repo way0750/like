@@ -13,7 +13,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var util = require('./Utilities/utilities');
 var app = express();
-
+var db = require("./models");
 
 /////////////////// Serving Assets | Configuring MiddleWare //////////////////
 
@@ -111,6 +111,11 @@ app.use('/', function( req, res ){
   res.sendStatus(200);
 });
 
+db.sequelize.sync().then(function () {
+  var server = app.listen(process.env.PORT || 3333, function() {
+    console.log('Express server listening on port 3333');
+  });
+});
+
 //Server SetUp
-app.listen(process.env.PORT || 3333);
 module.exports = app;

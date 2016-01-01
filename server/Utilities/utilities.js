@@ -1,6 +1,6 @@
 var Promise = require('bluebird');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
-var db = require('../models/schema');
+var db = require("../models");
 var update = require('./update');
 
 ///////////// Authentication Related Utilities //////////////
@@ -223,7 +223,7 @@ module.exports.createOrUpdateVote = function (req, res, next) {
       );
     })
     .then(function () {
-      db.VoterAndVotee.create({VoterId: req.session.passport.user, VoteeId: req.params.id})
+      db.VoterAndVotees.create({VoterId: req.session.passport.user, VoteeId: req.params.id})
       .then( function (newVote) {
         res.status(200).end('Vote created');
       });
@@ -238,7 +238,7 @@ module.exports.isVoted = function (req, res, next) {
   if (req.params.id === 'self') {
     req.params.id = req.session.passport.user;
   }
-  db.VoterAndVotee.findOne({where: {"VoterId": req.session.passport.user, "VoteeId": req.params.id}})
+  db.VoterAndVotees.findOne({where: {"VoterId": req.session.passport.user, "VoteeId": req.params.id}})
   .then(function (user) {
     if (user) {
       res.isVoted = true;
