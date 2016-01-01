@@ -3,19 +3,6 @@
 
   angular.module('like.login')
   .factory('authService', ['$http', function ($http) {
-    // var setLoginStatus = function () {
-    //   // '/api/loginStatus'
-    //   return $http({
-    //     method: 'GET',
-    //     url: '/api/loginStatus',
-    //   }).then( function (data) {
-    //     console.log('got this for checking:', data);
-    //     sessionStorage.setItem('loggedInuser', data);
-    //   }).catch( function (data) {
-    //     console.log('got this for checking:', data);
-    //     sessionStorage.setItem('loggedInuser', null);
-    //   });
-    // };
 
     var logIn = function (userObj) {
      return $http({

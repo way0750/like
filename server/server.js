@@ -35,6 +35,7 @@ app.param('previewID', function (req, res, next, id) {
   .then( function (user) {
     quickPreviewObj.firstName = user.dataValues.firstName;
     quickPreviewObj.lastName = user.dataValues.lastName;
+    quickPreviewObj.gender = user.dataValues.gender;
     res.quick = quickPreviewObj;
     util.getVoteData(id)
     .then(function (data) {
@@ -90,6 +91,7 @@ app.get('/api/profile/:id', util.isAuthorized, util.isVoted, function (req, res)
       .then(function(user){
         profileData.lastName = user.dataValues.lastName;
         profileData.firstName = user.dataValues.firstName;
+        profileData.gender = user.dataValues.gender;
         return util.getVoteData(profileID);
       })
       .then(function (vote) {

@@ -14,6 +14,7 @@
       .then(function (res) {
         $scope.firstName = res.data.firstName;
         $scope.lastName = res.data.lastName;
+        $scope.gender = res.data.gender;
         $scope.vote = res.data.vote;
         $scope.allowToVote = res.data.isVoted;
         $scope.alreadyAuthenticated = quicky ? res.data.alreadyAuthenticated : true;

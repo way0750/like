@@ -13,7 +13,6 @@
       };
       authService.logIn(userObj)
       .then(function (data) {
-        console.log('so why going to profile???', sessionStorage.getItem('targetUserId'));
         var reservedAction = sessionStorage.getItem('targetUserId');
 
         if (reservedAction) {
@@ -31,6 +30,7 @@
     $scope.emailCheck = function (str) {
       return /^\s*[\w-_\.\+]+@[\w-]+\.[\w-\.]+$/.test(str);
     };
+
     $scope.register = function (userObj) {
       if (userObj.password === userObj.confirm) {
         return authService.register(userObj)
@@ -41,7 +41,9 @@
           $location.path('/dashboard');
         })
         .catch(function (err) {
-          return err.status;
+          if (err.data === '451'){
+            $scope.invalidAccount=true;
+          }
         });
       }
     };
