@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('like.profile', ['like.slideMenu', 'like.stat', 'ngRoute'])
+  angular.module('like.profile', ['like.slideMenu', 'like.stat', 'like.analysis', 'ngRoute'])
   .controller('profileCtrl', [ 'authService', '$scope', '$http','dataService', '$location', '$mdSidenav', '$routeParams', 'storage', function (authService, $scope, $http, dataService, $location, $mdSidenav, $routeParams, storage) {
 
     $scope.memory = storage.data;
@@ -17,14 +17,18 @@
         if (res.data.gender === undefined){
           $scope.gender = '';
         } else {
-          $scope.gender = res.data.gender === 1 ? 'Male' : 'Female'; 
+          $scope.gender = res.data.gender === 1 ? 'Guy' : 'Woman'; 
         }
         $scope.vote = res.data.vote;
+        debugger;
+        $scope.opinion = res.data.opinion.replace(/[\{\}]/g, '');
+        // $scope.opinion = 'fixing bug';
         $scope.allowToVote = res.data.isVoted;
         $scope.alreadyAuthenticated = quicky ? res.data.alreadyAuthenticated : true;
       })
       .catch(function (res) {
-        console.log('you already voted for this person!!!');
+        console.log('cat error,', res);
+        return res;
       });
     };
     

@@ -134,13 +134,26 @@
   width: 28%;
 }
 
-.userName.display{
-  background-color: #e95c0e;
-  color: white;
+.userName{
+  font-weight: 900;
+  font-size: 1.5em;
+  font-family: "Josefin Sans";
+  width: 3em;
+  text-align: center;
   height: 2em;
   line-height: 2em;
   margin-bottom: 0px;
   padding-bottom: 0px;
+}
+
+.userName.firstName{
+  background-color: black;
+  color: white;
+}
+
+.userName.lastName{
+  background-color: #e95c0e;
+  color: black;
 }
 
 .md-sidenav-left{
@@ -295,7 +308,6 @@
   background-color: grey;
 }
 
-
 /*-----------slide menu-----------*/
 .logoPic{
   width: 5em;
@@ -306,4 +318,23 @@
   font-weight: 900;
   font-size: 4em;
   color: white;
+}
+
+/*-----------------analysis directive.html--------------------*/
+.opinion{
+  max-width: 20em;
+  font-style: italic;
+  font-size: 1.5em;
+  color: white;
+}
+
+.opinion blockquote {
+  text-indent: 3em;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+
+blockquote div.cite {
+  text-align: right;
 }

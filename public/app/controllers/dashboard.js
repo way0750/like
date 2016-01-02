@@ -12,6 +12,8 @@
       .then(function (res) {
         $scope.firstName = res.data.firstName;
         $scope.lastName = res.data.lastName;
+        $scope.opinion = res.data.opinion.replace(/\{.+\}/, 'You Are ');
+        // $scope.opinion = 'fixing bug';
         $scope.vote = res.data.vote;
       });
     };

@@ -1,11 +1,13 @@
 <slide-menu class = 'sideMenu'></slide-menu>
 
 <div layout="row" layout-align="center center" class='statNControl'>
-  <div layout = 'column'>
-    <h1 class='userName display'>{{firstName}}</h1>
-    <h1 class='userName display'>{{lastName}}</h1>
-    <h1 class='userName display'>{{gender}}</h1>
-    <h1></h1>
+  <div layout = 'column' layout-align='center center'>
+    <div class="userNameField" layout='row'>
+      <span class='userName firstName'>{{firstName}}</span>
+      <span class='userName lastName'>{{lastName}}</span>
+    </div>
+    <!-- <h1 class='userName display'>{{gender}}</h1> -->
+    <analysis class = 'opinion'></analysis>
     <md-button class = "bauhausButton" ng-click="switchView('/voting')" ng-disabled = 'allowToVote' ng-show = "alreadyAuthenticated">
       <span ng-show="allowToVote">Already Got Your Opinion</span>
       <span ng-hide="allowToVote">Offer Your 2 Cents</span>
