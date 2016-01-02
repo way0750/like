@@ -1,15 +1,18 @@
-<div>
-  <md-button class = "md-raised" ng-click="switchView('/dashboard')">Dashboard</md-button>
-  <md-button class = "md-raised" ng-click="switchView('/browse')">Browse</md-button>
-</div>
+<slide-menu class = 'sideMenu'></slide-menu>
 
-<div flex="80" layout="column" layout-wrap >
-  <h1>{{pubUserData.firstName}} MotherFucking {{pubUserData.lastName}}</h1>
-  <div ng-show="pubUserData.traits.length" style='background-color: yellow'>
-    <h2>Personalities</h2><br>
-    <div ng-repeat = "trait in pubUserData.traits" flex="30">
-      <div>{{trait.trait}}: {{trait.netVote}}</div><br>
-      <md-button class="md-raised" ng-click="sendVote([pubUserData.userId, trait.trait, 'up'])" ng-disabled = "trait.votingRecord==='up'">up vote</md-button>
-      <md-button class="md-raised" ng-click="sendVote([pubUserData.userId, trait.trait, 'down'])" ng-disabled = "trait.votingRecord==='down'">down vote</md-button>
+<div layout="row" layout-align="center center" class='statNControl'>
+  <div layout = 'column' layout-align='center center'>
+    <div class="userNameField" layout='row'>
+      <span class='userName firstName'>{{firstName}}</span>
+      <span class='userName lastName'>{{lastName}}</span>
+    </div>
+    <!-- <h1 class='userName display'>{{gender}}</h1> -->
+    <analysis class = 'opinion'></analysis>
+    <md-button class = "bauhausButton" ng-click="switchView('/voting')" ng-disabled = 'allowToVote' ng-show = "alreadyAuthenticated">
+      <span ng-show="allowToVote">Already Got Your Opinion</span>
+      <span ng-hide="allowToVote">Offer Your 2 Cents</span>
+    </md-button>
+    <md-button class = "bauhausButton" ng-click="switchView('/login')" ng-hide = "alreadyAuthenticated">Wanna Offer Your 2 Cents?</md-button>
   </div>
+  <stat-display></stat-display>
 </div>

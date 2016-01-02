@@ -1,31 +1,37 @@
-var db = require('../../DB/db.js');
-var Sequelize = require('sequelize');
-
-var Profile = db.define('profile', {
-  username: {
-    type: Sequelize.STRING,
-    field: 'username'
-  },
-  password: {
-    type: Sequelize.STRING
-  },
-  firstName: {
-    type: Sequelize.STRING,
-    field: 'first_name'
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    field: 'last_name'
-  },
-  email: {
-    type: Sequelize.STRING,
-    field: 'email'
-  }
-}, {
-  freezeTableName: true
-});
-
-//TODO: create relationships before running sync
-Profile.sync();
-
-module.exports = Profile;
+module.exports = function(sequelize, DataTypes) {
+  var Profile = sequelize.define('Profile', {
+    username: {
+      type: DataTypes.STRING,
+      field: 'username'
+    },
+    password: {
+      type: DataTypes.STRING
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      field: 'first_name'
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      field: 'last_name'
+    },
+    email: {
+      type: DataTypes.STRING,
+      field: 'email'
+    },
+    gender: {
+      type: DataTypes.INTEGER,
+      field: 'gender'
+    }
+  }, {
+    freezeTableName: true,
+    classMethods: {
+        associate: function(models) {
+          Profile.hasMany(models.Vote, {foreignKey: 'Votee'});
+          Profile.belongsToMany(Profile, {as: "Voter", through: "VoterAndVotees", foreignKey: "VoteeId"});
+          Profile.belongsToMany(Profile, {as: "Votee", through: "VoterAndVotees", foreignKey: "VoterId"});
+        },
+      }
+  });
+  return Profile;
+};

@@ -1,0 +1,340 @@
+:root, body{
+  background-color: #323333;
+  text-transform: capitalize;
+
+}
+
+/*----------css for the slide menu directive--------*/
+.slideMenuButton{
+  color: black;
+  font-size: 60px;
+}
+
+.slideMenuButton span{
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+/*------------css for login page------------*/
+
+.loginContainer{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.loginHeader{
+  background-color: #e95c0e;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.loginForm{
+  position: relative;
+  padding-top: 2em;
+  background-color: #a6a6a6;
+  padding-bottom: 0.2em;
+}
+
+.loginForm * {
+  margin-bottom: 0px;
+}
+
+.loginForm > :nth-child(0n+2) {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+
+}
+
+.loginForm > :nth-child(0n+3) {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+.loginForm .errMsg{
+  text-align: center;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+}
+
+.login {
+  font-family: "Josefin Sans";
+  font-weight: 900;
+  color: white;
+}
+
+.login .bold, .login.question {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 7em;
+}
+
+.login .text{
+  font-size: 4em;
+  color: white;
+  margin-bottom: -0.4em;
+  vertical-align: middle;
+}
+.login .pic {
+  width: 5em;
+  vertical-align: middle;
+}
+
+.loginHeader{
+  padding-top: 2em;
+}
+
+@keyframes questionmark {
+  100% {
+  color: white;
+  text-shadow: 1px 0px 35px white, -1px 0px 35px white, 0px 1px 35px white, 0px -1px 35px white;
+  }
+}
+
+.login.question span{
+  color: transparent;
+  text-shadow: 0px 0px 0px transparent;
+  animation-duration: 1s;
+  animation-name: questionmark;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.genderChoice {
+  margin-top: -0.5em;
+  margin-bottom: 2em;
+}
+
+.genderChoice input {
+  width: 4em;
+}
+
+/*------------dashboard css-------------*/
+.dashboard {
+  transition: 400ms linear all;
+  -webkit-transition: 400ms linear all;
+}
+
+*.ng-enter, .statDisplay.ng-enter {
+  opacity: 0;
+}
+
+*.ng-enter.ng-enter-active, .statDisplay.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+*.ng-leave, .statDisplay.ng-leave {
+  opacity: 1;
+  transition: 0ms linear all;
+}
+
+.dashboardButton{
+  width: 28%;
+}
+
+.userName{
+  font-weight: 900;
+  font-size: 1.5em;
+  font-family: "Josefin Sans";
+  width: 3em;
+  text-align: center;
+  height: 2em;
+  line-height: 2em;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.userName.firstName{
+  background-color: black;
+  color: white;
+}
+
+.userName.lastName{
+  background-color: #e95c0e;
+  color: black;
+}
+
+.md-sidenav-left{
+  background-color: black;
+  /*background: linear-gradient(90deg, #323333, #4c4d4d);*/
+}
+
+
+/*---------------css for browse.html---------------*/
+
+.browseDisplay {
+  width: 40em;
+  float: right;
+  margin-right: 10em;
+}
+
+.searchEntry{
+  clear: both;
+}
+
+.searchEntry:nth-child(odd) .browseImageHex{
+  float: left;
+  margin-right: 0px;
+}
+
+.searchEntry:nth-child(even) .browseImageHex{
+  float: right;
+  margin-left: 0px;
+}
+
+.searchEntry:nth-child(odd) button{
+  float: left;
+  margin-left: 0px;
+}
+
+.searchEntry:nth-child(even) button{
+  float: right;
+  margin-right: 0px;
+}
+
+.searchEntry button{
+  height: 144px;
+  width: 50%;
+  margin-top: 5em;
+}
+
+
+/*---------------------css for the voting page-----------------------------*/
+.votingHeader{
+  background-color: #e95c0e;
+  height: 8em;
+}
+
+.voteChoice{
+  background-size: auto 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.voteChoice img {
+  height: 40%;
+  -webkit-filter: grayscale(80%) blur(0.1px);
+}
+
+.votingLeft{
+  background-image: url('../leftBg.jpg');
+  background-size: contain;
+  background-repeat: repeat-y;
+  color: white;
+}
+
+.votingRight{
+  background-image: url('../rightBg.jpg');
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+.votingArea > div{
+  width: 50%;
+  height: 32em;
+}
+.votingArea {
+  width: 100%;
+}
+
+.votingArea h1{
+  font-size: 3em;
+  margin: 0px;
+  padding: 0px;
+}
+
+.votingProp{
+  transition: 5000ms linear all;
+}
+ .votingProp.on2-add  {
+  opacity: 0;
+}
+.votingProp.on2  {
+  opacity: 1;
+}
+
+/*-----------stat directive ------------*/
+
+.traitsDisplay{
+  /*border: 1px yellow solid;*/
+  margin-left: 3em;
+}
+
+.statNControl{
+  margin-top: 1em;
+  margin-bottom: 0em;
+}
+
+.statNControl h1{
+  min-width: 8em;
+  text-align: center;
+}
+
+.bauhausButton{
+  border-radius: 0px;
+  border: 1em solid #e95c0e;
+  background-color: #e95c0e;
+  color: black;
+}
+
+.bauhausButton:disabled{
+  background-color: grey;
+  color: white;
+}
+
+.bauhausButton:disabled::after{
+  content: '!!';
+}
+
+/*.statNControl.ng-hide-add, .statNControl.ng-hide-add.ng-hide-add-active, .statNControl.ng-hide-remove, .statNControl.ng-hide-remove.ng-hide-remove-active {
+  transition: 0.3s linear all;
+}*/
+
+*.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  transition: 0.3s linear all;
+}
+
+*.ng-hide-remove{
+  opacity: 0;
+  transition: 0.3s linear all;
+}
+
+/*----------------setting.html---------------*/
+.settingForm{
+  margin-top: 3em;
+  background-color: grey;
+}
+
+/*-----------slide menu-----------*/
+.logoPic{
+  width: 5em;
+}
+
+.logoText {
+  font-family: "Josefin Sans";
+  font-weight: 900;
+  font-size: 4em;
+  color: white;
+}
+
+/*-----------------analysis directive.html--------------------*/
+.opinion{
+  max-width: 20em;
+  font-style: italic;
+  font-size: 1.5em;
+  color: white;
+}
+
+.opinion blockquote {
+  text-indent: 3em;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+
+blockquote div.cite {
+  text-align: right;
+}

@@ -1,0 +1,36 @@
+<slide-menu class = 'sideMenu'></slide-menu>
+
+<div layout = 'column' layout-align="center center">  
+    <div layout='column' layout-align="center center" class="settingForm">
+      <h1>Update Your Info</h1>
+      <form novalidate name="bigGuy" layout="column" layout-align="center center">
+        <md-input-container>
+          <input size="40" ng-model="userObj.password.old" placeholder='Old Password:' type='password'>
+        </md-input-container>
+        <md-input-container>
+          <input size="40" ng-model="userObj.password.new" placeholder='New Password:' type='password'>
+        </md-input-container>
+        <md-input-container>
+          <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text'>
+        </md-input-container>
+        <md-input-container>
+          <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text'>
+        </md-input-container>
+        <md-input-container>
+          <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email'>
+        </md-input-container>
+      </form>
+      <div layout="column" layout-align="center center">
+        <md-button class="bauhausButton" ng-click="sendUpdate(userObj)">click to submit</md-button>
+      </div>
+      <h1>danger zone!</h1>
+      <md-checkbox ng-model="wantToDelete" aria-label="Finished?" ng-click = 'tryToDelete()'>
+        Delete Account?
+      </md-checkbox>
+      <div ng-show='wantToDelete' layout="column" layout-align="center center">
+        <h4>what is {{num1}} + {{num2}}?</h4>
+        <input type="text" ng-model = 'lastWord'>
+        <md-button class = "bauhausButton" ng-click = 'deleteAccount()'>goodbye cold site!</md-button>
+      </div>
+    </div>
+</div>

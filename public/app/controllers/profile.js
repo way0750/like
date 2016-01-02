@@ -1,94 +1,53 @@
 (function () {
   'use strict';
 
-  angular.module('like.profile', [])
-  .controller('profileCtrl', ['$scope', '$http','dataService', '$location', function ($scope, $http, dataService, $location) {
+  angular.module('like.profile', ['like.slideMenu', 'like.stat', 'like.analysis', 'ngRoute'])
+  .controller('profileCtrl', [ 'authService', '$scope', '$http','dataService', '$location', '$mdSidenav', '$routeParams', 'storage', function (authService, $scope, $http, dataService, $location, $mdSidenav, $routeParams, storage) {
 
-    $scope.targetUserId = sessionStorage.getItem('targetUserId');
-    $scope.pubUserData = {
-        userId: 1,
-        firstName: "Kyle",
-        lastName: "Cho",
-        traits: [
-          {
-            trait: "extraversion",
-            netVote: 10,
-            votingRecord: 'up'
-          },
-          {
-            trait: "introversion",
-            netVote: 736,
-            votingRecord: 'up'
-          },
-          {
-            trait: "sensing",
-            netVote: 324,
-            votingRecord: 'down'
-          },
-          {
-            trait: "intuition",
-            netVote: 34,
-            votingRecord: 'down'
-          },
-          {
-            trait: "thinking",
-            netVote: 234,
-            votingRecord: 'up'
-          },
-          {
-            trait: "feeling",
-            netVote: 676,
-            votingRecord: 'up'
-          },
-          {
-            trait: "judging",
-            netVote: -235,
-            votingRecord: 'up'
-          },
-          {
-            trait: "perceiving",
-            netVote: -987,
-            votingRecord: 'down'
-          }
-        ]
-    };
+    $scope.memory = storage.data;
+    $scope.memory.fromProfile = 'fromProfile';
+    // console.log(storage.data);
 
-    $scope.getUserData = function (userId) {
-
-      return dataService.getUserData(userId)
-      .then(function (data) {
-        // $scope.pubUserData = data;
-        return data;
+    
+    $scope.getUserData = function (userId, quicky) {
+      dataService.getUserData(userId, quicky)
+      .then(function (res) {
+        $scope.firstName = res.data.firstName;
+        $scope.lastName = res.data.lastName;
+        if (res.data.gender === undefined){
+          $scope.gender = '';
+        } else {
+          $scope.gender = res.data.gender === 1 ? 'Guy' : 'Woman'; 
+        }
+        $scope.vote = res.data.vote;
+        debugger;
+        $scope.opinion = res.data.opinion.replace(/[\{\}]/g, '');
+        // $scope.opinion = 'fixing bug';
+        $scope.allowToVote = res.data.isVoted;
+        $scope.alreadyAuthenticated = quicky ? res.data.alreadyAuthenticated : true;
       })
-      .catch(function (data) {
-        // $scope.pubUserData = false;
-        return false;
+      .catch(function (res) {
+        console.log('cat error,', res);
+        return res;
       });
     };
-
+    
     $scope.switchView = function (location) {
       $location.path(location);
     };
+    
+    $scope.usingQuickLink = $routeParams.hasOwnProperty('id');
+    
+    if ($scope.usingQuickLink) {
+     sessionStorage.setItem('targetUserId', $routeParams.id); 
+    }
 
-    $scope.sendVote = function (voteArr) {
-      var data = {
-        userId: voteArr[0],
-        trait: voteArr[1],
-        vote: voteArr[2]
-      };
-      return $http({
-        method: 'POST',
-        url: '/api/vote/' + data.userId,
-        data: data
-      }).then(function (data) {
-        $scope.data = data.data;
-        return data.data;
-      }).catch(function (data) {
-        $scope.data = false;
-        return false;
-      });
-    };
-    if ($scope.targetUserId !== null) {
+    $scope.targetUserId = sessionStorage.getItem('targetUserId');
+    $scope.userIsLoggedIn = sessionStorage.getItem('loggedInuser');
+
+    if ($scope.usingQuickLink && !$scope.userIsLoggedIn) {
+      $scope.getUserData($routeParams.id, true);
+    } else if ($scope.targetUserId !== null) {
       $scope.getUserData(sessionStorage.getItem('targetUserId'));
     }
   }]); //close controller

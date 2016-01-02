@@ -1,17 +1,63 @@
-<div layout = 'column' layout-align="center center">
-  <h1>Login To See Some Juicy Stuff</h1>
-  <div layout = 'column' >
-  <md-input-container>
-    <input size="40" ng-model="username" placeholder='username' >
-  </md-input-container>
-  <md-input-container>
-    <input size="40" ng-model="password" placeholder='password' type='password'>
-  </md-input-container>
-  </div>
+<div layout = 'column' layout-align="center center" class="loginContainer">
+  <header class = "loginHeader" layout = 'column' layout-align="center center">
+    <div class="login"> <img src="../../assets/logo.svg" class = 'pic'> <span class='text'>Persona</span></div>
+    <h1 class = "login question">Who Are You Really<span>?</span></h1>
+  </header>
+  <div layout = 'column' class="loginForm">
+    <div class='errMsg' ng-show="wrongCred"> Wrong username or password</div>
+    <div class='errMsg' ng-show="invalidAccount">Account Already Exist!</div>
 
-  <div layout='column'>
-    <md-button class="md-raised basicButton" ng-click="login(username, password)">click to submit</md-button><br>
-    <md-button class="md-raised basicButton" ng-click="goToRegister()">create new account</md-button>
-  </div>
+    <md-input-container>
+     <input size="40" ng-model="userObj.username" placeholder='Who Are You?'>
+    </md-input-container>
 
+    <md-checkbox ng-model="isChecked" aria-label="Finished?">
+      New Account?
+    </md-checkbox>
+
+    <md-input-container>
+      <input size="40" ng-model="userObj.password" placeholder='Your Fancy Password' type='password'>
+    </md-input-container>
+
+    <div layout='column' ng-hide="isChecked" style="margin-top: -20px; padding: -20px">
+      <md-button class="bauhausButton" ng-click="login(userObj.username, userObj.password)">click to submit</md-button><br>
+    </div>
+
+    <div layout='column' layout-align="center center" ng-show="isChecked">
+
+    <form novalidate layout = 'column' layout-align='center center'>
+      <md-input-container>
+        <input size="40" ng-model="userObj.confirm" placeholder='Re-Enter That Password:' type='password' required>
+      </md-input-container>
+      <md-input-container>
+        <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text' required>
+      </md-input-container>
+      <md-input-container>
+        <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' required>
+      </md-input-container>
+
+  
+      <div class = 'genderChoice' layout='row'>
+        <span flex='10'></span>
+        <span>Male:</span>
+        <!-- <md-input-container> -->
+          <input ng-model="userObj.gender" type="radio" value="1" required>
+        <!-- </md-input-container> -->
+        <!-- <span flex='50'></span> -->
+        <!-- <md-input-container> -->
+        <span>Female:</span>
+          <input ng-model="userObj.gender" type="radio" value="0" required>
+        <!-- </md-input-container> -->
+      </div>
+
+      <md-input-container>
+        <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' required>
+      </md-input-container>
+
+    </form>
+    <div layout='column'>
+      <md-button class="bauhausButton" ng-click="register(userObj)" ng-disabled = "!(emailCheck(userObj.email))">click to submit</md-button>
+    </div>
+  </div>
+</div>
 </div>
