@@ -220,7 +220,7 @@ describe('Controllers', function () {
         }
         ]
       };
-      $httpBackend.expectGET('/api/browse').respond(mockUsers);
+      $httpBackend.expectGET('/api/users').respond(mockUsers);
       $httpBackend.flush();
 
       expect(scope.users.data).to.deep.equal(mockUsers);
