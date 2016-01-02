@@ -1,9 +1,12 @@
 <slide-menu class = 'sideMenu'></slide-menu>
 
 <div layout="row" layout-align="center center" class='statNControl'>
-  <div layout = 'column'>
-    <h1 class='userName display'>{{firstName}}</h1>
-    <h1 class='userName display'>{{lastName}}</h1>
+  <div layout='column' layout-align='center center'>
+    <div class="userNameField" layout='row'>
+      <span class='userName firstName'>{{firstName}}</span>
+      <span class='userName lastName'>{{lastName}}</span>
+    </div>
+    <analysis class = 'opinion'></analysis>
   </div>
   <stat-display></stat-display>
 </div>

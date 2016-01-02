@@ -19,9 +19,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       field: 'email'
     },
-    photo: {
-      type: DataTypes.STRING,
-      field: 'photo'
+    gender: {
+      type: DataTypes.INTEGER,
+      field: 'gender'
     }
   }, {
     freezeTableName: true,

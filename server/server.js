@@ -1,3 +1,4 @@
+//super logging system
 console.oldLog = console.log;
 console.log = function () {
   console.oldLog('\n\nconsole.logging this..=======================');

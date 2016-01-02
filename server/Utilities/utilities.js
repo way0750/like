@@ -74,13 +74,14 @@ module.exports.checkUsername = function (req, res, next) {
 module.exports.createUser = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
-
+  // var gender = req.body.gender;
   var userObj = {
-    username  : username,
-    password  : password,
+    username  : req.body.username,
+    password  : req.body.password,
     firstName : req.body.firstName,
     lastName  : req.body.lastName,
-    email     : req.body.email
+    email     : req.body.email,
+    gender    : req.body.gender
   };
 
   module.exports.hashPassword(username, password)

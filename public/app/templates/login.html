@@ -1,6 +1,6 @@
 <div layout = 'column' layout-align="center center" class="loginContainer">
   <header class = "loginHeader" layout = 'column' layout-align="center center">
-    <div class="login"> <img src="../../assets/logo.svg" class = 'pic'> <span class='text'>Persona:</span></div>
+    <div class="login"> <img src="../../assets/logo.svg" class = 'pic'> <span class='text'>Persona</span></div>
     <h1 class = "login question">Who Are You Really<span>?</span></h1>
   </header>
   <div layout = 'column' class="loginForm">
@@ -25,7 +25,7 @@
 
     <div layout='column' layout-align="center center" ng-show="isChecked">
 
-    <form novalidate name="bigGuy" >
+    <form novalidate layout = 'column' layout-align='center center'>
       <md-input-container>
         <input size="40" ng-model="userObj.confirm" placeholder='Re-Enter That Password:' type='password' required>
       </md-input-container>
@@ -35,9 +35,21 @@
       <md-input-container>
         <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' required>
       </md-input-container>
-      <md-input-container>
-        <input size="40" ng-model="userObj.gender" placeholder='Gender' type='text' required>
-      </md-input-container>
+
+  
+      <div class = 'genderChoice' layout='row'>
+        <span flex='10'></span>
+        <span>Male:</span>
+        <!-- <md-input-container> -->
+          <input ng-model="userObj.gender" type="radio" value="1" required>
+        <!-- </md-input-container> -->
+        <!-- <span flex='50'></span> -->
+        <!-- <md-input-container> -->
+        <span>Female:</span>
+          <input ng-model="userObj.gender" type="radio" value="0" required>
+        <!-- </md-input-container> -->
+      </div>
+
       <md-input-container>
         <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' required>
       </md-input-container>
