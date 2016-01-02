@@ -20,7 +20,6 @@
           $scope.gender = res.data.gender === 1 ? 'Guy' : 'Woman'; 
         }
         $scope.vote = res.data.vote;
-        debugger;
         $scope.opinion = res.data.opinion.replace(/[\{\}]/g, '');
         // $scope.opinion = 'fixing bug';
         $scope.allowToVote = res.data.isVoted;

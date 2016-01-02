@@ -4,8 +4,7 @@
     <h1 class = "login question">Who Are You Really<span>?</span></h1>
   </header>
   <div layout = 'column' class="loginForm">
-    <div class='errMsg' ng-show="wrongCred"> Wrong username or password</div>
-    <div class='errMsg' ng-show="invalidAccount">Account Already Exist!</div>
+    <div class='errMsg' ng-show="errorfound">{{errMsg}}</div>
 
     <md-input-container>
      <input size="40" ng-model="userObj.username" placeholder='Who Are You?'>
@@ -27,31 +26,30 @@
 
     <form novalidate layout = 'column' layout-align='center center'>
       <md-input-container>
-        <input size="40" ng-model="userObj.confirm" placeholder='Re-Enter That Password:' type='password' required>
+        <input size="40" ng-model="userObj.passwordConfirmation" placeholder='Re-Enter That Password:' type='password' ng-required = 'true'>
       </md-input-container>
       <md-input-container>
-        <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text' required>
+        <input size="40" ng-model="userObj.firstName" placeholder='First Name:' type='text' ng-required = 'true'>
       </md-input-container>
       <md-input-container>
-        <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' required>
+        <input size="40" ng-model="userObj.lastName" placeholder='Last Name' type='text' ng-required = 'true'>
       </md-input-container>
-
   
       <div class = 'genderChoice' layout='row'>
         <span flex='10'></span>
         <span>Male:</span>
         <!-- <md-input-container> -->
-          <input ng-model="userObj.gender" type="radio" value="1" required>
+          <input ng-model="userObj.gender" type="radio" value="1" ng-required = 'true'>
         <!-- </md-input-container> -->
         <!-- <span flex='50'></span> -->
         <!-- <md-input-container> -->
         <span>Female:</span>
-          <input ng-model="userObj.gender" type="radio" value="0" required>
+          <input ng-model="userObj.gender" type="radio" value="0" ng-required = 'true'>
         <!-- </md-input-container> -->
       </div>
 
       <md-input-container>
-        <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' required>
+        <input size="40" ng-model='userObj.email' placeholder='Your Very Important E-mail:' type='email' ng-required = 'true'>
       </md-input-container>
 
     </form>

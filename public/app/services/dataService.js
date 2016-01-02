@@ -90,7 +90,7 @@
     var getAllUsers = function (region) {
       return $http({
         method: 'GET',
-        url: '/api/browse'
+        url: '/api/users'
       })
       .then(function (data) {
         return data;
