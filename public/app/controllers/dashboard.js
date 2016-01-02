@@ -15,6 +15,7 @@
         $scope.opinion = res.data.opinion.replace(/\{.+\}/, 'You Are ');
         // $scope.opinion = 'fixing bug';
         $scope.vote = res.data.vote;
+        $scope.myID = res.data.myID;
       });
     };
 

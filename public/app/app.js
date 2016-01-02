@@ -1,4 +1,4 @@
-var myApp = angular.module('like', ['ngMaterial', 'like.browse', 'like.dashboard', 'like.setting','like.login', 'like.profile', 'like.voting', 'like.storage', 'ngRoute', 'ngAnimate']);
+var myApp = angular.module('like', ['ngclipboard', 'ngMaterial', 'like.browse', 'like.dashboard', 'like.setting','like.login', 'like.profile', 'like.voting', 'like.storage', 'ngRoute', 'ngAnimate']);
 myApp.controller('likeCtrl', function ($scope, $location) {
   $scope.path = {curPath: $location.path()};
 });

@@ -13,6 +13,10 @@
       <span ng-hide="allowToVote">Offer Your 2 Cents</span>
     </md-button>
     <md-button class = "bauhausButton" ng-click="switchView('/login')" ng-hide = "alreadyAuthenticated">Wanna Offer Your 2 Cents?</md-button>
+    <md-button class="bauhausButton" ngclipboard data-clipboard-text="https://whatispersona.herokuapp.com/#/id/{{targetUserId}}">
+        Copy This Link
+    </md-button>
   </div>
   <stat-display></stat-display>
 </div>
+

@@ -13,7 +13,6 @@
       authService.logIn(userObj)
       .then(function (data) {
         var reservedAction = sessionStorage.getItem('targetUserId');
-
         if (reservedAction) {
           $location.path('/profile');
         } else {
@@ -39,7 +38,6 @@
       return stillNeed;
     };
 
-
     $scope.register = function (userObj) {
       var stillNeedRequirements = checkRequiredValues(userObj);
       console.log('trying to register wiht this:',userObj, 'still need these:', stillNeedRequirements);
@@ -49,7 +47,12 @@
           return data.data.userId;
         })
         .then (function (userId) {
+        var reservedAction = sessionStorage.getItem('targetUserId');
+        if (reservedAction) {
+          $location.path('/profile');
+        } else {
           $location.path('/dashboard');
+        }
         })
         .catch(function (err) {
           if (err.data === '451'){

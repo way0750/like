@@ -21,6 +21,7 @@ module.exports = function (app, util, passport) {
           profileData.lastName = user.dataValues.lastName;
           profileData.firstName = user.dataValues.firstName;
           profileData.gender = user.dataValues.gender;
+          profileData.myID = req.session.passport.user;
           return util.getVoteData(profileID);
         })
         .then(function (vote) {
