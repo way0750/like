@@ -44,13 +44,13 @@ describe('Authentication', function() {
 
 
   describe('Log Out', function () {
-    it('should not allow access to /api/browse if not logged in', function (done) {
+    it('should not allow access to /api/users if not logged in', function (done) {
       request(server)
-        .get('/api/browse')
+        .get('/api/users')
         .expect(401, done);
     });
 
-   it('should allow access to /api/browse if logged in', function (done) {
+   it('should allow access to /api/users if logged in', function (done) {
       var agent = request.agent(server);
       agent
         .post('/api/signin')
@@ -58,7 +58,7 @@ describe('Authentication', function() {
         .end(function(err, res) {
           console.log('signed in');
           agent
-            .get('/api/browse')
+            .get('/api/users')
             .expect(200, done);
         });
     });

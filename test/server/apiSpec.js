@@ -18,10 +18,10 @@ describe('API', function() {
     });
   });
 
-  describe('GET api/browse/', function () {
+  describe('GET api/users/', function () {
     it('should respond with a list of profile IDs/names and a 200 status', function (done) {
       request(server)
-        .get('/api/browse')
+        .get('/api/users')
         .expect(200, done); //TODO: Add in check of return value
     });
   });
