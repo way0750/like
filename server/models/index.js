@@ -1,7 +1,8 @@
 var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize('postgres://admin:test@localhost:5432/likedb');
+var dbPath = process.env.DATABASE_URL || 'postgres://yjzlsdlebggohn:hcD3bs1xVUEjgx4E63ezx3388P@ec2-54-204-12-25.compute-1.amazonaws.com:5432/d5lunrgkvjdsdo';
+var sequelize = new Sequelize(dbPath);
 var db = {};
 
 fs.readdirSync(__dirname)
