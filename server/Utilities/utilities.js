@@ -1,10 +1,9 @@
 var Promise = require('bluebird');
 var bcrypt = Promise.promisifyAll(require('bcrypt'));
-var db = require("../models");
+var db = require('../models');
 var update = require('./update');
 
-///////////// Authentication Related Utilities //////////////
-
+// authentication
 module.exports.authenticateUser = function (req, res, next, passport) {
   passport.authenticate('local', function( err, user, info ) {
     if(user === false) {
@@ -31,31 +30,14 @@ module.exports.isAuthorized = function(req, res, next){
   }
 };
 
-module.exports.currentlyLoggedIn = function(req, res, next){
-  console.log('req.isAuthenticated():', req.isAuthenticated());
-  if (req.isAuthenticated()) {
-    var userID = req.session.passport.user;
-    //need userID to make a shorten sharable link
-    res.status(200).send(userID);
-  } else {
-    res.send(401);
-  }
+module.exports.signUserOut = function (req, res, next) {
+  // To remove req.user and destroy the passport session
+  req.logout();
+  req.session.destroy();
+  res.send(300);
 };
 
-////////////////// User Related Utilities //////////////////
-module.exports.getProfile = function (username, userid, privy) {
-  if (privy) {
-    return db.Profile.find({ where : { id : userid }});
-  } else {
-    if (userid !== null) {
-      return db.Profile.find({ where : { id : userid }});
-        //return the user data that is public
-    } else {
-      return db.Profile.find({ where : { username : username }});
-    }
-  }
-};
-
+// user creation
 module.exports.checkUsername = function (req, res, next) {
   var username = req.body.username;
   db.Profile.find({ where: { username : username }})
@@ -109,28 +91,7 @@ module.exports.createUser = function (req, res) {
     });
 };
 
-module.exports.signUserOut = function (req, res, next) {
-  // To remove req.user and destroy the passport session
-  req.logout();
-  req.session.destroy();
-  res.send(300);
-};
-
-module.exports.getAllProfiles = function () {
-  return db.Profile
-          .findAll({ attributes : ['id', 'username']})
-          .then(function(users){
-            var profiles = [];
-            for(var i =0; i < users.length; i++ ) {
-              profiles.push(users[i].dataValues);
-            }
-            return profiles;
-          })
-          .catch(function(err) {
-            throw new Error('Error getting new users',err);
-          });
-};
-
+// user info modification
 module.exports.updateUser = function (req, res, next) {
   var updates = [];
   //maybe should user another way to get id????
@@ -165,7 +126,7 @@ module.exports.deleteUser = function (req, res, next) {
          });
 };
 
-///////////////// Password Related Utilities ////////////////
+// password
 module.exports.checkPassword = function(id, password) {
   return this.getProfile(null, id)
     .then(function(user){
@@ -194,7 +155,36 @@ module.exports.hashPassword = function (username, password) {
     });
 };
 
-/////////////// Voting //////////////////
+// get user data
+module.exports.getProfile = function (username, userid, privy) {
+  if (privy) {
+    return db.Profile.find({ where : { id : userid }});
+  } else {
+    if (userid !== null) {
+      return db.Profile.find({ where : { id : userid }});
+        //return the user data that is public
+    } else {
+      return db.Profile.find({ where : { username : username }});
+    }
+  }
+};
+
+module.exports.getAllProfiles = function () {
+  return db.Profile
+          .findAll({ attributes : ['id', 'username']})
+          .then(function(users){
+            var profiles = [];
+            for(var i =0; i < users.length; i++ ) {
+              profiles.push(users[i].dataValues);
+            }
+            return profiles;
+          })
+          .catch(function(err) {
+            throw new Error('Error getting new users',err);
+          });
+};
+
+// voting utilities
 module.exports.createOrUpdateVote = function (req, res, next) {
   if (res.isVoted) {
     res.status(401).send('Already voted on this profile');
