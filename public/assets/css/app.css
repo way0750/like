@@ -284,9 +284,9 @@
   color: white;
 }
 
-.bauhausButton:disabled::after{
+/*.bauhausButton:disabled::after{
   content: '!!';
-}
+}*/
 
 /*.statNControl.ng-hide-add, .statNControl.ng-hide-add.ng-hide-add-active, .statNControl.ng-hide-remove, .statNControl.ng-hide-remove.ng-hide-remove-active {
   transition: 0.3s linear all;
