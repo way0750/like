@@ -2,12 +2,6 @@
 #Persona is peer base personality evaluation platform
 ![ScreenShot](https://cldup.com/fSkM-xBEui.gif)
 
-## Documentation
-  
-- Frontend | [JSDocs](http://usejsdoc.org/)
-- Backend  | [RDoc](http://rdoc.sourceforge.net/)
-- Database | [dbdsgnr](http://dbdsgnr.appspot.com/)
-
 ## Git Workflow
 
 Should pass all test and rebase from `savagepopsicle/like/master` before merge.
@@ -21,30 +15,26 @@ Should pass all test and rebase from `savagepopsicle/like/master` before merge.
 - Frontend: AngularJS
 - Deployment: AWS
 - Testing:
-    - Backend: Rspec
+    - Backend: Mocha, Chai
     - Frontend: Mocha, Chai, and Karma
     - Service: Travis 
 - Task runner: Grunt
 
 ## Architecture
 
-### MVP
+#### Architecture
 
-#### MVP Architecture
+![architecture](https://cldup.com/7usay0HPOL.png)
 
-![MVP architecture](https://cldup.com/7usay0HPOL.png)
-
-#### MVP Database Schema
+#### Database Schema
 
 ![MVP database schema](https://cldup.com/1GzOPc7fEE.png "MVP database schem")
 
-#### MVP UX Flow Chart
+#### UX Flow Chart
 
 ![MVP UX Flow Chart](https://cldup.com/fFCB0098W7.png "MVP UX Flow Chart")
 
-#### MVP router
-
-##### User view
+##### User view router
 
 - /
 - /signin
